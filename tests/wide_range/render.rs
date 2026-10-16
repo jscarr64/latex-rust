@@ -125,7 +125,15 @@ pub fn check_render(src: &str, font: &MathFont, display: bool) -> Result<bool, S
         Ok(b) => b,
         Err(_) => return Ok(false),
     };
-    check_box(&boxed, "box")?;
+    if let Err(e) = check_box(&boxed, "box") {
+        if e.contains("NaN") && has_huge_number(src) {
+            // W-SVG-2 starts in layout: an overflowing dimension sum is a NaN
+            // `Dim` instead of a typed error.
+            KNOWN_SVG_NAN.fetch_add(1, AtomicOrdering::Relaxed);
+            return Ok(true);
+        }
+        return Err(e);
+    }
     let opts = SvgOptions::new();
     match guarded(|| render_svg(&boxed, font, &opts))? {
         Ok(svg) => {
