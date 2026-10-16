@@ -402,6 +402,11 @@ fn unpaired_left_right_and_env_are_rejected() -> Result<(), String> {
                 ));
             }
         }
+        // The body of `\operatorname{..}` is read as a literal name (W-OPNAME-1),
+        // so a `\left` or `\right` inside it pairs with nothing; skip those.
+        if src.contains("\\operatorname") {
+            continue;
+        }
         let lefts = oracle::count_word(&src, "left");
         let rights = oracle::count_word(&src, "right");
         if lefts != rights {
@@ -518,7 +523,8 @@ fn padding_does_not_change_the_tree() -> Result<(), String> {
         // Non-ASCII edge whitespace is trimmed or kept as an atom depending on
         // a trailing comment (documented, canonical_print_props); skip it.
         let edge = |c: Option<char>| c.is_some_and(|c| c.is_whitespace() && !c.is_ascii());
-        if edge(src.chars().next()) || edge(src.chars().next_back()) {
+        let core = src.trim_matches(|c: char| c.is_ascii_whitespace());
+        if edge(core.chars().next()) || edge(core.chars().next_back()) {
             continue;
         }
         tested += 1;

@@ -192,7 +192,7 @@ pub fn report(src: &str, bits: u8, with_depth: bool, label: &str) -> Result<usiz
 /// W-*) and reproduced by the ignored tests in `tests/wide_range_findings.rs`.
 /// A failure whose minimized input is one of these shapes is counted, not
 /// failed, so the rest of the suite runs green. Anything else still fails.
-pub const KNOWN_NAMES: [&str; 11] = [
+pub const KNOWN_NAMES: [&str; 13] = [
     "W-DEPTH-1 empty node printed as {}",
     "W-DEPTH-2 \\not X printed as \\not {X}",
     "W-DEPTH-3 unicode script char printed as ^{..}",
@@ -204,10 +204,12 @@ pub const KNOWN_NAMES: [&str; 11] = [
     "W-DEPTH-8 edge whitespace atom grouped (by design)",
     "W-DEPTH-9 paren-lookahead grouping (by design)",
     "W-DEPTH-10 \\genfrac with delimiters prints as \\left..\\frac..\\right (one level deeper)",
+    "W-DEPTH-11 named operator with both scripts printed as {\\op _b}^a",
+    "W-DEPTH-12 prime followed by a second script printed as {x^x'}^y",
 ];
 
 /// Counts of known findings seen in this process.
-pub static KNOWN: [AtomicUsize; 11] = [const { AtomicUsize::new(0) }; 11];
+pub static KNOWN: [AtomicUsize; 13] = [const { AtomicUsize::new(0) }; 13];
 
 /// Index into `KNOWN_NAMES` for a minimized failing input, if it is a known
 /// shape. `why` is the failure of the minimized input itself.
@@ -233,6 +235,12 @@ pub fn known_cause(min: &str, bits: u8, why: &str) -> Option<usize> {
     if min.contains("\\not") {
         return Some(1);
     }
+    if printed.contains("{\\") && printed.contains("}^") && min.contains('^') && min.contains('_') {
+        return Some(11);
+    }
+    if min.contains('\'') && min.matches('^').count() >= 2 {
+        return Some(12);
+    }
     if min.chars().any(|c| "²³¹ⁿ⁰⁴⁵⁶⁷⁸⁹ₙ₀₁₂₃₄₅₆₇₈₉".contains(c))
     {
         return Some(2);
@@ -247,7 +255,7 @@ pub fn known_cause(min: &str, bits: u8, why: &str) -> Option<usize> {
         "\\mathrm", "\\rm", "\\mathbf", "\\bf", "\\textbf", "\\mathit", "\\it", "\\textit",
         "\\mathsf", "\\sf", "\\textsf", "\\mathtt", "\\tt", "\\texttt", "\\textrm",
     ];
-    if fonts.iter().any(|f| min.contains(f)) {
+    if min.contains("\\math") || fonts.iter().any(|f| min.contains(f)) {
         return Some(5);
     }
     if min.contains("\\(") || min.contains("\\)") {

@@ -8,8 +8,7 @@
 //! under test.
 
 use latex_rust::{
-    latex_to_svg, layout, parse, parse_with_options, Dim, MathFont, MathStyle, ParseOptions,
-    SvgOptions,
+    latex_to_svg, layout, parse, parse_with_options, MathFont, MathStyle, ParseOptions, SvgOptions,
 };
 
 fn font() -> Result<MathFont, String> {
@@ -210,4 +209,64 @@ fn color_run_round_trips() -> Result<(), String> {
 #[ignore = "W-DEPTH-6 font body of several nodes printed in a group"]
 fn depth_boundary_font_body() -> Result<(), String> {
     boundary("=\\mathrm{-e}", &ParseOptions::new())
+}
+
+#[test]
+#[ignore = "W-DEPTH-11 named operator with both scripts printed as {\\op _b}^a"]
+fn depth_boundary_limits() -> Result<(), String> {
+    boundary("\\lim^a_2", &ParseOptions::new())
+}
+
+#[test]
+#[ignore = "W-DEPTH-12 prime followed by a second script printed as {x^x'}^y"]
+fn depth_boundary_prime_then_script() -> Result<(), String> {
+    boundary("x^x'^x", &ParseOptions::new())
+}
+
+/// W-SVG-2: a 39-digit dimension is accepted, and the SVG header then holds
+/// `NaN` (`height="NaNpt"`). An invalid size is never valid SVG; a typed
+/// error (as for 1e38em, which is rejected) is the honest answer.
+#[test]
+#[ignore = "W-SVG-2 NaN in svg for a huge accepted dimension"]
+fn svg_has_no_nan_for_huge_dimensions() -> Result<(), String> {
+    let f = font()?;
+    let nines = "9".repeat(39);
+    for src in [
+        format!("\\hspace{{{nines}em}}"),
+        format!("\\rule{{1em}}{{1{}em}}", "0".repeat(38)),
+    ] {
+        if let Ok(svg) = latex_to_svg(&src, &f, &SvgOptions::new()) {
+            if svg.contains("NaN") || svg.contains("inf") {
+                return Err(format!(
+                    "{src:?} gives {}",
+                    svg.lines().nth(1).unwrap_or("")
+                ));
+            }
+        }
+    }
+    Ok(())
+}
+
+/// W-OPNAME-1: the body of `\operatorname` is read as a literal name, so a
+/// command in it (`\alpha`, `\sin`, `\frac{1}{2}`, `\left(`) is shown as the
+/// text `\alpha`. TeX reads the body as math (`\alpha` is alpha). A typed
+/// error for a command in the body would also be honest; silent literal text
+/// is not.
+#[test]
+#[ignore = "W-OPNAME-1 operatorname body is literal text, commands are not read"]
+fn operatorname_does_not_show_commands_as_text() -> Result<(), String> {
+    for src in [
+        "\\operatorname{\\alpha}",
+        "\\operatorname{\\sin}x",
+        "\\operatorname{\\frac{1}{2}}",
+        "\\operatorname{\\left(x}",
+    ] {
+        if let Ok(tree) = parse(src) {
+            let gold = tree.gold();
+            if gold.contains("(op \\") {
+                return Err(format!("{src:?} is accepted as the literal text: {gold}"));
+            }
+        }
+    }
+    Ok(())
 }

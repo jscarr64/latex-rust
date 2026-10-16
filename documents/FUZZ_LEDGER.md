@@ -209,6 +209,10 @@ printer rule, not bugs.
 | W-DEPTH-8 (by design) | depth +1 | a non-ASCII space at an edge | grouped so the trim cannot remove the space atom (`canon-edge-space`). | none |
 | W-DEPTH-9 (by design) | depth +1 | `(^))^)` | grouped by the paren-lookahead rule (`canon-primed-close`, `canon-primed-open`). | none |
 | W-DEPTH-10 | depth +1, no break | `\genfrac{(}{)}{}{}{a}{b}` | prints `\left(\frac{a}{b}\right)`, one level deeper than the source. | none |
+| W-DEPTH-11 | depth +1 | `\lim\limits^\eta_2`, `\lim^a_2` | A named operator with both scripts prints `{\lim _2}^a`, one level deeper than the source (`\sum\limits^a_2` prints flat). | `depth_boundary_limits` |
+| W-DEPTH-12 | depth +1 | `x^x'^x` | A prime followed by a second script prints `{x^x'}^x`. | `depth_boundary_prime_then_script` |
+| W-SVG-2 | invalid output | `\hspace{999...9em}` (39 nines), `\rule{1em}{1000...0em}` (39 digits) | A huge dimension is accepted and the SVG header holds `NaN` (`height="NaNpt"`). `1e38em` is rejected, and so is a 120-digit number, so only a window of magnitudes leaks. | `svg_has_no_nan_for_huge_dimensions` |
+| W-OPNAME-1 | wrong answer (silent) | `\operatorname{\alpha}`, `\operatorname{\sin}x`, `\operatorname{\left(x}` | The body is read as literal text: gold `(op \alpha)`, printed `\operatorname {\\alpha}`. TeX reads the body as math. A command in the body should be read or rejected as typed `Unsupported`. | `operatorname_does_not_show_commands_as_text` |
 
 Notes that are not findings (documented in `TEXT_MODE_SPEC.md` section 4.1):
 `\textbf{if $x>0$ then}` is rejected (typed `unexpected math shift`) and
