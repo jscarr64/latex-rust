@@ -124,7 +124,7 @@ fn valid_inputs_are_accepted() -> Result<(), String> {
         )?;
         if let Err(e) = parse_with_options(&src, &options_from_bits(bits)) {
             let key = e.to_string();
-            if !seen.iter().any(|k| *k == key) && rejected.len() < 12 {
+            if !seen.contains(&key) && rejected.len() < 12 {
                 seen.push(key);
                 let small = props::minimize_with(&src, &|s| {
                     parse_with_options(s, &options_from_bits(bits))
@@ -185,7 +185,8 @@ fn mutated_inputs_hold_every_property() -> Result<(), String> {
 fn random_hostile_strings_hold_every_property() -> Result<(), String> {
     let n = cases(4096);
     let pool: Vec<&str> = {
-        let mut p: Vec<&str> = HOSTILE.iter().copied().collect();
+        let mut p: Vec<&str> = Vec::with_capacity(HOSTILE.len() + 8);
+        p.extend_from_slice(HOSTILE);
         p.extend([
             "{",
             "}",
@@ -254,9 +255,7 @@ fn generator_covers_the_lexicon() -> Result<(), String> {
     ];
     for (kind, table) in tables {
         for name in table {
-            let hit = if kind == "delim" {
-                all.contains(name)
-            } else if name.starts_with('\\') {
+            let hit = if kind == "delim" || name.starts_with('\\') {
                 all.contains(name)
             } else {
                 all.contains(&format!("\\{name}"))

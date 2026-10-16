@@ -147,7 +147,11 @@ pub fn fixed_inputs() -> Vec<(String, String)> {
 }
 
 /// Size-parameterised families, `(name, builder)`. `n` is the size knob.
-pub fn families() -> Vec<(&'static str, fn(usize) -> String)> {
+/// A named size-parameterised builder.
+pub type Family = (&'static str, fn(usize) -> String);
+
+/// Size-parameterised families.
+pub fn families() -> Vec<Family> {
     vec![
         ("x-run", |n| "x".repeat(n)),
         ("sum-terms", |n| "a+".repeat(n)),

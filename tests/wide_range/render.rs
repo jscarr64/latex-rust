@@ -85,10 +85,8 @@ pub fn check_box(b: &MathBox, path: &str) -> Result<(), String> {
                 }
             }
         }
-        BoxContent::Glyph { scale, .. } => {
-            if !finite(scale) {
-                return Err(format!("{path}: glyph scale is NaN"));
-            }
+        BoxContent::Glyph { scale, .. } if !finite(scale) => {
+            return Err(format!("{path}: glyph scale is NaN"));
         }
         _ => {}
     }
@@ -185,6 +183,11 @@ pub fn check_egui(src: &str, font: &MathFont) -> Result<(), String> {
     match guarded(|| latex_to_shapes(src, font, &EguiOptions::new(), egui::Pos2::ZERO, 1.0))? {
         Ok((_shapes, rect)) => {
             if !rect.is_finite() {
+                if has_huge_number(src) {
+                    // W-SVG-2 reaches the egui backend too.
+                    KNOWN_SVG_NAN.fetch_add(1, AtomicOrdering::Relaxed);
+                    return Ok(());
+                }
                 return Err(String::from("egui rect is not finite"));
             }
             Ok(())

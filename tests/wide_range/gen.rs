@@ -136,7 +136,7 @@ impl<'a> Gen<'a> {
         }
         let d = depth.saturating_sub(1);
         match r {
-            0 | 1 | 2 | 3 | 4 => format!("{{{}}}", self.node(d)),
+            0..=4 => format!("{{{}}}", self.node(d)),
             5 => String::from("{}"),
             6 => format!("{{ {} }}", self.seq(d)),
             7 => String::from(

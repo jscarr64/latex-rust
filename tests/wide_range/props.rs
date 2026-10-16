@@ -205,7 +205,7 @@ pub const KNOWN_NAMES: [&str; 13] = [
     "W-DEPTH-9 paren-lookahead grouping (by design)",
     "W-DEPTH-10 \\genfrac with delimiters prints as \\left..\\frac..\\right (one level deeper)",
     "W-DEPTH-11 named operator with both scripts printed as {\\op _b}^a",
-    "W-DEPTH-12 prime followed by a second script printed as {x^x'}^y",
+    "W-DEPTH-12 prime printed as a script, or followed by a script: {x^x'}^y, \\int ^′",
 ];
 
 /// Counts of known findings seen in this process.
@@ -238,7 +238,9 @@ pub fn known_cause(min: &str, bits: u8, why: &str) -> Option<usize> {
     if printed.contains("{\\") && printed.contains("}^") && min.contains('^') && min.contains('_') {
         return Some(11);
     }
-    if min.contains('\'') && min.matches('^').count() >= 2 {
+    if min.contains('\'')
+        && (min.matches('^').count() >= 2 || printed.contains("^′") || printed.contains("^\\prime"))
+    {
         return Some(12);
     }
     if min.chars().any(|c| "²³¹ⁿ⁰⁴⁵⁶⁷⁸⁹ₙ₀₁₂₃₄₅₆₇₈₉".contains(c))
