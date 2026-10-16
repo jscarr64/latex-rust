@@ -1,0 +1,6557 @@
+golds/cas/algebra_parse.gold:28:expr
+12{\tfrac{3}{11}}\div 13{\tfrac{1}{2}}
+
+golds/cas/algebra_parse.gold:34:expr
+\gamma\frac{A^2}{m}
+
+golds/cas/algebra_parse.gold:46:expr
+\nu_3{\bigl(}{9/8}{\bigr)}
+
+golds/cas/algebra_parse.gold:70:expr
+\sum_{j=1}^rj\alpha^j
+
+golds/cas/algebra_parse.gold:71:expect
+\sum_{j=1}^{r} j\alpha^{j}
+
+golds/cas/asymptotic_series.gold:42:expr
+\sum_{k=1}^{n} 1/k
+
+golds/cas/desktop.gold:19:expr
+integrate(\frac{e^x}{x}, x)
+
+golds/cas/desktop.gold:20:expect
+\text{Ei}(x)
+
+golds/cas/desktop.gold:37:expr
+\sin(x)^2 + \cos(x)^2
+
+golds/cas/desktop.gold:38:expect
+\sin^{2}(x)+\cos^{2}(x)
+
+golds/cas/desktop.gold:43:expr
+\in
+
+golds/cas/desktop.gold:44:expect
+\int
+
+golds/cas/desktop.gold:55:expect
+\frac{}{}
+
+golds/cas/desktop.gold:75:expect
+\sqrt{x^2}
+
+golds/cas/diff.gold:131:expr
+\sum_{k=1}^{n} k*x
+
+golds/cas/diff.gold:133:expect
+\sum_{k=1}^{n} k
+
+golds/cas/engine_surface.gold:192:expect
+\sin(x)
+
+golds/cas/greens.gold:26:expect
+\frac{1}{2\pi}\ln(\mathrm{hypot}(xi,eta)*\mathrm{hypot}(x-xi/(xi^2+eta^2),y-eta/(xi^2+eta^2))/\mathrm{hypot}(x-xi,y-eta))
+
+golds/cas/greens.gold:35:expect
+\frac{1}{2\pi}\ln(\mathrm{hypot}(x-xi,y+eta)/\mathrm{hypot}(x-xi,y-eta))
+
+golds/cas/kernel.gold:12:expr
+plot(sin(x), x, 0, 2\pi)
+
+golds/cas/kernel.gold:24:expr
+simplify(\sqrt{x^2})
+
+golds/cas/latex.gold:13:expect
+\int e^{-x^2}\,dx
+
+golds/cas/latex.gold:25:expect
+T^{\mu\nu}
+
+golds/cas/latex.gold:42:expect
+\begin{pmatrix}1 & 0 \\ 0 & 1\end{pmatrix}
+
+golds/cas/latex.gold:49:expect
+{y}^{\prime}
+
+golds/cas/latex.gold:56:expect
+{y}^{\prime\prime}
+
+golds/cas/latex.gold:63:expect
+y+{y}^{\prime\prime}=0
+
+golds/cas/latex.gold:76:expect
+\alpha t
+
+golds/cas/latex.gold:98:expect
+2\pi T^{-1}
+
+golds/cas/mobile.gold:12:expect
+\sin,\int,\sum,\alpha
+
+golds/cas/pde_mixed_bc.gold:15:expect
+\sum_{n=1}^{\infty} A(n)*exp(-lambda(n)^2*t)*sin(lambda(n)*x)
+
+golds/cas/pde_mixed_bc.gold:24:expect
+\sum_{n=1}^{\infty} A(n)*sinh(lambda(n)*(1-y))*sin(lambda(n)*x)
+
+golds/cas/pde_mixed_bc.gold:34:expect
+\sum_{n=1}^{\infty} (A(n)*cos(c*((2*n-1)*pi*(1/2))*t)+B(n)*sin(c*((2*n-1)*pi*(1/2))*t))*sin(((2*n-1)*pi*(1/2))*x)
+
+golds/cas/pde_sep.gold:11:expect
+\sum_{n=1}^{\infty} A(n)*exp(-kappa*lambda(n)^2*t)*sin(lambda(n)*x)
+
+golds/cas/pde_sep.gold:21:expect
+\sum_{n=1}^{\infty} (A(n)*cos(c*lambda(n)*t)+B(n)*sin(c*lambda(n)*t))*sin(lambda(n)*x)
+
+golds/cas/pipeline.gold:34:expr
+1+\ldots+n
+
+golds/cas/pipeline.gold:40:expr
+\int x
+
+golds/cas/pipeline.gold:46:expr
+\begin{pmatrix}1\end{pmatrix}
+
+golds/cas/pipeline.gold:52:expr
+\sum_{k=1}^n k
+
+golds/cas/quantifier.gold:121:expr
+CASES(0, u(x,y) >= -c(x,y), forall(x, y)\in X*Y + infty)
+
+golds/cas/reading_repair.gold:5:expr
+5+1 \choose 2
+
+golds/cas/reading_repair.gold:11:expr
+2^{3}\choose{2}
+
+golds/cas/reading_repair.gold:17:expr
+64 \choose 8
+
+golds/cas/reading_repair.gold:23:expr
+\begin{pmatrix}1 & & 2 \\ 3 & 4 & 5\end{pmatrix}
+
+golds/cas/reading_repair.gold:29:expr
+\left. F \right|^b_a
+
+golds/cas/reading_repair.gold:68:expr
+\cos 2\gamma
+
+golds/cas/reading_repair.gold:69:expect
+\cos(2\gamma)
+
+golds/cas/reading_repair.gold:70:why
+Corpus 00eeabe1. Greek gamma beside a numeral is the letter, the same coefficient rule as beta in \cos 2\beta, not the gamma function. The reading means cos(2*gamma). gamma(z) stays the function because the parenthesis is a call. Reprint of cos(2*gamma) must parse back to that product.
+
+golds/cas/reading_repair.gold:74:expr
+x \pm y+z
+
+golds/cas/reading_repair.gold:75:expect
+z+(x \pm y)
+
+golds/cas/reading_repair.gold:76:why
+Corpus 334b4a38. Plus and \pm share binding power (5, 6) and associate left, so x \pm y+z means (x \pm y)+z, not x \pm (y+z). Canonical addition sorts the degree-1 symbol ahead of the degree-0 pm node, and the reprint must parenthesize that pm term or z+x\pm y would parse as (z+x) \pm y.
+
+golds/cas/reading_repair.gold:80:expr
+a\bmod b+c
+
+golds/cas/reading_repair.gold:81:expect
+c+(a \bmod b)
+
+golds/cas/reading_repair.gold:82:why
+Corpus 33d70244. \bmod binds at (4, 6), looser than plus on the left, and its right operand is parsed at 6 so plus (left binding 5) stays outside the modulus. a\bmod b+c means (a \bmod b)+c. a+b\bmod c means (a+b) \bmod c. The reprint must parenthesize a modulus in a sum and a sum on the right of \bmod, or the associations swap.
+
+golds/cas/reading_repair.gold:87:expect
+\infty
+
+golds/cas/simplify.gold:173:expr
+f^\ast
+
+golds/cas/simplify.gold:179:expr
+f^\star
+
+golds/cas/simplify.gold:185:expr
+A \mid B
+
+golds/cas/simplify.gold:191:expr
+P(X \mid X < a)
+
+golds/cas/sum.gold:273:expr
+\sum_{j=1}^{n} \sum_{k=1}^{p} l_{ijk}
+
+golds/cas/sum.gold:282:expr
+\sum_{j=1}^{n} O_{ij}
+
+golds/cas/sum.gold:291:expr
+\sum_{j=1}^{N} w_{ij}
+
+golds/cas/sum.gold:309:expr
+\sum_{j=1}^{n} \sum_{k=1}^{p} \sum_{l=1}^{q} \sum_{r=1}^{s} 1
+
+golds/cas/sum.gold:318:expr
+\sum_{i=1}^{n} 1
+
+golds/cas/sum.gold:382:expr
+\frac{1}{N}\sum_{n=0}^{N-1}\omega^n
+
+golds/cas/sum.gold:383:expect
+\frac{1}{N}\frac{1-\omega^N}{1-\omega}
+
+golds/cas/sum.gold:390:expr
+\frac{\ell-1}{4}\ell^{j-1}
+
+golds/cas/sum.gold:394:expect
+(\ell^{2*h}-1)/4
+
+golds/cas/sum.gold:403:expr
+\sum_{i=1}^{L-k} 3\cdot 4^{i-1}
+
+golds/cas/sum.gold:413:expr
+\sum_{i=1}^{k} 2^i\cdot 4^{L-k}
+
+golds/cas/sum.gold:423:expr
+2\sum_{k=1}^{n+1} k^2-(n+1)^2
+
+golds/cas/sum.gold:433:expr
+-\frac{1}{2r}\sum_{j=1}^{r}\alpha^j
+
+golds/cas/sum.gold:434:expect
+-\alpha*(\alpha^r-1)/(2*r*(\alpha-1))
+
+golds/cas/sum.gold:443:expr
+\frac{\beta^2}{2}\sum_{i=0}^{2\ell}\varrho^i
+
+golds/cas/sum.gold:444:expect
+\frac{\beta^2}{2}\cdot\frac{\varrho^{2\ell+1}-1}{\varrho-1}
+
+golds/cas/sum.gold:453:expr
+-c\sum_{k=0}^{p-1} k^2
+
+golds/cas/tensor.gold:16:expr
+T^{\mu\nu}T_{\nu\rho}
+
+golds/cas/tensor.gold:22:expr
+g^{\mu\nu}g_{\nu\rho}
+
+golds/cas/tensor.gold:24:expect
+\delta^{\mu}_{\rho}
+
+golds/cas/tensor.gold:28:expr
+T_{\mu}^{\nu}
+
+golds/cas/tensor.gold:34:expr
+V^{\nu}
+
+golds/cas/tensor.gold:38:expect
+partial(mu, V^{\nu})
+
+golds/cas/tensor.gold:42:expr
+g_{\mu\nu}
+
+golds/cas/tensor.gold:50:expr
+T^{\mu\nu}S_{\rho}
+
+doc/compliance/algebra_front_sympy.md:span0
+\Gamma
+
+doc/compliance/algebra_front_sympy.md:span1
+\zeta
+
+doc/compliance/algebra_front_sympy.md:span2
+\approx
+
+doc/compliance/algebra_front_sympy.md:span4
+\binom
+
+doc/compliance/algebra_front_sympy.md:span5
+\mathrm
+
+doc/compliance/algebra_front_sympy.md:span6
+x\cdot(1/x)=1
+
+doc/compliance/algebra_front_sympy.md:span7
+\gamma(0)=\gamma(1)
+
+doc/compliance/algebra_front_sympy.md:span8
+\Gamma(0)
+
+doc/compliance/algebra_front_sympy.md:span9
+\Gamma(1)
+
+doc/compliance/algebra_front_sympy.md:span10
+\gamma(0)
+
+doc/compliance/algebra_front_sympy.md:span11
+{\mathcal{I}}({\mathcal{V}}(I))=\sqrt{I}
+
+doc/compliance/algebra_front_sympy.md:span12
+i\mathrm{V}(i)
+
+doc/compliance/algebra_front_sympy.md:span13
+\sqrt{i}
+
+doc/compliance/algebra_front_sympy.md:span14
+\mathrm{factorial}
+
+doc/compliance/algebra_front_sympy.md:span15
+\choose
+
+doc/compliance/algebra_front_sympy.md:span17
+\mathrm{…}
+
+doc/compliance/algebra_front_sympy.md:span19
+\mathbf
+
+doc/compliance/algebra_front_sympy.md:span20
+\mathbb
+
+doc/compliance/algebra_front_sympy.md:span21
+\mathcal
+
+doc/compliance/algebra_front_sympy.md:span22
+\operatorname
+
+doc/compliance/algebra_front_sympy.md:span23
+\mathbb{D}
+
+doc/compliance/algebra_front_sympy.md:span24
+\mathbf{I}
+
+doc/compliance/algebra_front_sympy.md:span25
+\mathrm{Re}
+
+doc/compliance/algebra_front_sympy.md:span26
+\nu_3{\bigl(}{9/8}{\bigr)}=2
+
+doc/compliance/algebra_front_sympy.md:span27
+\mathrm{w}(0)
+
+doc/compliance/algebra_front_sympy.md:span28
+{64 \choose 8}
+
+doc/compliance/algebra_front_sympy.md:span29
+v = K_{\mathrm{sat}} i
+
+doc/compliance/algebra_front_sympy.md:span31
+\alphat
+
+doc/compliance/algebra_front_sympy.md:span32
+\frac{2\pi}{T}
+
+doc/compliance/algebra_front_sympy.md:span34
+E[\int x\,dx]
+
+doc/compliance/algebra_front_sympy.md:span35
+\gamma
+
+doc/compliance/algebra_front_sympy.md:span36
+r = \ln(FV/PV)/t
+
+doc/compliance/algebra_front_sympy.md:span40
+\text
+
+doc/compliance/algebra_front_sympy.md:span41
+1/\cos\phi
+
+doc/compliance/algebra_front_sympy.md:span42
+\cos^{-1}(\phi)
+
+doc/compliance/algebra_front_sympy.md:span43
+\cos(\phi)^{-1}
+
+doc/compliance/algebra_front_sympy.md:span44
+\sin^{2}(x)
+
+doc/compliance/algebra_front_sympy.md:span45
+\sin^{-1}(x)
+
+doc/compliance/algebra_front_sympy.md:span47
+q_{ult} - \gamma D_f
+
+doc/compliance/algebra_front_sympy.md:span48
+\gamma(z)
+
+doc/compliance/algebra_front_sympy.md:span49
+\cos 2\beta
+
+doc/compliance/algebra_front_sympy.md:span50
+\cos(2\beta)
+
+doc/compliance/algebra_front_sympy.md:span51
+\cos 2 \sin x
+
+doc/compliance/algebra_front_sympy.md:span52
+\cos(2)
+
+doc/compliance/algebra_front_sympy.md:span54
+\pm
+
+doc/compliance/algebra_front_sympy.md:span55
+\sin\theta \pm \sin\phi
+
+doc/compliance/algebra_front_sympy.md:span56
+\sin\theta
+
+doc/compliance/algebra_front_sympy.md:span57
+\sin\phi
+
+doc/compliance/algebra_front_sympy.md:span58
+\pm x
+
+doc/compliance/algebra_front_sympy.md:span59
+\cdot
+
+doc/compliance/algebra_front_sympy.md:span60
+\varepsilon k.\!
+
+doc/compliance/algebra_front_sympy.md:span61
+\varepsilon k
+
+doc/compliance/algebra_front_sympy.md:span62
+\displaystyle
+
+doc/compliance/algebra_front_sympy.md:span63
+{a \choose b}
+
+doc/compliance/algebra_front_sympy.md:span64
+\mathrm{binomial}(a,b)
+
+doc/compliance/algebra_front_sympy.md:span65
+(a+\omega)(a+\omega)^p
+
+doc/compliance/algebra_front_sympy.md:span66
+(a+\omega)^{p+1}
+
+doc/compliance/algebra_front_sympy.md:span67
+\ln x/\ln b
+
+doc/compliance/algebra_front_sympy.md:span68
+\ln(x)/\ln(b)
+
+doc/compliance/algebra_front_sympy.md:span71
+\circ
+
+doc/compliance/algebra_front_sympy.md:span72
+\otimes
+
+doc/compliance/algebra_front_sympy.md:span73
+\cap
+
+doc/compliance/algebra_front_sympy.md:span74
+\alpha_s \circ \alpha_t
+
+doc/compliance/algebra_front_sympy.md:span75
+A \otimes B
+
+doc/compliance/algebra_front_sympy.md:span76
+F^{p} \cap W
+
+doc/compliance/algebra_front_sympy.md:span77
+L^{\otimes -1}
+
+doc/compliance/algebra_front_sympy.md:span78
+x^{\circ}
+
+doc/compliance/algebra_front_sympy.md:span79
+\dim H
+
+doc/compliance/algebra_front_sympy.md:span80
+_{\rm s}
+
+doc/compliance/algebra_front_sympy.md:span81
+r_{\rm s}
+
+doc/compliance/algebra_front_sympy.md:span82
+{\rm s}
+
+doc/compliance/algebra_front_sympy.md:span83
+\mathrm{s}
+
+doc/compliance/algebra_front_sympy.md:span84
+\Delta s / \Delta i
+
+doc/compliance/algebra_front_sympy.md:span85
+s\left(-i\right)
+
+doc/compliance/algebra_front_sympy.md:span86
+c_{\pm}
+
+doc/compliance/algebra_front_sympy.md:span87
+\mp
+
+doc/compliance/algebra_front_sympy.md:span89
+e^{\mp x}
+
+doc/compliance/algebra_front_sympy.md:span90
+2MR^{2}\omega/5
+
+doc/compliance/algebra_front_sympy.md:span91
+g/(\frac{2}{3}\ell)
+
+doc/compliance/algebra_front_sympy.md:span92
+\frac{P^{sat}_1}{P^{sat}_2}
+
+doc/compliance/algebra_front_sympy.md:span93
+\frac{P_1^{sat}}{P_2^{sat}}
+
+doc/compliance/algebra_front_sympy.md:span94
+\cfrac
+
+doc/compliance/algebra_front_sympy.md:span95
+\cfrac{\sigma_1^2}{\sigma_{1c}^2}
+
+doc/compliance/algebra_front_sympy.md:span96
+\left\lceil j/2 \right\rceil
+
+doc/compliance/algebra_front_sympy.md:span97
+\lfloor x \rfloor
+
+doc/compliance/algebra_front_sympy.md:span98
+\Vert S\Vert
+
+doc/compliance/algebra_front_sympy.md:span99
+mg{\frac{1}{2}}
+
+doc/compliance/algebra_front_sympy.md:span100
+\sin{x}
+
+doc/compliance/algebra_front_sympy.md:span101
+\ddot{U}
+
+doc/compliance/algebra_front_sympy.md:span102
+\boldsymbol
+
+doc/compliance/algebra_front_sympy.md:span103
+\mathfrak
+
+doc/compliance/algebra_front_sympy.md:span105
+\boldsymbol{\xi}
+
+doc/compliance/algebra_front_sympy.md:span106
+\xi
+
+doc/compliance/algebra_front_sympy.md:span107
+{\boldsymbol{\beta}}_s(t)
+
+doc/compliance/algebra_front_sympy.md:span108
+\beta_s(t)
+
+doc/compliance/algebra_front_sympy.md:span109
+\mathfrak{M}
+
+doc/compliance/algebra_front_sympy.md:span110
+[M][\ddot{U}]
+
+doc/compliance/algebra_front_sympy.md:span111
+\pi(w-d)
+
+doc/compliance/algebra_front_sympy.md:span112
+\deg
+
+doc/compliance/algebra_front_sympy.md:span113
+\oint
+
+doc/compliance/algebra_front_sympy.md:span115
+\log_2
+
+doc/compliance/algebra_front_sympy.md:span116
+\ln(x)/\ln 2
+
+doc/compliance/algebra_front_sympy.md:span117
+16\left\lceil L(M)/m\right\rceil
+
+doc/compliance/algebra_front_sympy.md:span118
+{\tfrac12}\lfloor 2x\rfloor
+
+doc/compliance/algebra_front_sympy.md:span119
+2\left\lceil l/4\right\rceil
+
+doc/compliance/algebra_front_sympy.md:span120
+{\Bigl \lceil }1{\Bigr \rceil }
+
+doc/compliance/algebra_front_sympy.md:span121
+\bmod
+
+doc/compliance/algebra_front_sympy.md:span122
+\pmod
+
+doc/compliance/algebra_front_sympy.md:span123
+\mod
+
+doc/compliance/algebra_front_sympy.md:span124
+(ax_{n-r}+c_{n-1})\bmod b
+
+doc/compliance/algebra_front_sympy.md:span125
+h+c\pmod{m}
+
+doc/compliance/algebra_front_sympy.md:span126
+\oplus
+
+doc/compliance/algebra_front_sympy.md:span127
+(1\oplus 5\oplus 9)\oplus(1\oplus 5)
+
+doc/compliance/algebra_front_sympy.md:span128
+\textbf
+
+doc/compliance/algebra_front_sympy.md:span129
+\textit
+
+doc/compliance/algebra_front_sympy.md:span130
+\textsf
+
+doc/compliance/algebra_front_sympy.md:span132
+\textbf{h}
+
+doc/compliance/algebra_front_sympy.md:span133
+\mathtt{0x5F3759DF}
+
+doc/compliance/algebra_front_sympy.md:span134
+\bowtie
+
+doc/compliance/algebra_front_sympy.md:span135
+\propto
+
+doc/compliance/algebra_front_sympy.md:span136
+\angle
+
+doc/compliance/algebra_front_sympy.md:span137
+\parallel
+
+doc/compliance/algebra_front_sympy.md:span138
+\shortparallel
+
+doc/compliance/algebra_front_sympy.md:span139
+A^{\dagger}
+
+doc/compliance/math_labeler/README.md:span0
+< > \le \leq \ge \geq
+
+doc/compliance/math_labeler/README.md:span1
+\neq
+
+doc/compliance/math_labeler/README.md:span2
+\ll
+
+doc/compliance/math_labeler/README.md:span3
+\gg
+
+doc/compliance/math_labeler/equations_completed_002.md:span0
+\hat{K}
+
+doc/compliance/math_labeler/equations_completed_003.md:span0
+\Lambda
+
+doc/compliance/math_labeler/equations_completed_003.md:span1
+\widetilde a(m,n)
+
+doc/compliance/math_labeler/equations_completed_003.md:span2
+\frac{1}{\sqrt{2}}
+
+doc/compliance/math_labeler/equations_completed_003.md:span3
+\varphi_k^{(n)}
+
+doc/compliance/math_labeler/equations_completed_004.md:span0
+\hat{A}(t)
+
+doc/compliance/math_labeler/equations_completed_005.md:span0
+ p_h 
+
+doc/compliance/math_labeler/equations_completed_005.md:span1
+\Lambda_f
+
+doc/compliance/math_labeler/equations_completed_005.md:span2
+\Lambda_f(s)
+
+doc/compliance/math_labeler/equations_completed_005.md:span3
+\Lambda_g(1-s)
+
+doc/compliance/math_labeler/equations_completed_005.md:span4
+\tilde{I}_1
+
+doc/compliance/math_labeler/equations_completed_005.md:span5
+\tilde{I}_2
+
+doc/compliance/math_labeler/equations_completed_006.md:span0
+\tilde{u}_0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span1
+\cdots ={\frac {-2m}{-2n}}={\frac {-m}{-n}}={\frac {m}{n}}={\frac {2m}{2n}}=\cdots
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span2
+\mathbf {x} (\mathbf {u} \otimes \mathbf {v} )=(\mathbf {x} \cdot \mathbf {u} )\mathbf {v} ^{\mathrm {T} }
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span3
+(x\wedge y)\cdot z=(x\cdot y)x\cdot z=(x\cdot y)\cdot(x\cdot z)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span4
+U^s_x\psi^i\psi^j = \psi^jU^s_x\psi^i = \rho_s(U^s_x)\psi^j\psi^i
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span5
+g_1(\omega U_1, X)=-g_1(U_1,\mathcal{B}X)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span6
+\beta ^{e_{x}-e_{y}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span7
+\rho ={\frac {m_{d}+m_{v}}{V}}=\rho _{d}+\rho _{v}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span8
+I+ \sum_{j=1}^g A_j\otimes [\sum_k b_{j,k} X_K + c_jI\right ] \succeq 0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span9
+\nu(x_0):=\lim_{r\to 0}\nabla \psi_{x_0,r}(x_0)\neq 0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span10
+\phi =\phi _{1}+\phi _{2}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span11
+w_{i,1},w_{i,2}\ldots w_{i,n}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span12
+\phi (t)\neq \phi (t')
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span13
+(L_s \cdot \varepsilon_{\theta})(tus) = 0 - q^{-k} \theta(t)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span14
+S_{\alpha,\beta,m}[f] =T_{\alpha, \beta,m}[f]\\f \in\mathcal{D}(S_{\alpha,\beta,m})
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span15
+\operatorname {id} _{Y}\circ f=f\circ \operatorname {id} _{X}=f
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span16
+U_{ij}=\varphi _{i}\left(W_{ij}\right)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span17
+V_{\text{out}}=V_{2}-V_{1}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span18
+X_{1}X_{2}\cdots X_{n}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span19
+f(h_{\mathrm{c}})=\pi a^{2}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span20
+\Delta [X]=\Delta {\frac {\text{OD}}{\epsilon d}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span21
+{\frac {\sigma (t)}{\gamma (t)}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span22
+\mathbf {rank} _{1}(x)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span23
+\nu _{p}(-1)={\frac {p-1}{2}},\omega ^{\nu _{p}(-1)}=-1,\nu _{p}(a)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span24
+j=1,\ldots ,N_{V}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span25
+r=a{\frac {\sin \theta _{1}}{\sin \psi }}=a{\frac {\sin[q\theta +\theta _{0}]}{\sin[(q-1)\theta +\theta _{0}]}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span26
+A={\frac {2\pi \exp (n^{2}+1)E_{\mathrm{g}}^{2}kT}{h^{3}c^{2}}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span27
+k(t)={\frac {i_{ab}(t)R}{U}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span28
+z(P'(z)Q(z)-P(z)Q'(z))+\alpha P(z)Q(z)=0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span29
+\lambda ={\frac {1}{2}}(.032)^{2}=.0005
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span30
+\frac{n}{2}(\log _{2}n-1)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span31
+S^{(q)} = \frac{2\pi}{\kappa} \|q\|
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span32
+\gamma_m(\ell_m(t)) = \beta_m(t)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span33
+u(x,0)=0,\,\partial _{t}u(x,0)=0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span34
+x^{-1}W(xy)\to y
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span35
+m = 0 m_{12} \ldots ,m_{21} 0 \ldots ,\vdots
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span36
+\lim_{x\to\infty}\frac{\Phi(x)}{x}=\infty\lim_{x\to 0^+}\frac{\Phi(x)}{x}=0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span37
+\lim_{h_1 \to \infty} \sum_{k=N_0+1}^{\infty} \frac{1}{k^{2\alpha}(\mu_k+h_1)} = 0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span38
+(\mathbb {Z} \times (\mathbb {Z} \setminus \{0\}))
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span39
+\Phi ({\sqrt {\frac {\lambda }{x}}}({\frac {x}{\mu }}-1))
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span40
+(G_\mathrm{{c}}^{t})_{disk}=[1+0.56V_{f}(r/t)]G_\mathrm{{c}}^{m}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span41
+\delta _\epsilon v^{a_1}=\dot \epsilon _3^a
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span42
+\chi (G)/\chi _{f}(G)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span43
+S\Rightarrow (AB\DC)\Rightarrow (aAB\DC)\Rightarrow (aB\DC)\Rightarrow (abBc\DC)\Rightarrow (abc\DC)\Rightarro
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span44
+\Delta D_{measured}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span45
+(W_{\mathsf {act}})
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span46
+\mathbb{L}_0=(\mathbb{L}_{0,\infty} ,\mathbb{L}_{0,f}),\mathbb{L}=(\mathbb{L}_\infty,\mathbb{L}_f)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span47
+I(Q) = -2\chi(Q)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span48
+l=1,2,\ldots ,L
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span49
+P_{\ell }^{m}(\cos \theta )
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span50
+f_{1}\colon U_{1}\to \mathbb {R}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span51
+\phi _{i}^{(k)}(x_{1},\ldots ,x_{n})
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span52
+(A,B,h)\mapsto A
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span53
+\mathcal{F}^{(N_{F})}(\mathrm{v}; \{ m_{i} \},\Lambda_{N_{F}}) \rightarrow \mathcal{F}^{(N_{F}-1)}(\mathrm{v};
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span54
+\Omega (x)\equiv S(x)\Lambda (x){\bmod {x^{d-1}}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span55
+(p-x)^{2}\equiv x^{2}{\pmod {p}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span56
+\mathrm {Mor} (X,\mathrm {Spec} (A))\cong \mathrm {Hom} (A,\Gamma (X,{\mathcal {O}}_{X}))
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span57
+\mathrm {Tr} \mathbf {E} \equiv E_{i}^{i}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span58
+F(x^2)\equiv[B(x^2)]^4 4e^2H''(x^2)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span59
+q_{2}(q_{1})={\frac {5000-q_{1}-c_{2}}{2}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span60
+{\mathrm{Pr}}[M{\mathrm{ rejects }}w]\geq 1-\epsilon
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span61
+G(s)=K_{p}+{\frac {K_{i}}{s}}+K_{d}{s}={\frac {K_{d}{s^{2}}+K_{p}{s}+K_{i}}{s}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span62
+\mathbb{P}(E_i) = \mathbb{P}(E_{i,1}) \mathbb{P}(E_{i,2})
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span63
+\dot x_\text s(t)=Ax_\text s(t)+Bu(t)+YC'(y(t)-Cx_\text s(t)), \\ \dot x_\text a(t)=Ax_\text a(t)+Bu(t),x_\tex
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span64
+\alpha +S(\beta )=S(\alpha +\beta )
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span65
+\mathrm {SNR} ={\frac {\|h^{\mathrm {H} }s\|^{2}}{E\{\|h^{\mathrm {H} }v\|^{2}\}}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span66
+\mathrm {lift-choice} [M]\neq \mathrm {none} \to \mathrm {lift-choice} [M\ N]=\mathrm {lift-choice} [M]
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span67
+\mu_n(f)=\int f d\mu_n \to \int f d\mu= \mu(f) \
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span68
+y_p = h_{pp}\sqrt{\mathcal{P}}x_p + \mathbf{h}_{sp}\sqrt{P} \mathbf{x}_{s} + w_p
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span69
+\cos \omega _{\circ }={\frac {\sin(-0.833^{\circ })-\sin \phi \times \sin \delta }{\cos \phi \times \cos \delt
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span70
+\eta (x_{1})=\eta (x_{2})
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span71
+K_{ij}\leftarrow K_{ij}+(1-K_{\max })
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span72
+\theta(x) - \theta(y) - \theta(X) + \theta(Y) = (I_1-I_2)(x-y) + I_2 (x-y-X+Y)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span73
+T(r;\mu) = T_R(r;\mu) + T_L ( P_R(r;\mu); \mu )
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span74
+-\Delta \equiv 2I-S-S^{\ast }
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span75
+\int _{0}^{\infty }{\frac {dx}{1+x^{2}}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span76
+X(X-1)(X-\lambda_1)(X-\lambda_2)(X-\lambda_3)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span77
+\mathcal{L}(f) \equiv \frac{1}{2} (\partial_\mu f )^2 - V(f) \
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span78
+\Sigma_{gh}(z;\hat m;1/2,1/2)\to\frac{(u-v)^2}{8(z-u)}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span79
+{\mathcal {X}}={\mathcal {A}}\sqcup {\mathcal {K}}\sqcup {\mathcal {Q}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span80
+m(x,y,z)=(x\wedge z)\vee (\neg y\wedge (x\vee z))
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span81
+V'=(V\setminus \{u,v\})\cup \{w\}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span82
+(X\setminus U,A\setminus U)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span83
+dS-{\frac {\delta Q}{T}}=0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span84
+\Psi \equiv \theta -27.5^{\circ }
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span85
+\widetilde{x}_n^{(M_T)}(T)=x_m^{(M_T)}(T)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span86
+B_1(a)B_1(b)=B_1(a)B_1(\sigma(b))=B_1(B_1(a_1)\sigma(b)S(B_2(a_2))),=B_1(B_1(a)\sigma(b)+\sigma(b)S(B_2(a)))=B
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span87
+\lim_{T\rightarrow \infty}\beta_g^u(T,u)=0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span88
+\Theta(f_{1},f_{2},T)=\int_{\mathbb{R}^{nd}}f_{2}(Q(v_{1})-Q(v_{2}),\ldots,Q(v_{n-1})-Q(v_{n}))f_{1}(T^{-1}\le
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span89
+M_k^\alpha(q,u) - M_k^\alpha(q,v)=0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span90
+Mf(x)\vcentcolon =\sup_{r>0}\frac{1}{\|B_r(x)\|}\int_{B_r(x)}\|f(y)\|\,dy.
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span91
+A\preccurlyeq B\Rightarrow abs(A)\leq abs(B)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span92
+\alpha \equiv {\frac {\ 1\ }{\xi }}>0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span93
+N(t)=\sum _{i=1}^{\infty }N_{i}\Phi _{i}(t), 0<t<T
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span94
+{\frac {dT}{dz}}=-{\frac {mg}{R}}{\frac {\gamma -1}{\gamma }}=-9.8^{\circ }\mathrm {C/km}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span95
+\frac{1}{q} = \frac{1}{p} + \frac{\alpha}{n+1} -1
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span96
+({\frac {\partial \ln N_{i}}{\partial P}})_{T}=-{\frac {V_{i,aq}-V_{i,cr}}{RT}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span97
+\mathrm {Var} (PB)=\mathrm {Var} (B)-\sum _{i=1}^{n}(p_{i}-\mu )^{2}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span98
+\scriptstyle p'=\rho cD\Psi
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span99
+[N, T]= 0-2Z,\ [N,Z]=0,\ [T,Z]= 0-2\lambda Z
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span100
+[D,S]={\frac {1}{2}}S
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span101
+E^{2} = c^{4} - 2c^{2}\omega^{2} a^{2}(1 + (1 - (2a\omega c^{- 1})^{2})^{1/2})^{- 1}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span102
+\alpha = \frac{0.161 V}{S T_{60}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span103
+(D-\mathrm{ad}(d))(\mathrm{ad}x)=0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span104
+\mathrm {SL} (3,\mathbb {Q} _{p})
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span105
+\sum _{k=\alpha }^{n}\binom{n}{k}(-1)^{k}f(k)=-{\frac {1}{2\pi i}}\oint _{\gamma }B(n+1,-z)f(z)dz
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span106
+e^a_\mu(x)= \mathrm{Tr}(T^a\partial_\mu x x^{-1})
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span107
+y\neq \pm {\frac {1}{\sqrt[{4}]{5}}} {\mathrm{and}} y\neq \pm {\frac {i}{\sqrt[{4}]{5}}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span108
+2x^{2}\neq o(x^{2})
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span109
+{\mathsf {SAT}}\notin {\mathsf {SIZE}}(n^{k})
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span110
+{\vec {e}}_{0}\neq {\vec {f}}_{0},{\vec {e}}_{1}\neq {\vec {f}}_{1}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span111
+\int_0^xR_\pm(\xi) d W_\pm(\xi)= o(R_\pm(x)W_\pm(x)) \|x\| \downarrow 0 x \in I_\pm
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span112
+C=(1-{\frac {F/V}{e^{rt-rT}}}e^{-rT})V
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span113
+C=e^{-r_{\mathrm {DOM} }T}\Phi (d_{2})
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span114
+-\tau e^{-r\tau }[K\Phi (-d_{2})-F\Phi (-d_{1})]
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span115
+C=Se^{-r_{\mathrm {FOR} }T}\Phi (d_{1})
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span116
+C_A = \max\{ conj(S) - K, 0 \}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span117
+Y= A X+ \eta
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span118
+Y=Kf+\sigma\varepsilon
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span119
+\pi _{i}Q_{ij}=\pi _{j}Q_{ji}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span120
+y_{ip} = \boldsymbol \Phi_i^T \mathbf{s}_p + v_{ip}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span121
+f(a) = a( 1 + \frac{2}{Q\sqrt \kappa} - \frac{a}{Q^2} )
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span122
+A=[\emptyset ,\emptyset ,\emptyset ,\emptyset ]
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span123
+\mathrm {state} (\mathrm {open} \circ \mathrm {on} ,10)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span124
+{\mathcal {F}}={\frac {i}{2\pi }}{\mathcal {A}}^{2}\mathrm {\ln } {\frac {{\mathcal {A}}^{2}}{\Lambda ^{2}}}+\
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span125
+a:=\det (a_{\alpha\beta})
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span126
+{\frac {p_{02}-p_{01}}{{\rho }{u^{2}}}}\
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span127
+{\frac {x}{\log x}}(1+{\frac {1}{\log x}})<\pi (x)<{\frac {x}{\log x}}(1+{\frac {1}{\log x}}+{\frac {2.51}{(\l
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span128
+n(\mu )\propto e^{\mu /k_\mathrm{{B}}T}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span129
+p-p_{\infty }\approx -\rho U^{2}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span130
+F=\frac{1}{2}[1-(-1)^F ]\
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span131
+c({\frac {x+2}{3}})={\frac {1+c(x)}{2}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span132
+\vdash [D\to (B\to A)]\to [B\to (D\to A)]
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span133
+n_{\mathrm {e} }(x)=n_{0}\exp { (}{\frac {e\varphi (x)}{k_{\mathrm {B} }T_{\mathrm {e} }}}{ )}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span134
+(Vf)(x)=2\int_{0}^{x}\sinh(y-x)f(y)dy,\forall f\in L^{2}(0,1)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span135
+x^{(p-1)/d}\equiv 1{\pmod {p}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span136
+a\equiv (-1)^{\nu _{0}(a)}5^{\nu _{q}(a)}{\pmod {q}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span137
+3^{\frac {p-1}{2}}\equiv -1{\pmod {p}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span138
+q_{n}\equiv p_{n}\mod k
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span139
+q \sum_{j=1}^{p-1}j^{\phi(n)} \equiv q(p-1)\equiv -q \pmod{p}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span140
+\tau _{p}={\frac {\rho _{p}d_{p}^{2}}{18\mu }}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span141
+{ \mathrm {St} (v,X)=v\star \mathrm {Lk} (v,X)}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span142
+V_{\mathrm{s}}={\frac {2}{9}}{\frac {r^{2}g(\rho _{p}-\rho _{f})}{\mu }}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span143
+{\vec {I}}=(I,Q,U,V)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span144
+\mathbf{w}_t-\frac{\mu}{\rho}\mathbf{w}_{xx}=\frac{1}{\rho}\mathbf{b}_x-u\mathbf{w}_x
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span145
+u_{t}(x)=t^{\frac{N}{4}}u(\sqrt{t}x)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span146
+{\frac {\partial \chi }{\partial t}}=\nabla \cdot (D\nabla \chi +D_{T}\chi (1-\chi )\nabla T)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span147
+{\frac {\partial \varphi }{\partial t}}=\nu {\frac {\partial ^{2}\varphi }{\partial x^{2}}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span148
+{\frac {\partial F}{\partial t}}(x,t)=\alpha ({\frac {\partial ^{2}F}{\partial x_{1}^{2}}}(x,t)+{\frac {\parti
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span149
+v_{y}{ (}{\frac {\partial C}{\partial y}}{ )}=D{\frac {\partial ^{2}C}{\partial y^{2}}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span150
+t_{\frac {1}{2}}={\frac {{\ln 2}\cdot {V_{D}}}{CL}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span151
+n=\mathrm {JD} -2451545.0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span152
+m-M=2.5\log _{10}(d/10)^{2}=5(\log _{10}d-1)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span153
+m_{{\mathrm{bol}}_\mathrm{{Sun}}}=-26.832
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span154
+m- M = 5 \log_{10}( \frac{d_L}{\mathrm{Mpc}} )+ 25
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span155
+p_{t}=p_{s}+({\frac {\rho u^{2}}{2}})
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span156
+{\frac {\rho _{2}}{\rho _{1}}}={\frac {(\gamma +1)M_{1}^{2}}{(\gamma -1)M_{1}^{2}+2}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span157
+{\frac {\varphi (n)}{2}}<A(n)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span158
+P(n) \ge \frac{n-1}{2} P(n-1), \ge \frac{n-1}{2} \frac{\sqrt{2\pi}}{e^2}n^{3/2} \frac{(n-2)!}{2^{n}}(1-o(1)), 
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span159
+\frac{\binom{K-2}{s-1}}{\binom{K-2}{s-1}+\sum_{i=0}^{K-1-s} \binom{K-1}{s+i}(N-1)^iN} \geq \frac{\binom{K-2}{s
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span160
+\omega ^{2}\mu _{0}\epsilon ({\vec {k}},\omega ){\vec {E}}-({\vec {k}}\cdot {\vec {k}}){\vec {E}}+({\vec {k}}\
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span161
+P^{2}\psi =e^{i\phi }\psi
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span162
+x(t) = A sin (\omega t +\phi)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span163
+({\frac {\partial ^{2}}{\partial x^{2}}}-\nu ^{2})({\frac {\partial \eta }{\partial t}}+{\frac {3}{2}}\eta {\f
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span164
+\Delta p(x,t)=p_{\mathrm{max}}\cos (\frac{2\pi x}{\lambda})\cos(\omega t)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span165
+(i\nabla+F)^2 v = \lambda_1(\Omega) v
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span166
+\Delta u=\lambda u
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span167
+(-\nabla^2+U''(\varphi))\psi_n=\lambda_n\psi_n\
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span168
+-\Delta u(x) = \lambda_1(K) u(x) x \in (K), , u(x)=0 x \in \partial K
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span169
+D u = \lambda u\Omega ,,u=w \partial \Omega
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span170
+\mathrm {Scal} =g^{ij}R_{ij}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span171
+S_{ij}=\delta _{ij}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span172
+\pi_\Omega(u,v)=\lim_{k\to\infty}r_\Omega( \cal F^{-1}(\psi_k\cal Fu') \cdot\cal F^{-1}(\psi_k\cal F v'))
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span173
+F_{A_{1}}( q^{a_{1}},\dot{q}^{a_{1}}) =0,F_{A_{0}}(q^{a_{1}}) =0\
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span174
+\Omega (n^{\lceil k/2\rceil })
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span175
+i\colon X\hookrightarrow \mathbb {R} ^{m}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span176
+{ (\Omega ,2^{\Omega },\mathbb {P} )}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span177
+\sigma _{i}(w)=\sigma (w)/N
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span178
+\ell_1=h_{ext}^{-\frac{1}{2}}d,\ell_2=h_{ext}^{-\frac{3}{4}}(t d)^\frac{1}{2}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span179
+\psi _{\mathbf {k} }(\mathbf {r} )=e^{i\mathbf {k} \cdot \mathbf {r} }u_{\mathbf {k} }(\mathbf {r} )
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span180
+w_{\mathbf {R} \mu }(\mathbf {r} )
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span181
+\mathbf {E} =\mathbf {E} _{0}\sin(kx-\omega t)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span182
+E_{i}(r,\theta ,\phi ,t)={\frac {A_{i}(\theta ,\phi )e^{i\phi t}}{r}}e^{i(k_{c}r-\omega _{c}t)}U(t-2r/c)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span183
+\rho ( x , e ) = \frac{1}{\sqrt{2(e - v(x))}} \cos^{2} \left (\frac{1}{\hbar}\int_{-\infty}^{x} d y \sqrt{2 ( 
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span184
+\mathbf {F} ^{\beta }\ \mathbf {C} ^{\beta }\ =\mathbf {S} \mathbf {C} ^{\beta }\ \mathbf {\epsilon } ^{\beta 
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span185
+\mathbf {R} (t+1)=d{\mathcal {M}}\mathbf {R} (t)+{\frac {1-d}{N}}\mathbf {1}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span186
+U(t,s_0)=U(t,s_0+(N-1)T)U(s_0+(N-1)T,s_0+(N-2)T)\cdots U(s_0+T,s_0)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span187
+Q_n=[Y,Y',\cdots,Y^{(m-1)}]^{-1}Y^{(n)}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span188
+\det(\rho _{f}(\mathrm {Frob} _{p}))=p^{k-1}\chi (p)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span189
+\| \det \xi_\mathbf{e}(\pi)^\rho \|_p^{ s} =p^{-(2e_1+4e_2+e_3)s}, \theta ( \xi_\mathbf{e}(\pi)^\rho ) = p^{3e_1
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span190
+\| \det \xi_\mathbf{e}(\pi)^\rho \|_p^{ s} =p^{-(4e_1+5e_2+3e_3)s}, \theta ( \xi_\mathbf{e}(\pi)^\rho ) = p^{10e
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span191
+\det(D^2 u) = \Theta(w) \textrm{on } \Omega, u = \varphi \textrm{on } \partial \Omega
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span192
+H_{y}=-{\frac {1}{j\omega \mu }}k_{y}k_{z}\cos k_{x}x\sin k_{y}y\cos k_{z}z
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span193
+\mathbf{E}_\perp, D_n, \mathbf{H}_\perp, B_n
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span194
+\frac{1}{4}P_{\mu\nu}Q^{\mu\nu}=\mathbf{H}\cdot\mathbf{B}-\mathbf{E}\cdot\mathbf{D}-i( \mathbf{E}\cdot\mathbf{
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span195
+\mathbf{F}\rightarrow *\mathbf{F};\ j_e\rightarrow J_m; \ J_m\rightarrow -j_e
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span196
+D(P,Q,\alpha S_{x}+\beta S_{y}+\gamma U)=0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span197
+d_p(t) = a(t) \int_{t_{beg}}^t dt'/a(t') \
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span198
+\Delta((2^{q+1}-t,t,2^q+t, 3\cdot 2^q+t, \ldots, 2^q\cdot [2^{k-2}-1]+t);k)=U(2^{q+1}-t;k)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span199
+d(km)=130({\sqrt {hr(km)}}+{\sqrt {ht(km)}})
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span202
+{\dot {Q}}=\kappa {\frac {A}{L}}(T_{1}-T_{2})
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span203
+H=\frac{\Delta Q}{\Delta t}=\frac{\Delta T}{R}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span204
+({\frac {\Delta Q}{\Delta t}})_{\mathrm {bar} }=-kA{\frac {\Delta T_{\mathrm {bar} }}{L}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span205
+-u{\frac {\partial T}{\partial x}}\sim U{\frac {\Delta _{h}T}{L}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span206
+\Delta p={\frac {8\mu LQ}{\pi R^{4}}}={\frac {8\pi \mu LQ}{A^{2}}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span207
+\left\lfloor \frac{ws+\ell d -k}{rs+1}\right\rfloor = 0 \
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span208
+{\frac {1}{T_{2}}}={\frac {1}{T_{2b}}}+\rho {\frac {S}{V}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span209
+\frac{t_e-t_0}{t_r-t_e}=0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span210
+{\frac {\partial ^{2}u}{\partial \rho ^{2}}}+{\frac {\partial ^{2}u}{\partial \theta ^{2}}}=0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span211
+\left({\frac {\partial ^{2}}{\partial x^{2}}}+{\frac {\partial ^{2}}{\partial y^{2}}}\right)f(x,y)=g(x,y)\quad
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span212
+{\nabla}^2 \ln \rho = -\frac{2e^2}{\kappa} \rho
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span213
+R_{\mathrm{Laplace}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span214
+\delta^{ij} \partial_i \partial_j H=0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span215
+\ \left(D^{\mu }F_{\mu \nu }\right)^{a}=0~
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span216
+P_{f}(f)df={\frac {c}{f_{0}}}{\sqrt {\frac {m}{2\pi kT}}}\exp (-{\frac {m[c({\frac {f}{f_{0}}}-1)]^{2}}{2kT}})
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span217
+\mathbf{D} = \boldsymbol{\varepsilon} \mathbf{E} \mathbf{B} = \boldsymbol{\mu} \mathbf{H}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span218
+2R^{\mu\nu}=e^{\mu\nu\sigma\tau}G_{\sigma\tau},-2S^{\mu\nu}=e^{\mu\nu\sigma\tau}F_{\sigma\tau}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span219
+D^\alpha F_{\alpha \beta} = 0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span220
+i\hbar \partial /\partial t-H^{0}-H^{1}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span221
+-{\frac {\hbar ^{2}}{2m}}\nabla ^{2}\xi _{0}+(u_{0}-E)\xi _{0}=0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span222
+-\frac{1}{2m} \Delta U + \mu U = U^{p-1}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span223
+\frac{d^2R_\ell(r)}{dr^2}+[\frac{(Z\alpha)^2-\ell(\ell+1)+(\frac{2\epsilon Z\alpha}{\hbar c})r+(\frac{\epsilon
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span224
+i\partial_tu-\Delta_xu=0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span226
+H=-{\frac {d^{2}}{dx^{2}}}+U_{\alpha }
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span227
+D \Psi(x) = m \Psi^{\bullet}(x)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span228
+\{{\vec {p}}^{2}+\Phi ({\vec {x}})\}\Psi =b^{2}(w^{2},m_{1}^{2},m_{2}^{2})\Psi
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span229
+(-\frac{\hbar^2}{m}\frac{\partial^2}{\partial x^{2}}+\frac{P^2}{4m}+\hbar\frac{\lambda P}{2m}\delta(x))\chi_2(
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span230
+k(p^{2})\neq k(p)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span231
+f(cx)\neq cf(x)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span232
+f'(a)\not \equiv 0{\bmod {p}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span233
+f'(r)\not \equiv 0{\pmod {p}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span234
+0\leq\int_{l_0}^L(1+l^2)(\cos(\alpha_1)\cos(\alpha_2))'+2l(\cos(\alpha_1)-\cos(\alpha_2))dl,=\int_{l_0}^L\frac
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span235
+\phi(Z(t))=\phi(Z(0))+M(t)+A(t)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span236
+{conj(P)}(x,s\mid x_{0})={\frac {1}{{conj(k)}_{\alpha }(s)}}{conj(P)}_{\mathrm{nrml}}(x,s/{conj(k)}_{\alpha }(
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span237
+{\frac {g_{\mu \nu }}{k^{2}-m^{2}+i\varepsilon }}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span238
+\mathbb{G}_{N}f:=\frac{1}{\sqrt{N}}\sum_{i=1}^{N}(f(Y_{i})-P_{y}f),f\in\mathcal{F}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span239
+-\frac{g^2}{8} \lambda_{i,L}^a(x) G^{-1}(x-y)\lambda_{i,L}^a(y)\frac{C_2(G)}{tr[\delta^{aa}]}<\phi^b(x)\phi^b(
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span240
+(i\gamma ^{\mu }D_{\mu }-m)\Psi =0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span241
+({conj(\sigma )}^{\nu }p_{\nu })(\sigma ^{\mu }p_{\mu })\chi =(\sigma ^{\nu }p_{\nu })({conj(\sigma )}^{\mu }p
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span242
+\ (\ \Box +\mu ^{2}\ )\psi =0, \mu ={\frac {\ m\ c\ }{\hbar }}\
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span243
+u_t + uu_x =\nu u_{xx}, u_x(0,t)=u_x(\pi,t) = 0, u(x,0) = u_0(x)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span244
+\mathrm {dVar} _{n}(X)=0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span245
+\frac{\mathrm{d}}{\mathrm{d}\sigma}\ell=-\frac{1}{\sigma}-\frac{\alpha-1}{\sigma^2}(x-\mu)\frac{\phi_s(\frac{x
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span246
+\varepsilon _{m}=\varepsilon _{D}+\varepsilon _{S_{2}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span247
+\nu _{FSR}\gg g_{c}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span248
+n\leq {\frac {f(b)-f(a)}{\alpha }}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span249
+x_{\bullet }\to x{\mathrm{ if and only if }}{\mathcal {N}}(x)\leq \mathrm {Tails} (x_{\bullet })
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span250
+c',(v\ll c')
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span251
+\mathrm {Re} (s)>C
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span252
+\exp(x)=e^{x}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span253
+1/(\cos \theta -\sin \theta )
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span254
+{\frac {D}{Dt}}(C+f\delta A)=0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span255
+\vartheta Ds= De+pD(\frac{1}{\varrho})
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span256
+-{\frac {1}{RT}}{\frac {dP^{\mathrm{tot}}}{dx}}=f_{w-m}v_{w}+\sum f_{i-w}c_{i}(1-K_{w,i})+\sum K_{w,i}{\frac {
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span257
+D_T(k) [D-\eta(k^2)] = (D-1)D_T(k)+D_L(k)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span258
+\mathbf {P} (\Lambda ^{k}(V))
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span259
+F_{a}=\mathbb {P} ({\mathcal {O}}\oplus {\mathcal {O}}(a))
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span260
+p(k)=\frac{1}{{n \choose 2}}\frac{(3 \cdot 5 \cdots (2k-1))}{(2 \cdot 4 \cdots (2k-2))} \frac{(3 \cdot 5 \cdot
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span261
+\mathbb {P} (H^{0}(X,L^{\otimes r}))
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span262
+\mathbf{p}_{\mathcal{B}}^{-1}([F],C,[L])=\mathbb{P}(\mathrm{Hom}(F,L(2)))
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span263
+{\mathsf {KP}}\omega +\Pi _{1}^{1}-{\mathsf {Ref}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span264
+{\mathrm{transient inertial forces + convective inertial forces}}={\mathrm{gravitational force + Pressure forc
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span265
+2T_{ij}+W_{ij}+\Omega ^{2}I_{ij}-\Omega _{i}\Omega _{k}I_{kj}+2\epsilon _{i\ell m}\Omega _{m}\int _{V}\rho u_{
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span266
+\hat p=0u,vQ=0 0 0 0 1,0 0 X_1 X_2 -1,0 X_1 0 -1 0,0 X_2 -1 0 0,1 -1 0 0 0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span267
+\frac12\|\xi\|^{2}(I+\Pi_\xi) \xi ,\xi^* 0\widehat{ \vec{u} }_\infty, \widehat{p}=\widehat{ \vec{f} }, 0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span268
+({\frac {m}{n}})=(-1)^{\frac {(m-1)(n-1)}{4}}({\frac {n}{m}})
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span269
+({\frac {x}{p}})=({\frac {x}{q}})=-1
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span270
+\mathrm {E} (\mathbb {Z} /n\mathbb {Z} )
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span271
+E[X]_{rr}=-2m/r^{3}/(1-2m/r),E[X]_{\theta \theta }=m/r,E[X]_{\phi \phi }=m\sin(\theta )^{2}/r
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span272
+\mu _{1}={\frac {1}{\binom {N}{2}}}\sum _{x=1}^{N-1}\sum _{y=x+1}^{N}fHD(C_{x},C_{y})
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span273
+N_{f,H}=n^{-1}{\mathrm{tr}}f(H)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span274
+\beta(u)=\frac{\int_{M}x\Gamma(u)d\mu_{g}}{\int_{M}\Gamma(u)d\mu_{g}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span275
+\cos C\cosh a=\sinh a\coth b-\sin C\cot B
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span276
+\sin(z)-\sinh(x)\sinh(y)=0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span277
+\sin(x-n\pi i)=-i\sinh(ix+n\pi )
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span278
+\tan {\frac {\theta }{2}}={\sqrt {\frac {e+1}{e-1}}}\cdot \tanh {\frac {E}{2}}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span279
+\sin ^{n}\theta ={\frac {2}{2^{n}}}\sum _{k=0}^{\frac {n-1}{2}}(-1)^{({\frac {n-1}{2}}-k)}{\binom {n}{k}}\sin 
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span280
+\cos ^{n}\theta ={\frac {1}{2^{n}}}{\binom {n}{\frac {n}{2}}}+{\frac {2}{2^{n}}}\sum _{k=0}^{{\frac {n}{2}}-1}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span281
+({\sin \theta })^{2}={\frac {{\Vert \mathbf {u} \times \mathbf {v} \Vert }^{2}}{{\Vert \mathbf {u} \Vert }^{2}
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span282
+\prod_{j=0}^{k-1} [1-\cos(\theta-\frac{2\pi j}{k})] = K_k [1-\cos(k\theta)]
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span283
+\normalsize\sin nz = \binom{n}{1}\cos^{n-1}z\sin z - \binom{n}{3}\cos^{n-3}z \sin^3z+\binom{n}{5}\cos^{n-5}z\s
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span284
+\mathrm {Laplace} (\mu ,b)
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span285
+{\frac {\partial ^{2}}{\partial x^{2}}}+{\frac {\partial ^{2}}{\partial y^{2}}}+{\frac {\partial ^{2}}{\partia
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span286
+{\frac {\partial ^{2}\Phi }{\partial x^{2}}}+{\frac {\partial ^{2}\Phi }{\partial y^{2}}}=0
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span287
+P=h(t,x,D_t,D_x)+p_{m-1}(t,x,D_t,D_x)+p_{m-2}(t,x,D_t,D_x)+\ldots
+
+doc/compliance/math_labeler/labeler_docs/AUDIT.md:span288
+\sigma_{11}=\partial^2_{x_2^2}v,\sigma_{12}=-\partial^{2}_{x_1x_2}v,\ \sigma_{22}=\partial^2_{x_1^2}v\
+
+doc/compliance/math_labeler/labeler_docs/NOTES.md:span0
+\n### 
+
+doc/guides/ASTROPHYSICS.md:span0
+y'=Ay+g
+
+doc/guides/ASTROPHYSICS.md:span1
+\ddot{\mathbf r}=-GM\hat r/r^2
+
+doc/guides/ASTROPHYSICS.md:span2
+L=T-V
+
+doc/guides/ASTROPHYSICS.md:span3
+\frac12 m\dot x^2+V(x)
+
+doc/guides/ASTROPHYSICS.md:span4
+m\dot x
+
+doc/guides/ASTROPHYSICS.md:span5
+m(x\dot y-y\dot x)
+
+doc/guides/ASTROPHYSICS.md:span6
+L
+
+doc/guides/ASTROPHYSICS.md:span7
+a^3/T^2
+
+doc/guides/ASTROPHYSICS.md:span8
+J_0
+
+doc/guides/ASTROPHYSICS.md:span9
+P_2
+
+doc/guides/ASTROPHYSICS.md:span10
+n=0,1,5
+
+doc/guides/ASTROPHYSICS.md:span11
+y''+\ln(x)y=0
+
+doc/guides/ASTROPHYSICS.md:span12
+a=0
+
+doc/guides/ASTROPHYSICS.md:span13
+Y_l^m
+
+doc/guides/ASTROPHYSICS.md:span15
+a=1/x
+
+doc/guides/ASTROPHYSICS.md:span16
+b=1
+
+doc/guides/ASTROPHYSICS.md:span17
+C_1 J_0+C_2 Y_0
+
+doc/guides/ASTROPHYSICS.md:span18
+J_\nu,Y_\nu,I_\nu,K_\nu
+
+doc/guides/ASTROPHYSICS.md:span19
+K
+
+doc/guides/ASTROPHYSICS.md:span20
+r
+
+doc/guides/ASTROPHYSICS.md:span22
+r=3M
+
+doc/guides/ASTROPHYSICS.md:span23
+p'_{mn}
+
+doc/guides/ASTROPHYSICS.md:span24
+\frac{1}{\xi^2}\frac{d}{d\xi}\Big(\xi^2\frac{d\theta}{d\xi}\Big)+\theta^n=0
+
+doc/guides/ASTROPHYSICS.md:span25
+ with \(a=1/x\), \(b=1\) → \(C_1 J_0+C_2 Y_0\). SoftFloat \(J_\nu,Y_\nu,I_\nu,K_\nu\) with Accumath caps (
+
+doc/guides/ENGINEERING_MATH.md:span0
+\mathcal{L}\{f\}(s)=\int_0^\infty e^{-st}f(t)\,dt
+
+doc/guides/ENGINEERING_MATH.md:span1
+\ln t
+
+doc/guides/ENGINEERING_MATH.md:span2
+i(t)
+
+doc/guides/ENGINEERING_MATH.md:span3
+L i''+R i'+i/C=v'(t)
+
+doc/guides/ENGINEERING_MATH.md:span4
+y''+p y'+q y=g
+
+doc/guides/ENGINEERING_MATH.md:span5
+p,q
+
+doc/guides/ENGINEERING_MATH.md:span7
+y''+y=\sin t
+
+doc/guides/ENGINEERING_MATH.md:span8
+-\frac12 t\cos t
+
+doc/guides/ENGINEERING_MATH.md:span9
+v(t)
+
+doc/guides/ENGINEERING_MATH.md:span10
+\mathcal{L}\{\sin t\}=1/(s^2+1)
+
+doc/guides/ENGINEERING_MATH.md:span11
+F=s
+
+doc/guides/ENGINEERING_MATH.md:span12
+F(\omega)=\int f(t)e^{-i\omega t}\,dt
+
+doc/guides/ENGINEERING_MATH.md:span13
+s=i\omega
+
+doc/guides/ENGINEERING_MATH.md:span14
+F\{1\}
+
+doc/guides/ENGINEERING_MATH.md:span15
+e^{-\lvert t\rvert}
+
+doc/guides/ENGINEERING_MATH.md:span16
+L^2
+
+doc/guides/ENGINEERING_MATH.md:span17
+Z\{f[n]\}=\sum f[n]z^{-n}
+
+doc/guides/ENGINEERING_MATH.md:span18
+n a^n u[n]
+
+doc/guides/ENGINEERING_MATH.md:span19
+GH
+
+doc/guides/ENGINEERING_MATH.md:span20
+G+H
+
+doc/guides/ENGINEERING_MATH.md:span21
+G/(1+GH)
+
+doc/guides/ENGINEERING_MATH.md:span22
+G/(1+G)
+
+doc/guides/ENGINEERING_MATH.md:span23
+Ax=b
+
+doc/guides/ENGINEERING_MATH.md:span24
+A
+
+doc/guides/ENGINEERING_MATH.md:span25
+G(s)
+
+doc/guides/ENGINEERING_MATH.md:span27
+-u''=f
+
+doc/guides/ENGINEERING_MATH.md:span28
+[0,1]
+
+doc/guides/ENGINEERING_MATH.md:span29
+G_x
+
+doc/guides/ENGINEERING_MATH.md:span30
+\delta
+
+doc/guides/ENGINEERING_MATH.md:span31
+G
+
+doc/guides/ENGINEERING_MATH.md:span33
+\mathcal{L}^{-1}
+
+doc/guides/ENGINEERING_MATH.md:span34
+\sin t
+
+doc/guides/ENGINEERING_MATH.md:span35
+\leftrightarrow e^{-\lvert t\rvert}
+
+doc/guides/ENGINEERING_MATH.md:span36
+Z\{\delta[n-3]\}=z^{-3}
+
+doc/guides/ENGINEERING_MATH.md:span38
+\times f=1
+
+doc/guides/ENGINEERING_MATH.md:span39
+x(1-x)/2
+
+doc/guides/ENGINEERING_MATH.md:span40
+. Dirac, \(\ln t\), Heaviside delay are 
+
+doc/guides/ENGINEERING_MATH.md:span41
+ (no Dirac). Parseval for the angular convention is golded: \(e^{-\lvert t\rvert}\) time and frequency \(L^2\) energies match to 128 bits (
+
+doc/guides/GENERAL_RELATIVITY.md:span0
+\Gamma^\lambda_{\mu\nu}
+
+doc/guides/GENERAL_RELATIVITY.md:span1
+\lambda,\mu,\nu
+
+doc/guides/GENERAL_RELATIVITY.md:span2
+\lambda
+
+doc/guides/GENERAL_RELATIVITY.md:span3
+ds^2=dr^2+r^2 d\theta^2
+
+doc/guides/GENERAL_RELATIVITY.md:span4
+\Gamma^r_{\theta\theta}=-r
+
+doc/guides/GENERAL_RELATIVITY.md:span5
+\Gamma^\theta_{r\theta}=\Gamma^\theta_{\theta r}=1/r
+
+doc/guides/GENERAL_RELATIVITY.md:span6
+ds^2=dr^2+r^2 d\theta^2+r^2\sin^2\theta\,d\phi^2
+
+doc/guides/GENERAL_RELATIVITY.md:span8
+R
+
+doc/guides/GENERAL_RELATIVITY.md:span9
+R_{\mu\nu}
+
+doc/guides/GENERAL_RELATIVITY.md:span10
+G_{\mu\nu}
+
+doc/guides/GENERAL_RELATIVITY.md:span11
+\mathbb{R}^3
+
+doc/guides/GENERAL_RELATIVITY.md:span12
+R=0
+
+doc/guides/GENERAL_RELATIVITY.md:span13
+R_{\mu\nu}=0
+
+doc/guides/GENERAL_RELATIVITY.md:span14
+ds^2=d\theta^2+\sin^2\theta\,d\phi^2
+
+doc/guides/GENERAL_RELATIVITY.md:span15
+\nabla_\mu G^{\mu\nu}=0
+
+doc/guides/GENERAL_RELATIVITY.md:span16
+g(v,v)=\kappa
+
+doc/guides/GENERAL_RELATIVITY.md:span17
+r=6
+
+doc/guides/GENERAL_RELATIVITY.md:span19
+r=3
+
+doc/guides/GENERAL_RELATIVITY.md:span21
+g_{t\varphi}
+
+doc/guides/GENERAL_RELATIVITY.md:span22
+a=M/2
+
+doc/guides/GENERAL_RELATIVITY.md:span24
+(-,+,+,+)
+
+doc/guides/GENERAL_RELATIVITY.md:span25
+\ddot t + \frac{2M}{r^2(1-2M/r)}\dot t\dot r
+
+doc/guides/GENERAL_RELATIVITY.md:span26
+\ddot r + \frac{M(1-2M/r)}{r^2}\dot t^2 - \frac{M}{r^2(1-2M/r)}\dot r^2 - r(1-2M/r)\dot\theta^2 - r(1-2M/r)\sin^2\theta\,\dot\phi^2
+
+doc/guides/GENERAL_RELATIVITY.md:span27
+\ddot\theta + \frac{2}{r}\dot r\dot\theta - \sin\theta\cos\theta\,\dot\phi^2
+
+doc/guides/GENERAL_RELATIVITY.md:span28
+\ddot\phi + \frac{2}{r}\dot r\dot\phi + 2\cot\theta\,\dot\theta\dot\phi
+
+doc/guides/GENERAL_RELATIVITY.md:span29
+h_{\mu\nu}
+
+doc/guides/GENERAL_RELATIVITY.md:span32
+\kappa
+
+doc/guides/GENERAL_RELATIVITY.md:span33
+a\neq 0
+
+doc/guides/GENERAL_RELATIVITY.md:span34
+\ddot x^\alpha+\Gamma^\alpha_{\mu\nu}\dot x^\mu\dot x^\nu
+
+doc/guides/GENERAL_RELATIVITY.md:span35
+\ddot\theta-\sin\theta\cos\theta\,\dot\phi^2,\qquad
+\ddot\phi+2\cot\theta\,\dot\theta\dot\phi.
+
+doc/guides/GENERAL_RELATIVITY.md:span36
+ returns Levi-Civita \(\Gamma^\lambda_{\mu\nu}\) flattened in \(\lambda,\mu,\nu\) order (\(\lambda\) slowest), semicolon-separated. Golds: 
+
+doc/guides/GENERAL_RELATIVITY.md:span37
+ | \(R_{\mu\nu}\) row-major, 
+
+doc/guides/GENERAL_RELATIVITY.md:span38
+ | \(G_{\mu\nu}\) row-major, 
+
+doc/guides/GENERAL_RELATIVITY.md:span39
+ (RK4 + \(g(v,v)=\kappa\) projection). Golds: Schwarzschild ISCO \(r=6\) for 10 orbits; Kerr \(a=0\) photon sphere \(r=3\). 
+
+doc/guides/GENERAL_RELATIVITY.md:span40
+ is the spinning metric; \(a=0\) is Schwarzschild; equatorial \(g_{t\varphi}\) is golded at \(a=M/2\), \(r=3\). Non-square metric is 
+
+doc/guides/QUANTUM_MECHANICS.md:span0
+\langle\phi|\psi\rangle
+
+doc/guides/QUANTUM_MECHANICS.md:span3
+y_1=C_1\cos t+C_2\sin t
+
+doc/guides/QUANTUM_MECHANICS.md:span4
+y_2=-C_1\sin t+C_2\cos t
+
+doc/guides/QUANTUM_MECHANICS.md:span5
+y'=Ay
+
+doc/guides/QUANTUM_MECHANICS.md:span7
+\dot c = A c
+
+doc/guides/QUANTUM_MECHANICS.md:span8
+A=-i H/\hbar
+
+doc/guides/QUANTUM_MECHANICS.md:span9
+H
+
+doc/guides/QUANTUM_MECHANICS.md:span11
+A=f(t)A_0
+
+doc/guides/QUANTUM_MECHANICS.md:span13
+\hbar
+
+doc/guides/QUANTUM_MECHANICS.md:span14
+y''-y=0
+
+doc/guides/QUANTUM_MECHANICS.md:span15
+C_1 e^{x}+C_2 e^{-x}
+
+doc/guides/QUANTUM_MECHANICS.md:span16
+y''+y=0
+
+doc/guides/QUANTUM_MECHANICS.md:span17
+C_1\cos x+C_2\sin x
+
+doc/guides/QUANTUM_MECHANICS.md:span18
+y''+y=\sin x
+
+doc/guides/QUANTUM_MECHANICS.md:span19
+-(1/2)x\cos x
+
+doc/guides/QUANTUM_MECHANICS.md:span20
+x^2
+
+doc/guides/QUANTUM_MECHANICS.md:span22
+C_1 J_0(x)+C_2 Y_0(x)
+
+doc/guides/QUANTUM_MECHANICS.md:span23
+n=2
+
+doc/guides/QUANTUM_MECHANICS.md:span24
+C_1 P_2(x)+C_2 Q_2(x)
+
+doc/guides/QUANTUM_MECHANICS.md:span25
+y''-xy=0
+
+doc/guides/QUANTUM_MECHANICS.md:span26
+C_1\mathrm{Ai}(x)+C_2\mathrm{Bi}(x)
+
+doc/guides/QUANTUM_MECHANICS.md:span27
+y''+y=e^x\ln x
+
+doc/guides/QUANTUM_MECHANICS.md:span28
+y''-2x y'+2n y=0
+
+doc/guides/QUANTUM_MECHANICS.md:span29
+H_n(x)e^{-x^2/2}
+
+doc/guides/QUANTUM_MECHANICS.md:span30
+\sqrt{n}\,\lvert n-1\rangle
+
+doc/guides/QUANTUM_MECHANICS.md:span31
+R_{nl}
+
+doc/guides/QUANTUM_MECHANICS.md:span32
+Z=1
+
+doc/guides/QUANTUM_MECHANICS.md:span34
+P_n^m
+
+doc/guides/QUANTUM_MECHANICS.md:span35
+P_2(0)=-1/2
+
+doc/guides/QUANTUM_MECHANICS.md:span36
+P_1^1(0)=-1
+
+doc/guides/QUANTUM_MECHANICS.md:span37
+i\,\hbar
+
+doc/guides/QUANTUM_MECHANICS.md:span38
+0
+
+doc/guides/QUANTUM_MECHANICS.md:span39
+AB-BA
+
+doc/guides/QUANTUM_MECHANICS.md:span40
+\hbar/2
+
+doc/guides/QUANTUM_MECHANICS.md:span41
+\sqrt{n}\,\mathrm{ket}(n-1)
+
+doc/guides/QUANTUM_MECHANICS.md:span42
+\hat x,\hat p
+
+doc/guides/QUANTUM_MECHANICS.md:span44
+i\cdot\hbar
+
+doc/guides/QUANTUM_MECHANICS.md:span45
+1
+
+doc/guides/QUANTUM_MECHANICS.md:span46
+\lvert n\rangle
+
+doc/guides/QUANTUM_MECHANICS.md:span47
+\sqrt{2}
+
+doc/guides/QUANTUM_MECHANICS.md:span48
+\langle\psi|H|\psi\rangle
+
+doc/guides/QUANTUM_MECHANICS.md:span50
+H(t)
+
+doc/guides/QUANTUM_MECHANICS.md:span51
+(A r^{n}+B r^{-(n+1)})\,P_{n}^{m}(\cos\theta)\,(C\cos(m\phi)+D\sin(m\phi))
+
+doc/guides/QUANTUM_MECHANICS.md:span52
+\lvert\psi\rangle
+
+doc/guides/QUANTUM_MECHANICS.md:span53
+\|\psi\rangle
+
+doc/guides/QUANTUM_MECHANICS.md:span54
+\lvert \psi\rangle
+
+doc/guides/QUANTUM_MECHANICS.md:span55
+\langle\phi\rvert
+
+doc/guides/QUANTUM_MECHANICS.md:span56
+\langle\phi\|
+
+doc/guides/QUANTUM_MECHANICS.md:span57
+\langle \phi\rvert
+
+doc/guides/QUANTUM_MECHANICS.md:span58
+\langle\phi\lvert\psi\rangle
+
+doc/guides/QUANTUM_MECHANICS.md:span59
+\langle\phi\|\psi\rangle
+
+doc/guides/QUANTUM_MECHANICS.md:span60
+\langle \phi\lvert \psi\rangle
+
+doc/guides/QUANTUM_MECHANICS.md:span62
+ | \(i\,\hbar\) (
+
+doc/guides/QUANTUM_MECHANICS.md:span63
+[x,p]=i\hbar
+
+doc/build/CAPABILITIES.md:span0
+n^4
+
+doc/build/CAPABILITIES.md:span1
+k=12
+
+doc/build/CAPABILITIES.md:span2
+n^k a^n
+
+doc/build/CAPABILITIES.md:span4
+\operatorname{arcsn}
+
+doc/build/CAPABILITIES.md:span5
+\operatorname{arccn}
+
+doc/build/CAPABILITIES.md:span6
+\operatorname{arcdn}
+
+doc/build/CAPABILITIES.md:span7
+F
+
+doc/build/CAPABILITIES.md:span9
+Ps
+
+doc/build/CAPABILITIES.md:span11
+j=8
+
+doc/build/CAPABILITIES.md:span12
+\{1\,1\,1;1\,1\,1\}=\{1/2\,1/2\,1;1/2\,1/2\,1\}=1/6
+
+doc/build/CAPABILITIES.md:span13
+{}_2F_1(\cdot;0)=1
+
+doc/build/CAPABILITIES.md:span14
+{}_2F_1(1,1;2;z)=-\ln(1-z)/z
+
+doc/build/CAPABILITIES.md:span15
+G^{1,0}_{0,1}(z\mid;0)=-e^{-z}
+
+doc/build/CAPABILITIES.md:span16
+e^{-z}
+
+doc/build/CAPABILITIES.md:span17
+z>1
+
+doc/build/CAPABILITIES.md:span18
+\mathrm{Li}_3
+
+doc/build/CAPABILITIES.md:span19
+z<-1
+
+doc/build/CAPABILITIES.md:span20
+P_n^{(\alpha,\beta)}
+
+doc/build/CAPABILITIES.md:span21
+H_n
+
+doc/build/CAPABILITIES.md:span22
+L_n
+
+doc/build/CAPABILITIES.md:span23
+T_n
+
+doc/build/CAPABILITIES.md:span24
+U_n
+
+doc/build/CAPABILITIES.md:span25
+H_n'=2n H_{n-1}
+
+doc/build/CAPABILITIES.md:span26
+T_n'=n U_{n-1}
+
+doc/build/CAPABILITIES.md:span27
+\mathrm{ce}_n
+
+doc/build/CAPABILITIES.md:span28
+\mathrm{se}_n
+
+doc/build/CAPABILITIES.md:span30
+q\neq 0
+
+doc/build/CAPABILITIES.md:span32
+W_0
+
+doc/build/CAPABILITIES.md:span33
+W_{-1}
+
+doc/build/CAPABILITIES.md:span34
+\mathrm{Cl}_2
+
+doc/build/CAPABILITIES.md:span35
+\mathrm{Cl}_3
+
+doc/build/CAPABILITIES.md:span37
+{}_2F_1
+
+doc/build/CAPABILITIES.md:span38
+\Pi
+
+doc/build/CAPABILITIES.md:span39
+n>1
+
+doc/build/CAPABILITIES.md:span40
+K(m>1)
+
+doc/build/CAPABILITIES.md:span41
+E(m>1)
+
+doc/build/CAPABILITIES.md:span42
+|x|>1
+
+doc/build/CAPABILITIES.md:span46
+\zeta(3)
+
+doc/build/CAPABILITIES.md:span48
+-\ln|2\sin(\theta/2)|
+
+doc/build/CAPABILITIES.md:span50
+-\mathrm{Cl}_2
+
+doc/build/CAPABILITIES.md:span53
+{}_2F_1(z\le -1)
+
+doc/build/CAPABILITIES.md:span57
+\Pi(n>1)
+
+doc/build/CAPABILITIES.md:span58
+K(m=1)
+
+doc/build/CAPABILITIES.md:span59
+\Pi(n=1)
+
+doc/build/CAPABILITIES.md:span62
+E
+
+doc/build/CAPABILITIES.md:span65
+-e^{-z}
+
+doc/build/CAPABILITIES.md:span66
+G^{1,0}_{0,1}(z\mid;0)
+
+doc/build/CAPABILITIES.md:span67
+\mathbb{Q}
+
+doc/build/CAPABILITIES.md:span69
+4\times 4
+
+doc/build/CAPABILITIES.md:span70
+AP=PJ
+
+doc/build/CAPABILITIES.md:span72
+H=UA
+
+doc/build/CAPABILITIES.md:span73
+(2,4,6)
+
+doc/build/CAPABILITIES.md:span74
+(2,0,0)
+
+doc/build/CAPABILITIES.md:span75
+\begin{pmatrix}2&4\\6&8\end{pmatrix}
+
+doc/build/CAPABILITIES.md:span76
+\begin{pmatrix}2&0\\0&4\end{pmatrix}
+
+doc/build/CAPABILITIES.md:span77
+\operatorname{diag}(4,2)
+
+doc/build/CAPABILITIES.md:span78
+\operatorname{diag}(2,4)
+
+doc/build/CAPABILITIES.md:span82
+ij=k
+
+doc/build/CAPABILITIES.md:span83
+ji=-k
+
+doc/build/CAPABILITIES.md:span84
+i^2=-1
+
+doc/build/CAPABILITIES.md:span85
+1+i+j+k
+
+doc/build/CAPABILITIES.md:span86
+k
+
+doc/build/CAPABILITIES.md:span87
+i
+
+doc/build/CAPABILITIES.md:span88
+-i
+
+doc/build/CAPABILITIES.md:span89
+x^9 y
+
+doc/build/CAPABILITIES.md:span90
+y x^9
+
+doc/build/CAPABILITIES.md:span91
+(x-1)^2
+
+doc/build/CAPABILITIES.md:span92
+x^2+1=0
+
+doc/build/CAPABILITIES.md:span93
+\pm i
+
+doc/build/CAPABILITIES.md:span94
+y^2-x^2-x^3=0
+
+doc/build/CAPABILITIES.md:span95
+x + \tfrac12 x^2 - \tfrac18 x^3 + \tfrac1{16}x^4
+
+doc/build/CAPABILITIES.md:span96
+\mathfrak{sl}(3)
+
+doc/build/CAPABILITIES.md:span97
+-2,-1,-1,0,0,1,1,2
+
+doc/build/CAPABILITIES.md:span100
+B
+
+doc/build/CAPABILITIES.md:span101
+C
+
+doc/build/CAPABILITIES.md:span102
+G_2
+
+doc/build/CAPABILITIES.md:span103
+A_1
+
+doc/build/CAPABILITIES.md:span104
+2,0,-2
+
+doc/build/CAPABILITIES.md:span105
+A_2
+
+doc/build/CAPABILITIES.md:span107
+\mathbb{Q}(\zeta_m)
+
+doc/build/CAPABILITIES.md:span108
+(1\pm\sqrt{5})/2
+
+doc/build/CAPABILITIES.md:span109
+[i]
+
+doc/build/CAPABILITIES.md:span110
+\sqrt{|\det g|}
+
+doc/build/CAPABILITIES.md:span111
+g^{\mu\nu}
+
+doc/build/CAPABILITIES.md:span112
+\delta(df)=-\square f
+
+doc/build/CAPABILITIES.md:span113
+\mathrm{GF}(p^n)
+
+doc/build/CAPABILITIES.md:span114
+M_{11}
+
+doc/build/CAPABILITIES.md:span115
+M_{12}
+
+doc/build/CAPABILITIES.md:span116
+\mathrm{SL}(2,5)
+
+doc/build/CAPABILITIES.md:span117
+|\mathrm{GL}(n,q)|
+
+doc/build/CAPABILITIES.md:span118
+48M^2/r^6
+
+doc/build/CAPABILITIES.md:span119
+\Psi_2=-M/r^3
+
+doc/build/CAPABILITIES.md:span120
+\Psi_2=-M/(r-ia\cos\theta)^3
+
+doc/build/CAPABILITIES.md:span123
+x^2-1
+
+doc/build/CAPABILITIES.md:span124
+(x-1)
+
+doc/build/CAPABILITIES.md:span125
+(x+1)
+
+doc/build/CAPABILITIES.md:span126
+(1)
+
+doc/build/CAPABILITIES.md:span127
+y^2-x^3
+
+doc/build/CAPABILITIES.md:span128
+y=\pm x^{3/2}
+
+doc/build/CAPABILITIES.md:span129
+y^2-x^2
+
+doc/build/CAPABILITIES.md:span130
+y=\pm x
+
+doc/build/CAPABILITIES.md:span131
+x^2+1
+
+doc/build/CAPABILITIES.md:span133
+\mathbb{Q}(i)
+
+doc/build/CAPABILITIES.md:span136
+uvu^{-1}
+
+doc/build/CAPABILITIES.md:span141
+\sqrt{\|\det g\|}
+
+doc/build/CAPABILITIES.md:span142
+f(x)\to f'(x)
+
+doc/build/CAPABILITIES.md:span143
+\int_{t_0}^{t_1} F(r(t))\cdot r'(t)\,dt
+
+doc/build/CAPABILITIES.md:span144
+\mu(x)/\mu(y)
+
+doc/build/CAPABILITIES.md:span146
+[k:\mathbb{Q}]>2
+
+doc/build/CAPABILITIES.md:span147
+\mathrm{Res}_\alpha(\mu,D)
+
+doc/build/CAPABILITIES.md:span148
+\mathbb{Q}(\sqrt[n]{b})
+
+doc/build/CAPABILITIES.md:span149
+n\ge 3
+
+doc/build/CAPABILITIES.md:span150
+\mathbb{Q}(\sqrt{d})
+
+doc/build/CAPABILITIES.md:span151
+r^{f(k)}
+
+doc/build/CAPABILITIES.md:span152
+\prod\exp(f(k))=\exp(\sum f(k))
+
+doc/build/CAPABILITIES.md:span153
+c/k\to\psi
+
+doc/build/CAPABILITIES.md:span154
+c\cdot\exp(f)
+
+doc/build/CAPABILITIES.md:span155
+k^{1/k}
+
+doc/build/CAPABILITIES.md:span156
+\pm\infty
+
+doc/build/CAPABILITIES.md:span157
+2k\pi
+
+doc/build/CAPABILITIES.md:span158
+k\pi
+
+doc/build/CAPABILITIES.md:span159
+\cos(A){=}\cos(B)
+
+doc/build/CAPABILITIES.md:span160
+z\le -1
+
+doc/build/CAPABILITIES.md:span162
+c
+
+doc/build/CAPABILITIES.md:span165
+\|x\|>1
+
+doc/build/CAPABILITIES.md:span167
+K(1)
+
+doc/build/CAPABILITIES.md:span170
+-\mathrm{Li}_2(1/z)-\ln(z)^2/2+\pi^2/3
+
+doc/build/CAPABILITIES.md:span171
+-\pi\ln z
+
+doc/build/CAPABILITIES.md:span175
+\|z\|\le 1
+
+doc/build/CAPABILITIES.md:span176
+s=2,3
+
+doc/build/CAPABILITIES.md:span179
+[-1/e,\infty)
+
+doc/build/CAPABILITIES.md:span181
+[-1/e,0)
+
+doc/build/CAPABILITIES.md:span182
+\omega(z)=W_0(e^z)
+
+doc/build/CAPABILITIES.md:span185
+\mathrm{Cl}_3(0)=\zeta(3)
+
+doc/build/CAPABILITIES.md:span186
+G(n)=0
+
+doc/build/CAPABILITIES.md:span187
+n\le 0
+
+doc/build/CAPABILITIES.md:span191
+\sum_{j=1}^r j\alpha^j
+
+doc/build/CAPABILITIES.md:span192
+ folds \({}_2F_1(\cdot;0)=1\) unless the lower parameter is a non-positive integer, \({}_2F_1(1,1;2;z)=-\ln(1-z)/z\), \(G^{1,0}_{0,1}(z\mid;0)=-e^{-z}\), and the unit-scale Fox value \(e^{-z}\). 
+
+doc/build/CAPABILITIES.md:span193
+. \(\mathrm{Li}_3\) on \(z<-1\) stays real. Jacobi \(P_n^{(\alpha,\beta)}\), \(H_n\), \(L_n\), \(T_n\), and \(U_n\) run through degree 32. \(H_n'=2n H_{n-1}\) and \(T_n'=n U_{n-1}\). Airy is zenith. Scorer is the inhomogeneous Airy series. Kelvin order 0, Struve, Anger, and Weber are SoftFloat series or the defining integral. \(\mathrm{ce}_n\) and odd \(\mathrm{se}_n\) use the characteristic value already in 
+
+doc/build/CAPABILITIES.md:span194
+. Even \(\mathrm{se}_n\) for \(q\neq 0\) stays 
+
+doc/build/CAPABILITIES.md:span195
+. \(E(m>1)\) is the real reciprocal formula and calls the in-range \(K\) and \(E\). Unit-scale Fox \(H\) is the classical Meijer \(G\): this crate's residue sum returns \(-e^{-z}\) for \(G^{1,0}_{0,1}(z\mid;0)\), so that one identity negates it. 
+
+doc/build/CAPABILITIES.md:span196
+: the star uses \(\sqrt{|\det g|}\) and \(g^{\mu\nu}\), and \(\delta(df)=-\square f\). Finite fields \(\mathrm{GF}(p^n)\) and monic factorization are in 
+
+doc/build/CAPABILITIES.md:span197
+ definite \(\int_{t_0}^{t_1} F(r(t))\cdot r'(t)\,dt\); 
+
+doc/build/CAPABILITIES.md:span198
+ \(\mu(x)/\mu(y)\) (already-exact is 1); 
+
+doc/build/CAPABILITIES.md:span199
+ at \(\pm\infty\) (and directional) → 
+
+doc/build/CAPABILITIES.md:span200
+x\sin(1/x)→1
+
+doc/build/CAPABILITIES.md:span201
+. That characteristic value as its own result is item 201, built in engine, not yet in app (item 205). Even \(\mathrm{se}_n\) for \(q\neq 0\) stays 
+
+doc/build/curved_geometry_blueprint.md:span0
+\Gamma^\lambda{}_{\mu\nu}
+
+doc/build/curved_geometry_blueprint.md:span1
+\Gamma=0
+
+doc/build/curved_geometry_blueprint.md:span2
+\Gamma^r{}_{\theta\theta}=-r
+
+doc/build/curved_geometry_blueprint.md:span3
+\Gamma^\theta{}_{r\theta}=1/r
+
+doc/build/curved_geometry_blueprint.md:span4
+\ddot x^\alpha+\Gamma^\alpha{}_{\mu\nu}\dot x^\mu\dot x^\nu
+
+doc/build/curved_geometry_blueprint.md:span5
+g_{\mu\nu}\dot x^\mu\dot x^\nu
+
+doc/build/curved_geometry_blueprint.md:span6
+R^\rho{}_{\sigma\mu\nu}
+
+doc/build/curved_geometry_blueprint.md:span7
+(\mu\nu)
+
+doc/build/curved_geometry_blueprint.md:span8
+R_{\mu\nu}=R^\lambda{}_{\mu\lambda\nu}
+
+doc/build/curved_geometry_blueprint.md:span11
+R=2
+
+doc/build/curved_geometry_blueprint.md:span12
+R_{\theta\theta}=1
+
+doc/build/curved_geometry_blueprint.md:span15
+\nabla g=0
+
+doc/build/curved_geometry_blueprint.md:span16
+d
+
+doc/build/curved_geometry_blueprint.md:span17
+S^2
+
+doc/build/curved_geometry_blueprint.md:span18
+\le 8
+
+doc/build/curved_geometry_blueprint.md:span19
+10^{-24}
+
+doc/build/curved_geometry_blueprint.md:span21
+(n_-, n_+)
+
+doc/build/curved_geometry_blueprint.md:span22
+G=c=1
+
+doc/build/curved_geometry_blueprint.md:span25
+G_{\mu\nu}=R_{\mu\nu}-\frac12 R\, g_{\mu\nu}
+
+doc/build/curved_geometry_blueprint.md:span26
+G_{\mu\nu}+\Lambda g_{\mu\nu}=8\pi T_{\mu\nu}
+
+doc/build/curved_geometry_blueprint.md:span27
+g(u,u)
+
+doc/build/curved_geometry_blueprint.md:span28
+-1
+
+doc/build/curved_geometry_blueprint.md:span30
++1
+
+doc/build/curved_geometry_blueprint.md:span31
+n
+
+doc/build/curved_geometry_blueprint.md:span32
+n=0
+
+doc/build/curved_geometry_blueprint.md:span33
+n>8
+
+doc/build/curved_geometry_blueprint.md:span34
+n\le 4
+
+doc/build/curved_geometry_blueprint.md:span35
+\det g
+
+doc/build/curved_geometry_blueprint.md:span38
+\sqrt{|\det g|}=r^2\sin\theta
+
+doc/build/curved_geometry_blueprint.md:span39
+g'
+
+doc/build/curved_geometry_blueprint.md:span40
+\mathrm{diag}(1,r^2)
+
+doc/build/curved_geometry_blueprint.md:span42
+T^\lambda{}_{\mu\nu}=\Gamma^\lambda{}_{\mu\nu}-\Gamma^\lambda{}_{\nu\mu}
+
+doc/build/curved_geometry_blueprint.md:span43
+\nabla_\rho g_{\mu\nu}=0
+
+doc/build/curved_geometry_blueprint.md:span44
+R_{\rho\sigma\mu\nu}=g_{\rho\lambda}R^\lambda{}_{\sigma\mu\nu}
+
+doc/build/curved_geometry_blueprint.md:span45
+n\ge 4
+
+doc/build/curved_geometry_blueprint.md:span46
+n\le 3
+
+doc/build/curved_geometry_blueprint.md:span47
+K=R_{\rho\sigma\mu\nu}R^{\rho\sigma\mu\nu}
+
+doc/build/curved_geometry_blueprint.md:span48
+S_{\mu\nu}=R_{\mu\nu}-\frac{1}{n} R\, g_{\mu\nu}
+
+doc/build/curved_geometry_blueprint.md:span49
+\sin^2+\cos^2=1
+
+doc/build/curved_geometry_blueprint.md:span50
+\cosh^2-\sinh^2=1
+
+doc/build/curved_geometry_blueprint.md:span51
+(t,\varphi)
+
+doc/build/curved_geometry_blueprint.md:span52
+\Psi_0,\ldots,\Psi_4
+
+doc/build/curved_geometry_blueprint.md:span54
+\Psi
+
+doc/build/curved_geometry_blueprint.md:span56
+(\rho,p,u^\mu)
+
+doc/build/curved_geometry_blueprint.md:span57
+F_{\mu\nu}
+
+doc/build/curved_geometry_blueprint.md:span58
+\nabla_\mu T^{\mu\nu}=0
+
+doc/build/curved_geometry_blueprint.md:span59
+u
+
+doc/build/curved_geometry_blueprint.md:span61
+ds^2=-dt^2+a(t)^2(dx^2+dy^2+dz^2)
+
+doc/build/curved_geometry_blueprint.md:span62
+H=\dot a/a
+
+doc/build/curved_geometry_blueprint.md:span63
+G_{tt}=3H^2=8\pi\rho
+
+doc/build/curved_geometry_blueprint.md:span64
+G^i{}_j=-(2\ddot a/a+H^2)\,\delta^i{}_j=8\pi p
+
+doc/build/curved_geometry_blueprint.md:span65
+a\propto t^{2/3}
+
+doc/build/curved_geometry_blueprint.md:span66
+p=0
+
+doc/build/curved_geometry_blueprint.md:span67
+a\propto e^{Ht}
+
+doc/build/curved_geometry_blueprint.md:span68
+\rho=-p=3H^2/(8\pi)
+
+doc/build/curved_geometry_blueprint.md:span69
+\nabla_\mu\xi_\nu+\nabla_\nu\xi_\mu=0
+
+doc/build/curved_geometry_blueprint.md:span70
+\xi_\mu u^\mu
+
+doc/build/curved_geometry_blueprint.md:span71
+\partial_t
+
+doc/build/curved_geometry_blueprint.md:span72
+\partial_\varphi
+
+doc/build/curved_geometry_blueprint.md:span73
+\nabla_u V=0
+
+doc/build/curved_geometry_blueprint.md:span75
+b_c=3\sqrt{3}\,M
+
+doc/build/curved_geometry_blueprint.md:span76
+r=6M
+
+doc/build/curved_geometry_blueprint.md:span77
+\kappa=1/(4M)
+
+doc/build/curved_geometry_blueprint.md:span80
+m
+
+doc/build/curved_geometry_blueprint.md:span81
+m^2=1
+
+doc/build/curved_geometry_blueprint.md:span82
+m^2=0
+
+doc/build/curved_geometry_blueprint.md:span86
+r=2M
+
+doc/build/curved_geometry_blueprint.md:span87
+K=48M^2/r^6
+
+doc/build/curved_geometry_blueprint.md:span88
+3/(4M^4)
+
+doc/build/curved_geometry_blueprint.md:span90
+r=0
+
+doc/build/curved_geometry_blueprint.md:span93
+(r/2M-1)e^{r/2M}=X^2-T^2
+
+doc/build/curved_geometry_blueprint.md:span94
+X^2-T^2=0
+
+doc/build/curved_geometry_blueprint.md:span96
+t,x,y,z
+
+doc/build/curved_geometry_blueprint.md:span98
+R^\rho{}_{\sigma\mu\nu}=0
+
+doc/build/curved_geometry_blueprint.md:span99
+t,r,\theta,\varphi
+
+doc/build/curved_geometry_blueprint.md:span101
+\sqrt{\|\det g\|}=r^2\sin\theta
+
+doc/build/curved_geometry_blueprint.md:span103
+g_{tt}=-x^2
+
+doc/build/curved_geometry_blueprint.md:span105
+r,\theta
+
+doc/build/curved_geometry_blueprint.md:span108
+\theta,\varphi
+
+doc/build/curved_geometry_blueprint.md:span111
+S^3
+
+doc/build/curved_geometry_blueprint.md:span112
+\chi,\theta,\varphi
+
+doc/build/curved_geometry_blueprint.md:span113
+R=6
+
+doc/build/curved_geometry_blueprint.md:span115
+x,y
+
+doc/build/curved_geometry_blueprint.md:span116
+ds^2=(dx^2+dy^2)/y^2
+
+doc/build/curved_geometry_blueprint.md:span117
+R=-2
+
+doc/build/curved_geometry_blueprint.md:span122
+K=8(6M^2 r^2-12 M Q^2 r+7 Q^4)/r^8
+
+doc/build/curved_geometry_blueprint.md:span123
+8\pi T_{\mu\nu}
+
+doc/build/curved_geometry_blueprint.md:span124
+F_{tr}=Q/r^2
+
+doc/build/curved_geometry_blueprint.md:span125
+(M,Q,r)
+
+doc/build/curved_geometry_blueprint.md:span127
+r_\pm=M\pm\sqrt{M^2-a^2}
+
+doc/build/curved_geometry_blueprint.md:span129
+(M,a,r,\theta)
+
+doc/build/curved_geometry_blueprint.md:span130
+a\to 0
+
+doc/build/curved_geometry_blueprint.md:span131
+Q\to 0
+
+doc/build/curved_geometry_blueprint.md:span132
+v,r,\theta,\varphi
+
+doc/build/curved_geometry_blueprint.md:span135
+T,X,\theta,\varphi
+
+doc/build/curved_geometry_blueprint.md:span136
+K\to\infty
+
+doc/build/curved_geometry_blueprint.md:span137
+r\to 0
+
+doc/build/curved_geometry_blueprint.md:span139
+1-\Lambda r^2/3
+
+doc/build/curved_geometry_blueprint.md:span140
+R_{\mu\nu}=\Lambda g_{\mu\nu}
+
+doc/build/curved_geometry_blueprint.md:span141
+R=4\Lambda
+
+doc/build/curved_geometry_blueprint.md:span142
+\Lambda<0
+
+doc/build/curved_geometry_blueprint.md:span148
+u,v,x,y
+
+doc/build/curved_geometry_blueprint.md:span149
+H=x^2-y^2
+
+doc/build/curved_geometry_blueprint.md:span151
+K=0
+
+doc/build/curved_geometry_blueprint.md:span153
+1\ldots 8
+
+doc/build/curved_geometry_blueprint.md:span155
+r>2M
+
+doc/build/curved_geometry_blueprint.md:span160
+R^\rho{}_{\sigma\mu\nu}=\partial_\mu\Gamma^\rho{}_{\nu\sigma}-\partial_\nu\Gamma^\rho{}_{\mu\sigma}+\Gamma^\rho{}_{\mu\lambda}\Gamma^\lambda{}_{\nu\sigma}-\Gamma^\rho{}_{\nu\lambda}\Gamma^\lambda{}_{\mu\sigma}.
+
+doc/build/curved_geometry_blueprint.md:span161
+\Gamma_{\rho\mu\nu}=\frac12(\partial_\mu g_{\nu\rho}+\partial_\nu g_{\mu\rho}-\partial_\rho g_{\mu\nu}).
+
+doc/build/curved_geometry_blueprint.md:span162
+g'_{\alpha\beta}=\frac{\partial x^\mu}{\partial x'^\alpha}\frac{\partial x^\nu}{\partial x'^\beta} g_{\mu\nu},
+
+doc/build/curved_geometry_blueprint.md:span163
+\nabla_\mu V^\nu=\partial_\mu V^\nu+\Gamma^\nu{}_{\mu\lambda}V^\lambda,
+\quad
+\nabla_\mu \omega_\nu=\partial_\mu\omega_\nu-\Gamma^\lambda{}_{\mu\nu}\omega_\lambda,
+
+doc/build/curved_geometry_blueprint.md:span164
+\begin{aligned}
+C_{\rho\sigma\mu\nu}=R_{\rho\sigma\mu\nu}
+&-\frac{1}{n-2}(g_{\rho\mu}R_{\sigma\nu}-g_{\rho\nu}R_{\sigma\mu}-g_{\sigma\mu}R_{\rho\nu}+g_{\sigma\nu}R_{\rho\mu})\\
+&+\frac{R}{(n-1)(n-2)}(g_{\rho\mu}g_{\sigma\nu}-g_{\rho\nu}g_{\sigma\mu}).
+\end{aligned}
+
+doc/build/curved_geometry_blueprint.md:span165
+C_{ijk}=\nabla_k R_{ij}-\nabla_j R_{ik}-\frac{1}{2(n-1)}(\nabla_k R\, g_{ij}-\nabla_j R\, g_{ik}).
+
+doc/build/curved_geometry_blueprint.md:span166
+B_{\mu\nu}=\nabla^\rho\nabla^\sigma C_{\rho\mu\nu\sigma}+\frac12 R^{\rho\sigma}C_{\rho\mu\nu\sigma}.
+
+doc/build/curved_geometry_blueprint.md:span167
+T_{\mu\nu}=(\rho+p)\,u_\mu u_\nu+p\, g_{\mu\nu}.
+
+doc/build/curved_geometry_blueprint.md:span168
+T_{\mu\nu}=\frac{1}{4\pi}\left(F_{\mu\lambda}F_\nu{}^\lambda-\frac14 g_{\mu\nu}F_{\alpha\beta}F^{\alpha\beta}\right).
+
+doc/build/curved_geometry_blueprint.md:span169
+E=-u_t=\left(1-\frac{2M}{r}\right)\frac{dt}{d\tau},\qquad L=u_\varphi=r^2\sin^2\theta\,\frac{d\varphi}{d\tau}.
+
+doc/build/curved_geometry_blueprint.md:span170
+\left(\frac{dr}{d\tau}\right)^2=E^2-\left(1-\frac{2M}{r}\right)\left(1+\frac{L^2}{r^2}\right).
+
+doc/build/curved_geometry_blueprint.md:span171
+\frac{D^2\xi^{\hat r}}{d\tau^2}=+\frac{2M}{r^3}\xi^{\hat r},\qquad
+\frac{D^2\xi^{\hat\theta}}{d\tau^2}=-\frac{M}{r^3}\xi^{\hat\theta}.
+
+doc/build/curved_geometry_blueprint.md:span172
+\Delta\Phi=2\pi\left(1-\sqrt{1-\frac{3M}{r}}\right).
+
+doc/build/curved_geometry_blueprint.md:span173
+E=-u_t,\qquad L=u_\varphi,
+
+doc/build/curved_geometry_blueprint.md:span174
+Q=p_\theta^2+\cos^2\theta\left(a^2(m^2-E^2)+\frac{L^2}{\sin^2\theta}\right).
+
+doc/build/e2e-complex-analysis-audit.md:span0
+\mathit{C}
+
+doc/build/e2e-complex-analysis-audit.md:span4
+\int_{\|z\|=1} (1/z) dz
+
+doc/build/e2e-complex-analysis-audit.md:span5
+PV, f=1/x, x\in[-1,1]
+
+doc/build/e2e-complex-analysis-audit.md:span6
+PV, f=1/x, x\in[-2,1]
+
+doc/build/e2e-complex-analysis-audit.md:span7
+\int_{(1)}
+
+doc/build/e2e-complex-analysis-audit.md:span8
+\frac{1}{2\pi i}\int \frac{f(z)}{z-a}\,dz=f(a)
+
+doc/build/e2e-complex-analysis-audit.md:span9
+\int_{-1}^{1} 1/x dx
+
+doc/build/e2e-vector-calc-audit.md:span0
+\mathrm{vec}
+
+doc/build/equation-hunt-all.md:span0
+\mathcal{Z}\{a^n\,u[n]\} = \frac{1}{1-a z^{-1}} = \frac{z}{z-a}, \qquad |z|>|a|
+
+doc/build/equation-hunt-all.md:span1
+\mathcal{Z}\{n\,a^n\,u[n]\} = \frac{a z^{-1}}{(1-a z^{-1})^2} = \frac{a z}{(z-a)^2}, \qquad |z|>|a|
+
+doc/build/equation-hunt-all.md:span2
+\mathcal{Z}\{\cos(\omega_0 n)\,u[n]\} = \frac{1-z^{-1}\cos\omega_0}{1-2z^{-1}\cos\omega_0+z^{-2}} = \frac{z\,(z-\cos\omega_0)}{z^2-2z\cos\omega_0+1}, \qquad |z|>1
+
+doc/build/equation-hunt-all.md:span3
+\mathcal{M}\{e^{-x}\}(s) = \Gamma(s), \qquad 0 < \Re s < \infty
+
+doc/build/equation-hunt-all.md:span4
+\mathcal{M}\left\{\frac{1}{1+x}\right\}(s) = \frac{\pi}{\sin(\pi s)} = \Gamma(s)\,\Gamma(1-s), \qquad 0 < \Re s < 1
+
+doc/build/equation-hunt-all.md:span5
+\mathcal{M}\{\sin x\}(s) = \Gamma(s)\,\sin\left(\tfrac{\pi s}{2}\right), \qquad -1 < \Re s < 1
+
+doc/build/equation-hunt-all.md:span6
+\mathcal{H}_0\!\left\{\frac{1}{r}\right\}(k) = \frac{1}{k}, \qquad k > 0
+
+doc/build/equation-hunt-all.md:span7
+\mathcal{H}_0\!\left\{e^{-\frac{1}{2}a^2 r^2}\right\}(k) = \frac{1}{a^2}\,e^{-\frac{k^2}{2a^2}}, \qquad a > 0
+
+doc/build/equation-hunt-all.md:span8
+\mathcal{H}_0\!\left\{\frac{1}{\sqrt{r^2+z^2}}\right\}(k) = \frac{e^{-k|z|}}{k}, \qquad k > 0
+
+doc/build/equation-hunt-all.md:span9
+\mathcal{L}\{\delta(t)\}(s) = 1
+
+doc/build/equation-hunt-all.md:span10
+\mathcal{L}\{H(t)\}(s) = \frac{1}{s}, \qquad \Re s > 0
+
+doc/build/equation-hunt-all.md:span11
+\hat{\delta}(\xi) = \int_{-\infty}^{\infty} e^{-2\pi i x \xi}\,\delta(x)\,dx = 1
+
+doc/build/equation-hunt-all.md:span12
+\mathcal{F}\{H(x)\}(\omega) = \pi\,\delta(\omega) + \frac{1}{i\omega}
+
+doc/build/equation-hunt-all.md:span13
+(e^{-at} * e^{-bt})(t) = \frac{e^{-at} - e^{-bt}}{\,b-a\,}, \qquad a \neq b,\;\; t \ge 0
+
+doc/build/equation-hunt-all.md:span14
+(e^{-at} * e^{-at})(t) = t\,e^{-at}, \qquad t \ge 0
+
+doc/build/equation-hunt-all.md:span15
+(e^{2t} * t^2)(t) = \tfrac14 e^{2t} - \tfrac12 t^2 - \tfrac12 t - \tfrac14, \qquad t \ge 0
+
+doc/build/equation-hunt-all.md:span16
+\oint_C (-y\,dx + x\,dy) = 2\pi
+
+doc/build/equation-hunt-all.md:span17
+\oint_C x^2\,dy = 0
+
+doc/build/equation-hunt-all.md:span18
+y' + 2xy = x
+
+doc/build/equation-hunt-all.md:span19
+y = \frac{1}{2} + Ce^{-x^2}
+
+doc/build/equation-hunt-all.md:span20
+y' + \frac{1}{x}y = x^2
+
+doc/build/equation-hunt-all.md:span21
+y = \frac{x^3}{4} + \frac{C}{x}
+
+doc/build/equation-hunt-all.md:span22
+y'' + y = \sin(2x)
+
+doc/build/equation-hunt-all.md:span23
+y = C_1\cos x + C_2\sin x - \frac{1}{3}\sin(2x)
+
+doc/build/equation-hunt-all.md:span24
+y'' + 4y = x\,e^x
+
+doc/build/equation-hunt-all.md:span25
+y = C_1\cos(2x) + C_2\sin(2x) + \left(\frac{x}{5} - \frac{2}{25}\right)e^x
+
+doc/build/equation-hunt-all.md:span26
+2x\,y'' + y' + 2y = 0
+
+doc/build/equation-hunt-all.md:span27
+r(r-1) + \frac{1}{2}r = r^2 - \frac{1}{2}r = 0
+
+doc/build/equation-hunt-all.md:span28
+x^2 y'' + x y' + x^2 y = 0
+
+doc/build/equation-hunt-all.md:span29
+y\,\frac{dy}{dx} = y + x \qquad\text{i.e.}\qquad y\,y'_x - y = x
+
+doc/build/equation-hunt-all.md:span30
+y_1 = \frac{1+\sqrt{5}}{2}\,x, \qquad y_2 = \frac{1-\sqrt{5}}{2}\,x
+
+doc/build/equation-hunt-all.md:span31
+y'' + \lambda y = 0, \qquad y(0) = 0,\;\; y(\pi) = 0
+
+doc/build/equation-hunt-all.md:span32
+\lambda_n = n^2, \qquad y_n(x) = \sin(nx), \quad n = 1, 2, 3, \dots
+
+doc/build/equation-hunt-all.md:span33
+y'' + \lambda y = 0, \qquad y(-\pi) = y(\pi),\;\; y'(-\pi) = y'(\pi)
+
+doc/build/equation-hunt-all.md:span34
+(n+1)\,a_{n+1} = (n+2)\,a_n
+
+doc/build/equation-hunt-all.md:span35
+a_n = C\,(n+1) = C\,\frac{(2)_n}{(1)_n}
+
+doc/build/equation-hunt-all.md:span36
+a_{n+1} = (n+1)\,a_n
+
+doc/build/equation-hunt-all.md:span37
+a_n = C \cdot n! = C\,(1)_n
+
+doc/build/equation-hunt-all.md:span38
+p\,q = 1, \qquad p = z_x,\; q = z_y
+
+doc/build/equation-hunt-all.md:span39
+z = ax + \frac{y}{a} + b
+
+doc/build/equation-hunt-all.md:span40
+p^2 + q^2 = 1
+
+doc/build/equation-hunt-all.md:span41
+z = ax + by + c, \qquad a^2 + b^2 = 1
+
+doc/build/equation-hunt-all.md:span42
+(p^2 + q^2)\,y = q\,z
+
+doc/build/equation-hunt-all.md:span43
+z^2 = (ax + b)^2 + a^2 y^2
+
+doc/build/equation-hunt-all.md:span44
+u_t + 6u\,u_x + u_{xxx} = 0
+
+doc/build/equation-hunt-all.md:span45
+u(x,t) = \frac{c}{2}\,\operatorname{sech}^2\!\left(\frac{\sqrt{c}}{2}\,(x - ct)\right)
+
+doc/build/equation-hunt-all.md:span46
+u_t + u\,u_x = u_{xx}
+
+doc/build/equation-hunt-all.md:span47
+\bar{u}(x) = -\tanh\!\left(\frac{x}{2}\right)
+
+doc/build/equation-hunt-all.md:span48
+u_t + u\,u_x = \nu\,u_{xx}, \qquad u(x,t) = u(\xi),\;\; \xi = x - Ut
+
+doc/build/equation-hunt-all.md:span49
+u(\xi) = \frac{1}{2}(u_1 + u_2) - \frac{1}{2}(u_1 - u_2)\tanh\!\left(\frac{(u_1 - u_2)\,\xi}{2\nu}\right)
+
+doc/build/equation-hunt-all.md:span50
+u_t = u_{xx}, \qquad -1 < x < 1, \quad u(-1,t) = u(1,t) = 0
+
+doc/build/equation-hunt-all.md:span51
+\frac{d}{dt}v_j = \frac{v_{j-1} - 2v_j + v_{j+1}}{h^2}
+
+doc/build/equation-hunt-all.md:span52
+u_t = u_{xx}, \qquad 0 < x < 1, \quad u(0,t) = u(1,t) = 0
+
+doc/build/equation-hunt-all.md:span53
+\frac{dv}{dt} = \frac{1}{h^2}\begin{pmatrix} -2 & 1 & 0 \\ 1 & -2 & 1 \\ 0 & 1 & -2 \end{pmatrix} v, \qquad h = \frac{1}{4}
+
+doc/build/equation-hunt-all.md:span54
+G_{3D}(x) = -\frac{1}{4\pi\,|x|}, \qquad \Delta G_{3D} = \delta
+
+doc/build/equation-hunt-all.md:span55
+G_{2D}(x) = \frac{1}{2\pi}\,\ln|x|, \qquad \Delta G_{2D} = \delta
+
+doc/build/equation-hunt-all.md:span56
+G_{1D}(x) = \frac{|x|}{2}, \qquad G_{1D}'' = \delta
+
+doc/build/equation-hunt-all.md:span57
+u_t = k\,u_{xx}, \qquad 0 < x < L, \quad u(0,t) = u(L,t) = 0
+
+doc/build/equation-hunt-all.md:span58
+X_n(x) = \sin\!\left(\frac{n\pi x}{L}\right), \qquad T_n(t) = e^{-k(n\pi/L)^2\,t}, \quad n = 1, 2, \dots
+
+doc/build/equation-hunt-all.md:span59
+u(x,t) = \sum_{n=1}^{\infty} B_n \sin\!\left(\frac{n\pi x}{L}\right)\,e^{-k(n\pi/L)^2\,t}
+
+doc/build/equation-hunt-all.md:span60
+u(x,t) = e^{-t}\sin x
+
+doc/build/equation-hunt-all.md:span61
+\omega_{mn} = \frac{c}{a}\,\alpha_{mn}
+
+doc/build/equation-hunt-all.md:span62
+\omega_{01} = 2.40483\,\frac{c}{a}
+
+doc/build/equation-hunt-all.md:span63
+\omega_{11} = 3.83171\,\frac{c}{a}, \qquad \omega_{21} = 5.13562\,\frac{c}{a}, \qquad \omega_{02} = 5.52008\,\frac{c}{a}
+
+doc/build/equation-hunt-all.md:span64
+I = \langle f, g \rangle, \quad f = x^2 - y, \;\; g = x^3 - x
+
+doc/build/equation-hunt-all.md:span65
+G = \{\, x^2 - y,\;\; xy - x,\;\; y^2 - y \,\}
+
+doc/build/equation-hunt-all.md:span66
+I = \langle x,\; 1 - xy \rangle \subset \mathbb{Q}[x,y]
+
+doc/build/equation-hunt-all.md:span67
+\begin{cases} x^2 + y^2 - 5 = 0 \\ xy - 2 = 0 \end{cases}
+
+doc/build/equation-hunt-all.md:span68
+(x,y) \in \{(1,2),\; (2,1),\; (-1,-2),\; (-2,-1)\}
+
+doc/build/equation-hunt-all.md:span69
+\begin{cases} x^2 - y = 0 \\ x^3 - x = 0 \end{cases}
+
+doc/build/equation-hunt-all.md:span70
+(x,y) \in \{(0,0),\; (1,1),\; (-1,1)\}
+
+doc/build/equation-hunt-all.md:span71
+1 \;=\; y\cdot x \;+\; 1\cdot(1-xy) \;\;\in\;\; \langle x,\; 1-xy \rangle
+
+doc/build/equation-hunt-all.md:span72
+xy \;\in\; \sqrt{\langle x^2 y,\; x y^2 \rangle}
+\qquad\text{in }\mathbb{Q}[x,y]
+
+doc/build/equation-hunt-all.md:span73
+(xy)^3 \;=\; x^3 y^3 \;=\; (x^2 y)\cdot(x y^2)
+\;\;\in\;\; \langle x^2 y,\; x y^2 \rangle
+
+doc/build/equation-hunt-all.md:span74
+\frac{3x+5}{(x-1)(x+2)} \;=\; \frac{8/3}{\,x-1\,} \;+\; \frac{1/3}{\,x+2\,}
+
+doc/build/equation-hunt-all.md:span75
+\frac{2x+1}{(x-1)^2} \;=\; \frac{2}{\,x-1\,} \;+\; \frac{3}{\,(x-1)^2\,}
+
+doc/build/equation-hunt-all.md:span76
+\sin x = \tfrac12 \quad\Longrightarrow\quad
+x = \tfrac{\pi}{6} + 2\pi n \;\;\text{or}\;\; x = \tfrac{5\pi}{6} + 2\pi n,
+\qquad n \in \mathbb{Z}
+
+doc/build/equation-hunt-all.md:span77
+\cos x = 0 \quad\Longrightarrow\quad x = \tfrac{\pi}{2} + \pi n,
+\qquad n \in \mathbb{Z}
+
+doc/build/equation-hunt-all.md:span78
+\tan x = 1 \quad\Longrightarrow\quad x = \tfrac{\pi}{4} + \pi n,
+\qquad n \in \mathbb{Z}
+
+doc/build/equation-hunt-all.md:span79
+\prod_{k=0}^{n-1}(1+q^k t)=\sum_{k=0}^{n}q^{k(k-1)/2}{n \brack k}_q t^k.
+
+doc/build/equation-hunt-all.md:span80
+(1+1)(1+q) \;=\; {2\brack 0}_q + {2\brack 1}_q + q\,{2\brack 2}_q
+\;\;=\;\; 1 + (1+q) + q
+
+doc/build/equation-hunt-all.md:span81
+2(1+q)(1+q^2) \;=\; 1 + (1+q+q^2) + q(1+q+q^2) + q^3
+
+doc/build/equation-hunt-all.md:span82
+{4 \brack 2}_q \;=\; 1 + q + 2q^2 + q^3 + q^4
+
+doc/build/equation-hunt-all.md:span83
+{6 \brack 3}_q \;=\; 1 + q + 2q^2 + 3q^3 + 3q^4 + 3q^5 + 3q^6 + 2q^7 + q^8 + q^9
+
+doc/build/equation-hunt-all.md:span84
+n! \sim \sqrt{2\pi n}\left(\tfrac{n}{e}\right)^n
+\left(1+\tfrac{1}{12n}+\tfrac{1}{288n^2}-\tfrac{139}{51840n^3}
+-\tfrac{571}{2488320n^4}+\cdots\right).
+
+doc/build/equation-hunt-all.md:span85
+\sqrt{20\pi}\,\left(\tfrac{10}{e}\right)^{10} \;=\; 3598695.618741
+
+doc/build/equation-hunt-all.md:span86
+\sqrt{20\pi}\,\left(\tfrac{10}{e}\right)^{10}\!\left(1+\tfrac{1}{120}\right)
+\;=\; 3628684.748897
+
+doc/build/equation-hunt-all.md:span87
+\sqrt{20\pi}\,\left(\tfrac{10}{e}\right)^{10}\!
+\left(1+\tfrac{1}{120}+\tfrac{1}{28800}-\tfrac{139}{51840000}\right)
+\;=\; 3628800.054326
+
+doc/build/equation-hunt-all.md:span88
+\sqrt{2\pi n}\left(\tfrac{n}{e}\right)^n e^{1/(12n+1)}
+\;<\; n! \;<\;
+\sqrt{2\pi n}\left(\tfrac{n}{e}\right)^n e^{1/(12n)}
+
+doc/build/equation-hunt-all.md:span89
+3628560.1420 \;<\; 3628800 \;<\; 3628810.0514
+
+doc/build/equation-hunt-all.md:span90
+C = S\,N(d_1) - K e^{-rT} N(d_2), \quad
+d_1 = \frac{\ln(S/K) + (r+\sigma^2/2)T}{\sigma\sqrt{T}},\;\;
+d_2 = d_1 - \sigma\sqrt{T}
+
+doc/build/equation-hunt-all.md:span91
+P \;=\; \frac{50}{1.06} + \frac{50}{1.06^2} + \frac{1050}{1.06^3}
+
+doc/build/equation-hunt-all.md:span92
+0^{\circ}\mathrm{C} = 273.15\ \mathrm{K} \qquad\text{(exact, definitional)}
+
+doc/build/equation-hunt-all.md:span93
+100^{\circ}\mathrm{C} = 373.15\ \mathrm{K} \qquad\text{(exact, definitional)}
+
+doc/build/equation-hunt-all.md:span94
+32^{\circ}\mathrm{F} = 0^{\circ}\mathrm{C} = 273.15\ \mathrm{K}
+
+doc/build/equation-hunt-all.md:span95
+212^{\circ}\mathrm{F} = 100^{\circ}\mathrm{C} = 373.15\ \mathrm{K}
+
+doc/build/equation-hunt-all.md:span96
+A = \begin{pmatrix} 1 & 2 & 3 \\ 0 & 1 & 4 \\ 5 & 6 & 0 \end{pmatrix}, \qquad \det A = 1
+
+doc/build/equation-hunt-all.md:span97
+A^{-1} = \begin{pmatrix} -24 & 18 & 5 \\ 20 & -15 & -4 \\ -5 & 4 & 1 \end{pmatrix}
+
+doc/build/equation-hunt-all.md:span98
+\begin{pmatrix} 2 & 1 & -1 \\ -3 & -1 & 2 \\ -2 & 1 & 2 \end{pmatrix}
+\begin{pmatrix} x \\ y \\ z \end{pmatrix} =
+\begin{pmatrix} 8 \\ -11 \\ -3 \end{pmatrix}, \qquad
+\begin{pmatrix} x \\ y \\ z \end{pmatrix} =
+\begin{pmatrix} 2 \\ 3 \\ -1 \end{pmatrix}
+
+doc/build/equation-hunt-all.md:span99
+\begin{pmatrix} 2 & -1 & 0 & 0 \\ -1 & 2 & -1 & 0 \\ 0 & -1 & 2 & -1 \\ 0 & 0 & -1 & 2 \end{pmatrix}
+\begin{pmatrix} x_1 \\ x_2 \\ x_3 \\ x_4 \end{pmatrix} =
+\begin{pmatrix} 1 \\ 1 \\ 1 \\ 1 \end{pmatrix}, \qquad
+x = \begin{pmatrix} 2 \\ 3 \\ 3 \\ 2 \end{pmatrix}
+
+doc/build/equation-hunt-all.md:span100
+\exp\!\begin{pmatrix} 0 & -\pi/2 \\ \pi/2 & 0 \end{pmatrix} =
+\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}
+
+doc/build/equation-hunt-all.md:span101
+\exp\!\left(\theta\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}\right) =
+\begin{pmatrix} \cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{pmatrix}
+
+doc/build/equation-hunt-all.md:span102
+\log\!\begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix} =
+\begin{pmatrix} 0 & -\pi/2 \\ \pi/2 & 0 \end{pmatrix}
+
+doc/build/equation-hunt-all.md:span103
+\log\!\begin{pmatrix} 2 & 1 \\ 0 & 2 \end{pmatrix} =
+\begin{pmatrix} \ln 2 & 1/2 \\ 0 & \ln 2 \end{pmatrix}
+
+doc/build/equation-hunt-all.md:span104
+\sqrt{\begin{pmatrix} 5 & 4 \\ 4 & 5 \end{pmatrix}} =
+\begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}
+
+doc/build/equation-hunt-all.md:span105
+\begin{pmatrix} 1 & 1 \\ 1 & 0 \end{pmatrix}^{\!3} =
+\begin{pmatrix} 3 & 2 \\ 2 & 1 \end{pmatrix}
+
+doc/build/equation-hunt-all.md:span106
+A = \begin{pmatrix} 2 & 1 \\ 1 & 2 \end{pmatrix}, \qquad
+Q = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}, \qquad
+T = \begin{pmatrix} 3 & 0 \\ 0 & 1 \end{pmatrix}
+
+doc/build/equation-hunt-all.md:span107
+\begin{pmatrix} 1 & -1 & 3 \\ 1 & 0 & 5 \\ 1 & 2 & 6 \end{pmatrix}
+
+doc/build/equation-hunt-all.md:span108
+\begin{pmatrix} 0 & 1 & -1 \\ 1 & 0 & 0 \\ 0 & 1 & 2 \end{pmatrix}
+
+doc/build/equation-hunt-all.md:span109
+x \approx 0.7390851332151607
+
+doc/build/equation-hunt-all.md:span110
+0.7 - \cos(0.7) \approx -0.0648 < 0 < 0.1033 \approx 0.8 - \cos(0.8)
+
+doc/build/equation-hunt-all.md:span111
+x^2 - 3x + 2 > 0 \iff x < 1 \text{ or } x > 2
+
+doc/build/equation-hunt-all.md:span112
+x^2 - 3x + 2 \le 0 \iff 1 \le x \le 2
+
+doc/build/equation-hunt-all.md:span113
+f'(x) = 3x^2 + 2, \qquad f'(1) = 5
+
+doc/build/equation-hunt-all.md:span114
+g'(x) = 2x\cos(x^2), \qquad g'(\sqrt{\pi/2}) = 0
+
+doc/build/equation-hunt-all.md:span115
+\frac{dy}{dx} = -\frac{x}{y}
+
+doc/build/equation-hunt-all.md:span116
+\left.\frac{dy}{dx}\right|_{(3,4)} = -\frac{3}{4}
+
+doc/build/equation-hunt-all.md:span117
+f(n) = \sum_{k=0}^{n} \frac{\binom{4k+1}{k}\binom{4(n-k)}{\,n-k\,}}{4k+1}\,.
+
+doc/build/equation-hunt-all.md:span118
+\begin{aligned}
+&4194304(1+n)(2+n)(1+2n)(3+2n)(3+4n)(5+4n)(7+4n)(9+4n)\,S(n) \\
+&- 73728(2+n)(3+2n)(7+4n)(9+4n)(10391+20216n+15224n^2+5376n^3+768n^4)\,S(n+1) \\
+&+ 1728(5+3n)(7+3n)(4181673+9667056n+9469964n^2+5043584n^3+1543808n^4+258048n^5+18432n^6)\,S(n+2) \\
+&- 432(3+n)(5+3n)(7+3n)(8+3n)(10+3n)(15433+14690n+4896n^2+576n^3)\,S(n+3) \\
+&+ 729(3+n)(4+n)(5+3n)(7+3n)(8+3n)(10+3n)(11+3n)(13+3n)\,S(n+4) = 0\,.
+\end{aligned}
+
+doc/build/equation-hunt-all.md:span119
+f(0) = 1, \quad f(1) = 5, \quad f(2) = 36, \quad f(n) = \binom{4n+1}{n}\,.
+
+doc/build/equation-hunt-all.md:span120
+(a;q)_2 = (1-a)(1-aq)
+
+doc/build/equation-hunt-all.md:span121
+\begin{bmatrix} 4 \\ 2 \end{bmatrix}_q = 1 + q + 2q^2 + q^3 + q^4
+
+doc/build/equation-hunt-all.md:span122
+\sum_{\substack{i,j,k \ge 0 \\ i+j+k=n}} (-1)^i\,\frac{n!}{i!\,j!\,k!} = 1
+
+doc/build/equation-hunt-all.md:span123
+\sum_{\substack{i,j,k \ge 0 \\ i+j+k=n}} \frac{n!}{i!\,j!\,k!} = 3^n
+
+doc/build/equation-hunt-all.md:span124
+\frac{1}{z(z-1)} = -\frac{1}{z} - \sum_{n=0}^{\infty} z^n = -\frac{1}{z} - 1 - z - z^2 - \cdots
+
+doc/build/equation-hunt-all.md:span125
+[1,2] + [3,4] = [4,6]
+
+doc/build/equation-hunt-all.md:span126
+[1,2] \cdot [3,4] = [3,8]
+
+doc/build/equation-hunt-all.md:span127
+[1,2] - [3,4] = [-3,-1]
+
+doc/build/equation-hunt-all.md:span128
+x \approx 2.0945514815
+
+doc/build/equation-hunt-all.md:span129
+\int_0^1 e^x\,dx = e - 1 \approx 1.7182818285
+
+doc/build/equation-hunt-all.md:span130
+\int_0^1 \frac{1}{1+x^2}\,dx = \frac{\pi}{4} \approx 0.7853981634
+
+doc/build/equation-hunt-all.md:span131
+\int_0^1\!\!\int_0^1 (x+y)\,dx\,dy = 1
+
+doc/build/equation-hunt-all.md:span132
+\int_0^1\!\!\int_0^1 e^{x+y}\,dx\,dy = (e-1)^2 \approx 2.95249244
+
+doc/build/equation-hunt-all.md:span133
+\int_0^1\!\!\int_0^1\!\!\int_0^1 xyz\,dx\,dy\,dz = \frac{1}{8}
+
+doc/build/equation-hunt-all.md:span134
+p(x) = x^2 + x + 1
+
+doc/build/equation-hunt-all.md:span135
+\left.\frac{d}{dx}\big[x\sin x\big]\right|_{x=\pi/4} = \frac{\sqrt{2}}{2}\left(1 + \frac{\pi}{4}\right) \approx 1.2624671485
+
+doc/build/equation-hunt-all.md:span136
+\binom{10}{3} = 120
+
+doc/build/equation-hunt-all.md:span137
+1001 = 7 \cdot 11 \cdot 13
+
+doc/build/equation-hunt-all.md:span138
+\varphi(36) = 12 \qquad \big(36 = 2^2\cdot 3^2,\; \varphi(36) = 36\cdot\tfrac12\cdot\tfrac23\big)
+
+doc/build/equation-hunt-all.md:span139
+p=61,\quad q=53,\quad n=pq=3233,\quad \phi(n)=3120,\quad e=17,\quad d=2753
+
+doc/build/equation-hunt-all.md:span140
+c \equiv m^e \pmod{n},\qquad 65^{17} \bmod 3233 = 2790
+
+doc/build/equation-hunt-all.md:span141
+p=23,\quad g=5,\quad a=6,\quad b=15
+
+doc/build/equation-hunt-all.md:span142
+A \equiv g^a = 5^6 \equiv 8 \pmod{23},\qquad B \equiv g^b = 5^{15} \equiv 19 \pmod{23}
+
+doc/build/equation-hunt-all.md:span143
+s \equiv B^a \equiv A^b \equiv 19^6 \equiv 8^{15} \equiv 2 \pmod{23}
+
+doc/build/equation-hunt-all.md:span144
+2^x \equiv 5 \pmod{13}\quad\Longrightarrow\quad x = 9
+
+doc/build/equation-hunt-all.md:span145
+G_x = \texttt{79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798}
+
+doc/build/equation-hunt-all.md:span146
+G_y = \texttt{483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8}
+
+doc/build/equation-hunt-all.md:span147
+2G = \big(\texttt{C6047F9441ED7D6D3045406E95C07CD85C778E4B8CEF3CA7ABAC09B95C709EE5},
+
+doc/build/equation-hunt-all.md:span148
+\qquad\qquad \texttt{1AE168FEA63DC339A3C58419466CEAEEF7F632653266D0E1236431A950CFE52A}\big)
+
+doc/build/equation-hunt-all.md:span149
+f(x;\lambda) = \lambda e^{-\lambda x},\qquad f(1; 2) = 2e^{-2} \approx 0.2707
+
+doc/build/equation-hunt-all.md:span150
+\mathbb{E}[X] = \frac{1}{\lambda} = \frac{1}{2}
+
+doc/build/equation-hunt-all.md:span151
+P(X=3) = \binom{10}{3}(0.5)^{10} = \frac{120}{1024} = 0.1171875,\qquad X \sim \mathrm{Bin}(10, 0.5)
+
+doc/build/equation-hunt-all.md:span152
+\mathbb{E}[X] = \frac{2+5}{2} = 3.5,\qquad \mathrm{Var}(X) = \frac{(5-2)^2}{12} = \frac{3}{4}
+
+doc/build/equation-hunt-all.md:span153
+P(X=2) = \frac{e^{-3}\,3^2}{2!} = \frac{9e^{-3}}{2} \approx 0.2240,\qquad X \sim \mathrm{Pois}(3)
+
+doc/build/equation-hunt-all.md:span154
+X \sim \Gamma(\alpha=2,\ \theta=3)\ \text{(shape }\alpha\text{, scale }\theta\text{):}\quad \mathbb{E}[X] = \alpha\theta = 6,\quad \mathrm{mode} = (\alpha-1)\theta = 3
+
+doc/build/equation-hunt-all.md:span155
+\mathbb{E}[X] = \frac{\alpha}{\alpha+\beta} = \frac{2}{7} \approx 0.2857
+
+doc/build/equation-hunt-all.md:span156
+\mathbb{E}[X] = k = 4,\qquad \mathrm{Var}(X) = 2k = 8
+
+doc/build/equation-hunt-all.md:span157
+t_{0.975,\,10} = 2.2281
+
+doc/build/equation-hunt-all.md:span158
+\mathbb{E}[X] = \frac{d_2}{d_2-2} = \frac{10}{8} = 1.25,\qquad d_2 > 2
+
+doc/build/equation-hunt-all.md:span159
+\phi(0) = \frac{1}{\sqrt{2\pi}} \approx 0.3989
+
+doc/build/equation-hunt-all.md:span160
+M_X(t) = \frac{\lambda}{\lambda - t},\qquad t < \lambda,\quad X \sim \mathrm{Exp}(\lambda)
+
+doc/build/equation-hunt-all.md:span161
+Y_1 = 1 + 2\cdot 2^{-8} = 1.0078125
+
+doc/build/equation-hunt-all.md:span162
+X_t = X_0\,\exp\!\left(\left(\lambda - \tfrac{1}{2}\mu^2\right)t + \mu W_t\right),
+
+doc/build/equation-hunt-all.md:span163
+y(t) = -\int_1^t (2-s)\,ds = -2(t-1) + \tfrac{1}{2}(t-1)^2
+
+doc/build/equation-hunt-all.md:span164
+\frac{\partial F}{\partial y} - \frac{d}{dx}\frac{\partial F}{\partial y'}
+  + \frac{d^2}{dx^2}\frac{\partial F}{\partial y''} = 0.
+
+doc/build/equation-hunt-all.md:span165
+2\,y'''' = 0
+
+doc/build/equation-hunt-all.md:span166
+y(x) = x\tan\theta - \frac{g x^2}{2 v_0^2 \cos^2\theta}
+
+doc/build/equation-hunt-all.md:span167
+\Delta H = 2(-285.8) - 0 = -571.6\ \mathrm{kJ}
+
+doc/build/equation-hunt-all.md:span168
+H|0\rangle = \frac{|0\rangle + |1\rangle}{\sqrt{2}}
+
+doc/build/equation-hunt-all.md:span169
+R_{10}(r) = 2a_0^{-3/2}\,e^{-r/a_0}
+
+doc/build/equation-hunt-all.md:span170
+R_{20}(r) = (2a_0)^{-3/2}\,(2 - r/a_0)\,e^{-r/(2a_0)}
+
+doc/build/equation-hunt-all.md:span171
+\frac{dP}{dt} = rP\left(1 - \frac{P}{K}\right)
+\quad\Longrightarrow\quad
+P(t) = \frac{K}{1 + A e^{-rt}},\qquad
+A = \frac{K - P_0}{P_0}
+
+doc/build/equation-hunt-all.md:span172
+V = \delta x - \gamma\ln x + \beta y - \alpha\ln y = \text{constant}
+
+doc/build/equation-hunt-all.md:span173
+N = \begin{pmatrix} 0&1&0&0\\ 0&0&0&0\\ 0&0&0&1\\ 0&0&0&0 \end{pmatrix},
+\qquad A(t) = tN,\qquad N^2 = 0.
+
+doc/build/equation-hunt-all.md:span174
+\Phi(t) = I + \frac{t^2}{2}N =
+\begin{pmatrix} 1&t^2/2&0&0\\ 0&1&0&0\\ 0&0&1&t^2/2\\ 0&0&0&1 \end{pmatrix}.
+
+doc/build/equation-hunt-all.md:span175
+a_0(q) = -\tfrac12 q^2 + \tfrac{7}{128}q^4 - \tfrac{29}{2304}q^6
++ \tfrac{68687}{18874368}q^8 + \cdots
+
+doc/build/equation-hunt-all.md:span176
+\tan\sqrt{\lambda} = -\sqrt{\lambda}.
+
+doc/build/equation-hunt-all.md:span177
+\frac{du_{ij}}{dt} =
+\frac{u_{i+1,j} + u_{i-1,j} + u_{i,j+1} + u_{i,j-1} - 4u_{ij}}{h^2}.
+
+doc/build/equation-hunt-all.md:span178
+\begin{aligned}
+\dot u_{11} &= 9\,(u_{21} + u_{12} - 4u_{11}),\\
+\dot u_{21} &= 9\,(u_{11} + u_{22} - 4u_{21}),\\
+\dot u_{12} &= 9\,(u_{11} + u_{22} - 4u_{12}),\\
+\dot u_{22} &= 9\,(u_{21} + u_{12} - 4u_{22}).
+\end{aligned}
+
+doc/build/equation-hunt-all.md:span179
+\omega_{11} = \frac{c\,\alpha_{11}}{a},\qquad \alpha_{11} \approx 3.8317059702,
+
+doc/build/equation-hunt-all.md:span180
+\sum_{k} (-1)^k \binom{n}{k}\binom{2k}{k}4^{\,n-k} = \binom{2n}{n}
+
+doc/build/equation-hunt-all.md:span181
+R(n,k) = \frac{2k-1}{\,2n+1\,},
+
+doc/build/equation-hunt-all.md:span182
+[h,e] = 2e,\qquad [h,f] = -2f,\qquad [e,f] = h.
+
+doc/build/equation-hunt-all.md:span183
+\Phi = \pm(e_1-e_2),\ \pm(e_2-e_3),\ \pm(e_1-e_3),
+
+doc/build/equation-hunt-all.md:span184
+\{\,2x,\ 3y,\ yx,\ xy\,\}.
+
+doc/build/equation-hunt-all.md:span185
+\langle x^2,\, xy\rangle \;=\; \langle x\rangle \;\cap\; \langle x^2,\, y\rangle.
+
+doc/build/equation-hunt-all.md:span186
+F(\phi,k_1) = k\,F(\beta,k),\qquad
+E(\phi,k_1) = \big(E(\beta,k) - {k'}^2F(\beta,k)\big)/k.
+
+doc/build/equation-hunt-all.md:span187
+F\!\left(\tfrac{\pi}{6},\,\tfrac12\right) \;=\; 2\,F\!\left(\arcsin\tfrac14,\,2\right).
+
+doc/build/equation-hunt-all.md:span188
+\psi^{(n)}
+
+doc/build/equation-hunt-all.md:span189
+\psi^{(0)} = \psi
+
+doc/build/equation-hunt-all.md:span190
+\psi^{(1)}
+
+doc/build/equation-hunt-all.md:span194
+\psi^{(n)}(z)
+
+doc/build/equation-hunt-all.md:span195
+\psi(1) = -\gamma
+
+doc/build/equation-hunt-all.md:span196
+\psi'(1/2) = \pi^2/2
+
+doc/build/equation-hunt-all.md:span197
+\psi^{(n)}(1/2) = (-1)^{n+1}n!(2^{n+1}-1)\zeta(n+1)
+
+doc/build/equation-hunt-all.md:span198
+n=1
+
+doc/build/equation-hunt-all.md:span199
+\psi''(1) = -2\zeta(3)
+
+doc/build/equation-hunt-all.md:span200
+\psi^{(n)}(1) = (-1)^{n+1}n!\zeta(n+1)
+
+doc/build/equation-hunt-all.md:span202
+m=2
+
+doc/build/equation-hunt-all.md:span204
+z=1/2
+
+doc/build/equation-hunt-all.md:span205
+\psi'(1) = \tfrac14\big(\psi'(1/2) + \psi'(1)\big)
+
+doc/build/equation-hunt-all.md:span206
+\pi^2/6 = \tfrac14(\pi^2/2 + \pi^2/6)
+
+doc/build/equation-hunt-all.md:span207
+\psi^{(n)}(mz) = m^{-n-1}\sum_{k=0}^{m-1}\psi^{(n)}(z+k/m)
+
+doc/build/equation-hunt-all.md:span208
+pFq
+
+doc/build/equation-hunt-all.md:span209
+{}_3F_2(1,1,1;2,2;1) = \pi^2/6
+
+doc/build/equation-hunt-all.md:span211
+(n!)^3/((n+1)!^2\,n!) = 1/(n+1)^2
+
+doc/build/equation-hunt-all.md:span212
+\sum_{n\ge0}1/(n+1)^2 = \zeta(2) = \pi^2/6
+
+doc/build/equation-hunt-all.md:span213
+{}_3F_2(1/2,1/2,1/2;1,1;1) = \Gamma(1/4)^4/(4\pi^3)
+
+doc/build/equation-hunt-all.md:span214
+{}_3F_2(a,b,c;\tfrac{a+b+1}{2},2c;1) = \frac{\Gamma(\frac12)\Gamma(c+\frac12)\Gamma(\frac{a+b+1}{2})\Gamma(c-\frac{a+b}{2}+\frac12)}{\Gamma(\frac{a+1}{2})\Gamma(\frac{b+1}{2})\Gamma(c-\frac{a}{2}+\frac12)\Gamma(c-\frac{b}{2}+\frac12)}
+
+doc/build/equation-hunt-all.md:span215
+\Re(2c-a-b)>-1
+
+doc/build/equation-hunt-all.md:span216
+a=b=c=1/2
+
+doc/build/equation-hunt-all.md:span217
+\pi/\Gamma(3/4)^4 = \Gamma(1/4)^4/(4\pi^3)
+
+doc/build/equation-hunt-all.md:span218
+\Gamma(1/4)\Gamma(3/4)=\pi\sqrt2
+
+doc/build/equation-hunt-all.md:span219
+{}_2F_1(1,1;2;-1) = \ln 2
+
+doc/build/equation-hunt-all.md:span220
+{}_2F_1(1,1;2;z) = \sum_{n\ge0} z^n/(n+1) = -\ln(1-z)/z
+
+doc/build/equation-hunt-all.md:span221
+z=-1
+
+doc/build/equation-hunt-all.md:span222
+\ln 2
+
+doc/build/equation-hunt-all.md:span223
+a=1
+
+doc/build/equation-hunt-all.md:span224
+\sum_{k=-1}^{1} (-1)^k \binom{2}{k+1}^3 = 6 = 3!/(1!)^3
+
+doc/build/equation-hunt-all.md:span225
+-1 + 8 - 1 = 6
+
+doc/build/equation-hunt-all.md:span226
+\sum_{k=-a}^{a}(-1)^k\binom{2a}{k+a}^3 = (3a)!/(a!)^3
+
+doc/build/equation-hunt-all.md:span227
+{}_3F_2
+
+doc/build/equation-hunt-all.md:span228
+K(k)
+
+doc/build/equation-hunt-all.md:span229
+K(0) = \pi/2
+
+doc/build/equation-hunt-all.md:span230
+K(1/\sqrt{2}) = \Gamma(1/4)^2/(4\sqrt{\pi}) \approx 1.85407468
+
+doc/build/equation-hunt-all.md:span231
+k_1 = 1/\sqrt{2}
+
+doc/build/equation-hunt-all.md:span232
+K(k_1) = \varpi/\sqrt{2}
+
+doc/build/equation-hunt-all.md:span233
+\varpi = \Gamma(1/4)^2/(2\sqrt{2\pi})
+
+doc/build/equation-hunt-all.md:span234
+\varpi
+
+doc/build/equation-hunt-all.md:span235
+K(\sin(\pi/12))
+
+doc/build/equation-hunt-all.md:span236
+\sin(\pi/12) = (\sqrt6-\sqrt2)/4
+
+doc/build/equation-hunt-all.md:span237
+k_3
+
+doc/build/equation-hunt-all.md:span238
+K(k_3)
+
+doc/build/equation-hunt-all.md:span239
+\pi_3
+
+doc/build/equation-hunt-all.md:span240
+K(k_3) = \sqrt{3\sqrt3}\,\pi_3/4
+
+doc/build/equation-hunt-all.md:span241
+E(k)
+
+doc/build/equation-hunt-all.md:span242
+E(0) = \pi/2
+
+doc/build/equation-hunt-all.md:span243
+E(1) = 1
+
+doc/build/equation-hunt-all.md:span244
+E(1/\sqrt{2}) = \dfrac{\pi\sqrt{\pi}}{\Gamma(1/4)^2} + \dfrac{\Gamma(1/4)^2}{8\sqrt{\pi}} \approx 1.35064388
+
+doc/build/equation-hunt-all.md:span245
+E(k)K(k') + E(k')K(k) - K(k)K(k') = \pi/2
+
+doc/build/equation-hunt-all.md:span246
+k = k' = 1/\sqrt{2}
+
+doc/build/equation-hunt-all.md:span247
+E = \pi/(4K) + K/2
+
+doc/build/equation-hunt-all.md:span248
+K = \Gamma(1/4)^2/(4\sqrt\pi)
+
+doc/build/equation-hunt-all.md:span249
+\Pi(n,k)
+
+doc/build/equation-hunt-all.md:span250
+\Pi(0,0) = \pi/2
+
+doc/build/equation-hunt-all.md:span251
+\Pi(n,k) = \int_0^{\pi/2} d\theta/((1-n\sin^2\theta)\sqrt{1-k^2\sin^2\theta})
+
+doc/build/equation-hunt-all.md:span252
+\Pi(-1,0) = \pi/(2\sqrt{2})
+
+doc/build/equation-hunt-all.md:span253
+\Pi(n,0) = \pi/(2\sqrt{1-n})
+
+doc/build/equation-hunt-all.md:span254
+n<1
+
+doc/build/equation-hunt-all.md:span255
+n=-1
+
+doc/build/equation-hunt-all.md:span256
+\Pi(1/2,0) = \pi/\sqrt{2}
+
+doc/build/equation-hunt-all.md:span257
+n=1/2
+
+doc/build/equation-hunt-all.md:span258
+\mathrm{sn}/\mathrm{cn}/\mathrm{dn}
+
+doc/build/equation-hunt-all.md:span259
+\mathrm{sn}(0,k) = 0
+
+doc/build/equation-hunt-all.md:span260
+\mathrm{cn}(0,k) = 1
+
+doc/build/equation-hunt-all.md:span261
+\mathrm{dn}(0,k) = 1
+
+doc/build/equation-hunt-all.md:span262
+k=1/2
+
+doc/build/equation-hunt-all.md:span264
+\mathrm{sn}(K(k),k) = 1
+
+doc/build/equation-hunt-all.md:span265
+\mathrm{cn}(K(k),k) = 0
+
+doc/build/equation-hunt-all.md:span266
+\mathrm{dn}(K(k),k) = \sqrt{1-k^2}
+
+doc/build/equation-hunt-all.md:span268
+\mathrm{dn} = \sqrt3/2
+
+doc/build/equation-hunt-all.md:span270
+\mathrm{sn}\,K = 1
+
+doc/build/equation-hunt-all.md:span271
+\mathrm{cn}\,K = 0
+
+doc/build/equation-hunt-all.md:span272
+\mathrm{dn}\,K = k'
+
+doc/build/equation-hunt-all.md:span273
+\mathrm{Cl}_2(\theta)
+
+doc/build/equation-hunt-all.md:span274
+\mathrm{Cl}_3(\theta)
+
+doc/build/equation-hunt-all.md:span275
+\mathrm{Cl}_2(\pi/2) = G
+
+doc/build/equation-hunt-all.md:span276
+\approx 0.91596559
+
+doc/build/equation-hunt-all.md:span277
+\mathrm{Cl}_3(\pi) = -3\zeta(3)/4
+
+doc/build/equation-hunt-all.md:span278
+\mathrm{Cl}_{2n+1}(\theta) = \sum_{k\ge1}\cos(k\theta)/k^{2n+1}
+
+doc/build/equation-hunt-all.md:span279
+\theta=\pi
+
+doc/build/equation-hunt-all.md:span280
+\sum_k(-1)^k/k^3 = -\eta(3) = -(1-2^{-2})\zeta(3) = -3\zeta(3)/4
+
+doc/build/equation-hunt-all.md:span281
+\eta
+
+doc/build/equation-hunt-all.md:span283
+G(1) = G(2) = G(3) = 1
+
+doc/build/equation-hunt-all.md:span284
+G(z+1) = \Gamma(z)G(z)
+
+doc/build/equation-hunt-all.md:span285
+G(1)=1
+
+doc/build/equation-hunt-all.md:span286
+G(2)=\Gamma(1)G(1)=1
+
+doc/build/equation-hunt-all.md:span287
+G(3)=\Gamma(2)G(2)=1
+
+doc/build/equation-hunt-all.md:span288
+G(4) = 2
+
+doc/build/equation-hunt-all.md:span289
+G(4) = \Gamma(3)G(3) = 2\cdot 1 = 2
+
+doc/build/equation-hunt-all.md:span290
+G(1/2) = \dfrac{2^{1/24}\,e^{1/8}}{A^{3/2}\,\pi^{1/4}} \approx 1.0686287
+
+doc/build/equation-hunt-all.md:span292
+1/2
+
+doc/build/equation-hunt-all.md:span294
+n \ge 1
+
+doc/build/equation-hunt-all.md:span295
+\Pi(2,0) = -i\pi/2
+
+doc/build/equation-hunt-all.md:span298
+\pi/(2\sqrt{-1}) = -i\pi/2
+
+doc/build/equation-hunt-all.md:span299
+\sqrt{-1} = i
+
+doc/build/equation-hunt-all.md:span300
+\sin^2\theta = 1/2
+
+doc/build/equation-hunt-all.md:span301
+n\ge1
+
+doc/build/equation-hunt-all.md:span303
+H^{1,0}_{0,1}\!\left[z \;\middle|\; \begin{matrix} - \\ (0,1) \end{matrix}\right] = e^{-z}
+
+doc/build/equation-hunt-all.md:span304
+z=1
+
+doc/build/equation-hunt-all.md:span305
+= 1/e
+
+doc/build/equation-hunt-all.md:span306
+H_{0,1}^{1,0}[s \mid \overline{(0,1)}] = e^{-s}
+
+doc/build/equation-hunt-all.md:span307
+s \ge 0
+
+doc/build/equation-hunt-all.md:span309
+H^{1,0}_{0,1}\!\left[2 \;\middle|\; \begin{matrix} - \\ (0,1) \end{matrix}\right] = e^{-2} = G^{1,0}_{0,1}(2 \mid -; 0)
+
+doc/build/equation-hunt-all.md:span310
+A_j = B_k = C > 0
+
+doc/build/equation-hunt-all.md:span311
+H^{m,n}_{p,q}[z \mid (a_j,C);(b_k,C)] = \frac1C\,G^{m,n}_{p,q}(z^{1/C} \mid a;b)
+
+doc/build/equation-hunt-all.md:span312
+C=1
+
+doc/build/equation-hunt-all.md:span313
+e^{-2}
+
+doc/build/equation-hunt-all.md:span315
+e^{-2} = G^{1,0}_{0,1}\!\left(2 \;\middle|\; \begin{matrix} - \\ 0 \end{matrix}\right)
+
+doc/build/equation-hunt-all.md:span316
+e^{x} = G^{1,0}_{0,1}(- \mid 0 \mid -x)
+
+doc/build/equation-hunt-all.md:span317
+x
+
+doc/build/equation-hunt-all.md:span318
+\ln 2 = G^{1,2}_{2,2}\!\left(1 \;\middle|\; \begin{matrix} 1,1 \\ 1,0 \end{matrix}\right)
+
+doc/build/equation-hunt-all.md:span319
+\ln(1+x) = G^{1,2}_{2,2}(1,1;1,0 \mid x)
+
+doc/build/equation-hunt-all.md:span321
+x=1
+
+doc/build/equation-hunt-all.md:span322
+\cos(1) = \sqrt{\pi}\;G^{1,0}_{0,2}\!\left(\tfrac14 \;\middle|\; \begin{matrix} - \\ 0,\tfrac12 \end{matrix}\right)
+
+doc/build/equation-hunt-all.md:span323
+\cos x = \sqrt{\pi}\,G^{1,0}_{0,2}(-;0,\tfrac12 \mid x^2/4)
+
+doc/build/equation-hunt-all.md:span326
+\cos(1) \approx 0.54030231
+
+doc/build/equation-hunt-all.md:span329
+\mathrm{ce}_0(0,0) = 1/\sqrt{2}
+
+doc/build/equation-hunt-all.md:span330
+\mathrm{ce}_2(\pi/2, 0) = \cos(\pi) = -1
+
+doc/build/equation-hunt-all.md:span331
+\mathrm{ce}_n(z,0) = \cos(nz)
+
+doc/build/equation-hunt-all.md:span333
+a_0(0) = 0
+
+doc/build/equation-hunt-all.md:span334
+a_2(0) = 4
+
+doc/build/equation-hunt-all.md:span335
+b_1(0) = 1
+
+doc/build/equation-hunt-all.md:span336
+a_n(0) = n^2
+
+doc/build/equation-hunt-all.md:span337
+n=0,1,2,\dots
+
+doc/build/equation-hunt-all.md:span338
+b_n(0) = n^2
+
+doc/build/equation-hunt-all.md:span339
+n=1,2,3,\dots
+
+doc/build/equation-hunt-all.md:span340
+\mathit{Ps}^0_2(1/2,\,0) = P_2(1/2) = -1/8
+
+doc/build/equation-hunt-all.md:span341
+\mathit{Ps}^m_n(z,0) = P^m_n(z)
+
+doc/build/equation-hunt-all.md:span342
+\gamma^2=0
+
+doc/build/equation-hunt-all.md:span343
+P_2(z) = (3z^2-1)/2
+
+doc/build/equation-hunt-all.md:span344
+P_2(1/2) = -1/8
+
+doc/build/equation-hunt-all.md:span345
+\gamma=0
+
+doc/build/equation-hunt-all.md:span346
+\mathrm{HeunG}
+
+doc/build/equation-hunt-all.md:span347
+\to
+
+doc/build/equation-hunt-all.md:span350
+3j
+
+doc/build/equation-hunt-all.md:span351
+6j
+
+doc/build/equation-hunt-all.md:span352
+\langle 1\,0\;1\,0 \mid 0\,0\rangle = -1/\sqrt{3}
+
+doc/build/equation-hunt-all.md:span353
+1\otimes 1 \to 0
+
+doc/build/equation-hunt-all.md:span354
+|0,0\rangle = (|1,-1\rangle - |0,0\rangle + |-1,1\rangle)/\sqrt3
+
+doc/build/equation-hunt-all.md:span356
+\begin{pmatrix} 1 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix} = -1/\sqrt{3}
+
+doc/build/equation-hunt-all.md:span357
+\left(\begin{smallmatrix}j_1&j_2&j_3\\0&0&0\end{smallmatrix}\right)
+
+doc/build/equation-hunt-all.md:span358
+(-1)^{J/2}(J/2)!/\prod(J/2-j_i)! \cdot \sqrt{\prod(J-2j_i)!/(J+1)!}
+
+doc/build/equation-hunt-all.md:span359
+J=j_1+j_2+j_3
+
+doc/build/equation-hunt-all.md:span360
+J=2
+
+doc/build/equation-hunt-all.md:span361
+\begin{pmatrix} 1 & 1 & 1 \\ 0 & 0 & 0 \end{pmatrix} = 0
+
+doc/build/equation-hunt-all.md:span362
+m_1=m_2=m_3=0
+
+doc/build/equation-hunt-all.md:span363
+j_1+j_2+j_3
+
+doc/build/equation-hunt-all.md:span364
+3
+
+doc/build/equation-hunt-all.md:span365
+\begin{Bmatrix} 1 & 1 & 1 \\ 1 & 1 & 0 \end{Bmatrix} = -1/3
+
+doc/build/equation-hunt-all.md:span366
+j_6=0
+
+doc/build/equation-hunt-all.md:span367
+\{j_1j_2j_3;j_4j_50\} = \delta_{j_2j_4}\delta_{j_1j_5}(-1)^{j_1+j_2+j_3}\{j_1j_2j_3\}/\sqrt{(2j_1+1)(2j_2+1)}
+
+doc/build/equation-hunt-all.md:span368
+=1
+
+doc/build/equation-hunt-all.md:span369
+(-1)^3/\sqrt{3\cdot3} = -1/3
+
+doc/build/equation-hunt-all.md:span370
+\begin{Bmatrix} \tfrac12 & \tfrac12 & 1 \\ \tfrac12 & \tfrac12 & 1 \end{Bmatrix} = 1/6
+
+doc/build/equation-hunt-all.md:span372
+G^{1,0}_{0,1}\!\left(2 \;\middle|\; \begin{matrix} - \\ 0 \end{matrix}\right) = e^{-2}
+
+doc/build/equation-hunt-all.md:span373
+e^{x} = G^{1,0}_{0,1}(-\mid0\mid -x)
+
+doc/build/equation-hunt-all.md:span374
+G^{1,2}_{2,2}\!\left(1 \;\middle|\; \begin{matrix} 1,1 \\ 1,0 \end{matrix}\right) = \ln 2
+
+doc/build/equation-hunt-all.md:span375
+\ln(1+x) = G^{1,2}_{2,2}(1,1;1,0\mid x)
+
+doc/build/equation-hunt-all.md:span376
+\sqrt{\pi}\;G^{1,0}_{0,2}\!\left(\tfrac14 \;\middle|\; \begin{matrix} - \\ 0,\tfrac12 \end{matrix}\right) = \cos(1) \approx 0.54030231
+
+doc/build/equation-hunt-all.md:span377
+\cos x = \sqrt{\pi}\,G^{1,0}_{0,2}(-\mid0,\tfrac12\mid x^2/4)
+
+doc/build/equation-hunt-all.md:span383
+\mathcal{Z}\{x[n]\} = \sum_{n=0}^{\infty} x[n]\,z^{-n}
+
+doc/build/equation-hunt-all.md:span384
+|z|>|a|
+
+doc/build/equation-hunt-all.md:span386
+|z|>1
+
+doc/build/equation-hunt-all.md:span387
+\mathcal{M}\{f\}(s) = \int_0^{\infty} x^{s-1} f(x)\,dx
+
+doc/build/equation-hunt-all.md:span388
+\Re s > 0
+
+doc/build/equation-hunt-all.md:span389
+0<\Re s<1
+
+doc/build/equation-hunt-all.md:span390
+-1<\Re s<1
+
+doc/build/equation-hunt-all.md:span392
+F_0(k) = \int_0^{\infty} f(r)\,J_0(k r)\,r\,dr
+
+doc/build/equation-hunt-all.md:span394
+\delta(t)
+
+doc/build/equation-hunt-all.md:span395
+H(t) = 1
+
+doc/build/equation-hunt-all.md:span396
+t>0
+
+doc/build/equation-hunt-all.md:span398
+t<0
+
+doc/build/equation-hunt-all.md:span399
+\mathcal{L}\{H(t)\} = 1/s
+
+doc/build/equation-hunt-all.md:span401
+1/s
+
+doc/build/equation-hunt-all.md:span402
+\hat{f}(\xi) = \int f(x) e^{-2\pi i x \xi} dx
+
+doc/build/equation-hunt-all.md:span403
+\hat{\delta} = 1
+
+doc/build/equation-hunt-all.md:span404
+\mathcal{F}\{f\}(\omega) = \int_{-\infty}^{\infty} f(x) e^{-i\omega x} dx
+
+doc/build/equation-hunt-all.md:span405
+\pi\delta(\omega)
+
+doc/build/equation-hunt-all.md:span406
+H(x) = \tfrac12 + \tfrac12\mathrm{sgn}(x)
+
+doc/build/equation-hunt-all.md:span407
+\mathcal{F}\{\mathrm{sgn}\} = 2/(i\omega)
+
+doc/build/equation-hunt-all.md:span408
+\mathcal{F}\{1\} = 2\pi\delta
+
+doc/build/equation-hunt-all.md:span409
+(f * g)(t) = \int_0^t f(\tau)\,g(t-\tau)\,d\tau
+
+doc/build/equation-hunt-all.md:span410
+\int_0^t e^{a\tau}e^{b(t-\tau)}d\tau = \frac{e^{at}-e^{bt}}{a-b}
+
+doc/build/equation-hunt-all.md:span411
+\mathcal{L}\{e^{-at}\}\mathcal{L}\{e^{-bt}\} = \frac{1}{(s+a)(s+b)}
+
+doc/build/equation-hunt-all.md:span412
+\mathcal{L}\{t\,e^{-at}\} = 1/(s+a)^2 = \mathcal{L}\{e^{-at}\}^2
+
+doc/build/equation-hunt-all.md:span413
+1/(s+a)^2
+
+doc/build/equation-hunt-all.md:span414
+t^n e^{at} \to n!/(s-a)^{n+1}
+
+doc/build/equation-hunt-all.md:span415
+\int_0^t e^{2u}(t-u)^2\,du = \tfrac14 e^{2t} - \tfrac12 t^2 - \tfrac12 t - \tfrac14
+
+doc/build/equation-hunt-all.md:span416
+u[n]
+
+doc/build/equation-hunt-all.md:span417
+a = b
+
+doc/build/equation-hunt-all.md:span418
+b \to a
+
+doc/build/equation-hunt-all.md:span420
+\oint_C P\,dx + Q\,dy = \iint_D (\partial Q/\partial x - \partial P/\partial y)\,dA = \iint_D 2\,dA = 2\pi
+
+doc/build/equation-hunt-all.md:span421
+r(t) = (\cos t, \sin t)
+
+doc/build/equation-hunt-all.md:span422
+F \cdot dr = dt
+
+doc/build/equation-hunt-all.md:span423
+\int_0^{2\pi} dt = 2\pi
+
+doc/build/equation-hunt-all.md:span425
+\partial Q/\partial x = 2x \neq 0 = \partial P/\partial y
+
+doc/build/equation-hunt-all.md:span426
+\iint_D 2x\,dA = 0
+
+doc/build/equation-hunt-all.md:span428
+\mu(x) = e^{\int 2x\,dx} = e^{x^2}
+
+doc/build/equation-hunt-all.md:span429
+(y e^{x^2})' = x e^{x^2}
+
+doc/build/equation-hunt-all.md:span430
+y e^{x^2} = e^{x^2}/2 + C
+
+doc/build/equation-hunt-all.md:span432
+\mu(x) = e^{\int dx/x} = x
+
+doc/build/equation-hunt-all.md:span433
+(xy)' = x^3
+
+doc/build/equation-hunt-all.md:span434
+xy = x^4/4 + C
+
+doc/build/equation-hunt-all.md:span435
+y_h = C_1\cos x + C_2\sin x
+
+doc/build/equation-hunt-all.md:span436
+y_p = A\sin(2x)
+
+doc/build/equation-hunt-all.md:span437
+y_p'' + y_p = -3A\sin(2x) = \sin(2x)
+
+doc/build/equation-hunt-all.md:span438
+A = -1/3
+
+doc/build/equation-hunt-all.md:span439
+y_p = (Ax + B)e^x
+
+doc/build/equation-hunt-all.md:span440
+y_p'' + 4y_p = (5Ax + 2A + 5B)e^x = xe^x
+
+doc/build/equation-hunt-all.md:span441
+A = 1/5
+
+doc/build/equation-hunt-all.md:span442
+B = -2/25
+
+doc/build/equation-hunt-all.md:span443
+y'' + \frac{1}{2x}y' + \frac{1}{x}y = 0
+
+doc/build/equation-hunt-all.md:span444
+xP(x) = 1/2
+
+doc/build/equation-hunt-all.md:span445
+x^2Q(x) = x
+
+doc/build/equation-hunt-all.md:span446
+x = 0
+
+doc/build/equation-hunt-all.md:span448
+r_1 = 0
+
+doc/build/equation-hunt-all.md:span449
+r_2 = 1/2
+
+doc/build/equation-hunt-all.md:span450
+y_1 = \sum a_n x^n
+
+doc/build/equation-hunt-all.md:span451
+y_2 = \sum a_n x^{n+1/2}
+
+doc/build/equation-hunt-all.md:span452
+r^2 = 0
+
+doc/build/equation-hunt-all.md:span453
+r = 0
+
+doc/build/equation-hunt-all.md:span454
+\ln x
+
+doc/build/equation-hunt-all.md:span455
+yy'_x - y = f(x)
+
+doc/build/equation-hunt-all.md:span456
+f(x) = x
+
+doc/build/equation-hunt-all.md:span457
+y = \phi x
+
+doc/build/equation-hunt-all.md:span458
+yy' - y = \phi(\phi-1)x = x
+
+doc/build/equation-hunt-all.md:span459
+\phi^2 = \phi + 1
+
+doc/build/equation-hunt-all.md:span460
+\phi = (1\pm\sqrt{5})/2
+
+doc/build/equation-hunt-all.md:span461
+|y - y_1|^{m_1}\,|y - y_2|^{m_2} = C
+
+doc/build/equation-hunt-all.md:span462
+m_1 = 2/(3+\sqrt{5})
+
+doc/build/equation-hunt-all.md:span463
+m_2 = 2/(3-\sqrt{5})
+
+doc/build/equation-hunt-all.md:span464
+\sin(nx)
+
+doc/build/equation-hunt-all.md:span465
+[0,\pi]
+
+doc/build/equation-hunt-all.md:span466
+-\,y'' = \lambda y
+
+doc/build/equation-hunt-all.md:span467
+y(0) = y(\pi) = 0
+
+doc/build/equation-hunt-all.md:span468
+1^2, 2^2, \dots, n^2, \dots
+
+doc/build/equation-hunt-all.md:span469
+\sin nx
+
+doc/build/equation-hunt-all.md:span470
+\lambda_n = n^2
+
+doc/build/equation-hunt-all.md:span471
+n = 0, 1, 2, \dots
+
+doc/build/equation-hunt-all.md:span472
+y_n = A_n\cos(nx) + B_n\sin(nx)
+
+doc/build/equation-hunt-all.md:span473
+(a)_n
+
+doc/build/equation-hunt-all.md:span474
+(n+1)(n+2) = (n+2)(n+1)
+
+doc/build/equation-hunt-all.md:span475
+n! = (1)_n
+
+doc/build/equation-hunt-all.md:span476
+p, q
+
+doc/build/equation-hunt-all.md:span477
+pq = 1
+
+doc/build/equation-hunt-all.md:span478
+p = a
+
+doc/build/equation-hunt-all.md:span479
+q = 1/a
+
+doc/build/equation-hunt-all.md:span480
+dz = p\,dx + q\,dy
+
+doc/build/equation-hunt-all.md:span481
+a, b
+
+doc/build/equation-hunt-all.md:span482
+z_x = a
+
+doc/build/equation-hunt-all.md:span483
+z_y = 1/a
+
+doc/build/equation-hunt-all.md:span484
+= 1
+
+doc/build/equation-hunt-all.md:span485
+f(p,q) = 0
+
+doc/build/equation-hunt-all.md:span486
+a, b, c
+
+doc/build/equation-hunt-all.md:span487
+a^2 + b^2 = 1
+
+doc/build/equation-hunt-all.md:span489
+z_y = b
+
+doc/build/equation-hunt-all.md:span492
+z = ax + by + c
+
+doc/build/equation-hunt-all.md:span494
+z = 0
+
+doc/build/equation-hunt-all.md:span495
+p^2 + q^2 = a^2
+
+doc/build/equation-hunt-all.md:span496
+q = a^2y/z
+
+doc/build/equation-hunt-all.md:span497
+c > 0
+
+doc/build/equation-hunt-all.md:span498
+u = -2\kappa^2\operatorname{sech}^2(\kappa(x - 4\kappa^2 t - x_0))
+
+doc/build/equation-hunt-all.md:span499
+u_{t} = 6uu_x - u_{xxx}
+
+doc/build/equation-hunt-all.md:span500
+c = 0
+
+doc/build/equation-hunt-all.md:span501
+\bar{u}_t = 0
+
+doc/build/equation-hunt-all.md:span502
+\bar{u}_x = -\tfrac{1}{2}\operatorname{sech}^2(x/2)
+
+doc/build/equation-hunt-all.md:span503
+\bar{u}_{xx} = \tfrac{1}{2}\operatorname{sech}^2(x/2)\tanh(x/2) = \bar{u}\,\bar{u}_x
+
+doc/build/equation-hunt-all.md:span505
+\bar{u}(x) = -\tanh(x/2)
+
+doc/build/equation-hunt-all.md:span506
+U = (u_1 + u_2)/2
+
+doc/build/equation-hunt-all.md:span507
+u_1
+
+doc/build/equation-hunt-all.md:span508
+\xi \to -\infty
+
+doc/build/equation-hunt-all.md:span509
+u_2
+
+doc/build/equation-hunt-all.md:span510
+\xi \to +\infty
+
+doc/build/equation-hunt-all.md:span511
+u_1 > u_2
+
+doc/build/equation-hunt-all.md:span512
+x_j
+
+doc/build/equation-hunt-all.md:span513
+h
+
+doc/build/equation-hunt-all.md:span514
+v_j(t) \approx u(x_j, t)
+
+doc/build/equation-hunt-all.md:span515
+v_0 = v_{N+1} = 0
+
+doc/build/equation-hunt-all.md:span516
+\frac{d}{dt}v_j = (v_{j-1} - 2v_j + v_{j+1})/h^2
+
+doc/build/equation-hunt-all.md:span517
+N = 3
+
+doc/build/equation-hunt-all.md:span518
+h = 1/4
+
+doc/build/equation-hunt-all.md:span519
+v = (v_1, v_2, v_3)^T
+
+doc/build/equation-hunt-all.md:span520
+v_1' = 16(-2v_1 + v_2)
+
+doc/build/equation-hunt-all.md:span521
+v_2' = 16(v_1 - 2v_2 + v_3)
+
+doc/build/equation-hunt-all.md:span522
+v_3' = 16(v_2 - 2v_3)
+
+doc/build/equation-hunt-all.md:span523
+dw_i/dt = D\,(w_{i+1} - 2w_i + w_{i-1})/\Delta x^2
+
+doc/build/equation-hunt-all.md:span525
+\Delta G = \delta
+
+doc/build/equation-hunt-all.md:span526
+u = G * f
+
+doc/build/equation-hunt-all.md:span527
+\Delta u = f
+
+doc/build/equation-hunt-all.md:span528
+\Gamma(x) = \frac{1}{n(2-n)\omega_n\,|x|^{n-2}}
+
+doc/build/equation-hunt-all.md:span529
+n \ge 3
+
+doc/build/equation-hunt-all.md:span530
+\omega_3 = 4\pi/3
+
+doc/build/equation-hunt-all.md:span531
+-1/(4\pi|x|)
+
+doc/build/equation-hunt-all.md:span532
+\Delta\Gamma = \delta
+
+doc/build/equation-hunt-all.md:span533
+\Gamma(x) = \frac{1}{2\pi}\ln|x|
+
+doc/build/equation-hunt-all.md:span534
+n = 2
+
+doc/build/equation-hunt-all.md:span535
+d^2|x|/dx^2 = 2\delta
+
+doc/build/equation-hunt-all.md:span536
+n = 1
+
+doc/build/equation-hunt-all.md:span537
+u = X(x)T(t)
+
+doc/build/equation-hunt-all.md:span538
+B_n
+
+doc/build/equation-hunt-all.md:span539
+X'' + \lambda X = 0
+
+doc/build/equation-hunt-all.md:span540
+X(0) = X(L) = 0
+
+doc/build/equation-hunt-all.md:span541
+\lambda_n = (n\pi/L)^2
+
+doc/build/equation-hunt-all.md:span542
+X_n = \sin(n\pi x/L)
+
+doc/build/equation-hunt-all.md:span543
+u = \sum b_n \sin(n\pi x/L)\,e^{-\alpha\lambda_n t}
+
+doc/build/equation-hunt-all.md:span544
+L = \pi
+
+doc/build/equation-hunt-all.md:span545
+k = 1
+
+doc/build/equation-hunt-all.md:span546
+u(x,0) = \sin x
+
+doc/build/equation-hunt-all.md:span548
+a
+
+doc/build/equation-hunt-all.md:span550
+u_{mn}(r,\theta,t) = J_m(\alpha_{mn} r/a)\cos(m\theta)\cos(\omega_{mn}t)
+
+doc/build/equation-hunt-all.md:span551
+\alpha_{mn}
+
+doc/build/equation-hunt-all.md:span553
+J_m
+
+doc/build/equation-hunt-all.md:span554
+\alpha_{01} = 2.4048255577\ldots
+
+doc/build/equation-hunt-all.md:span556
+\alpha_{11} = 3.8317059702\ldots
+
+doc/build/equation-hunt-all.md:span557
+J_1
+
+doc/build/equation-hunt-all.md:span558
+\alpha_{21} = 5.1356223018\ldots
+
+doc/build/equation-hunt-all.md:span559
+J_2
+
+doc/build/equation-hunt-all.md:span560
+\alpha_{02} = 5.5200781103\ldots
+
+doc/build/equation-hunt-all.md:span562
+J_m(\alpha_{mn}r/a)
+
+doc/build/equation-hunt-all.md:span563
+\omega_{mn} = c\,\alpha_{mn}/a
+
+doc/build/equation-hunt-all.md:span565
+\mathbb{Q}[x,y]
+
+doc/build/equation-hunt-all.md:span566
+x > y
+
+doc/build/equation-hunt-all.md:span567
+k = g - x f = xy - x
+
+doc/build/equation-hunt-all.md:span568
+h = x k - (y-1) f = y^2 - y
+
+doc/build/equation-hunt-all.md:span569
+yf - xk
+
+doc/build/equation-hunt-all.md:span570
+yk - xh
+
+doc/build/equation-hunt-all.md:span571
+y^2 f - x^2 h
+
+doc/build/equation-hunt-all.md:span572
+\{f,k,h\}
+
+doc/build/equation-hunt-all.md:span574
+xy
+
+doc/build/equation-hunt-all.md:span575
+y^2
+
+doc/build/equation-hunt-all.md:span576
+\{1\}
+
+doc/build/equation-hunt-all.md:span577
+1 = y\cdot x + 1\cdot(1-xy) \in I
+
+doc/build/equation-hunt-all.md:span578
+I
+
+doc/build/equation-hunt-all.md:span580
+\mathbb{C}
+
+doc/build/equation-hunt-all.md:span581
+\{x^2-y,\; xy-x,\; y^2-y\}
+
+doc/build/equation-hunt-all.md:span582
+y^2-y = 0
+
+doc/build/equation-hunt-all.md:span583
+y \in \{0,1\}
+
+doc/build/equation-hunt-all.md:span584
+y=0
+
+doc/build/equation-hunt-all.md:span585
+x=0
+
+doc/build/equation-hunt-all.md:span586
+xy-x=0
+
+doc/build/equation-hunt-all.md:span587
+y=1
+
+doc/build/equation-hunt-all.md:span588
+x^2 = 1
+
+doc/build/equation-hunt-all.md:span589
+x^2-y=0
+
+doc/build/equation-hunt-all.md:span591
+1 - xy = 0
+
+doc/build/equation-hunt-all.md:span593
+1 = 0
+
+doc/build/equation-hunt-all.md:span595
+yx + (1-xy) = 1
+
+doc/build/equation-hunt-all.md:span598
+\frac{8}{3}(x+2) + \frac{1}{3}(x-1) = \frac{9x+15}{3} = 3x+5
+
+doc/build/equation-hunt-all.md:span600
+-2.5
+
+doc/build/equation-hunt-all.md:span601
+2(x-1) + 3 = 2x + 1
+
+doc/build/equation-hunt-all.md:span602
+\sin x = \frac12
+
+doc/build/equation-hunt-all.md:span603
+\cos x = 0
+
+doc/build/equation-hunt-all.md:span604
+\tan x = 1
+
+doc/build/equation-hunt-all.md:span605
+q
+
+doc/build/equation-hunt-all.md:span606
+q=2
+
+doc/build/equation-hunt-all.md:span609
+t=1
+
+doc/build/equation-hunt-all.md:span610
+2 + 2q
+
+doc/build/equation-hunt-all.md:span612
+n=3
+
+doc/build/equation-hunt-all.md:span614
+2 + 2q + 2q^2 + 2q^3
+
+doc/build/equation-hunt-all.md:span616
+{4\brack 2}_2 = 35
+
+doc/build/equation-hunt-all.md:span617
+10! = 3628800
+
+doc/build/equation-hunt-all.md:span618
+8.3\times10^{-3}
+
+doc/build/equation-hunt-all.md:span619
+3628800
+
+doc/build/equation-hunt-all.md:span620
+3.2\times10^{-5}
+
+doc/build/equation-hunt-all.md:span622
+1.5\times10^{-8}
+
+doc/build/equation-hunt-all.md:span624
+n=10
+
+doc/build/equation-hunt-all.md:span625
+S=42
+
+doc/build/equation-hunt-all.md:span626
+K=40
+
+doc/build/equation-hunt-all.md:span627
+r=10\%
+
+doc/build/equation-hunt-all.md:span628
+\sigma=20\%
+
+doc/build/equation-hunt-all.md:span629
+T=0.5
+
+doc/build/equation-hunt-all.md:span630
+d_1 = 0.769263
+
+doc/build/equation-hunt-all.md:span631
+d_2 = 0.627841
+
+doc/build/equation-hunt-all.md:span632
+N(d_1) = 0.779131
+
+doc/build/equation-hunt-all.md:span633
+N(d_2) = 0.734946
+
+doc/build/equation-hunt-all.md:span634
+\boxed{4.759422}
+
+doc/build/equation-hunt-all.md:span635
+\boxed{973.269881}
+
+doc/build/equation-hunt-all.md:span636
+T_{\mathrm{K}} = T_{^{\circ}\mathrm{C}} + 273.15
+
+doc/build/equation-hunt-all.md:span637
+T_{^{\circ}\mathrm{C}} = (T_{^{\circ}\mathrm{F}} - 32)\times \tfrac59
+
+doc/build/equation-hunt-all.md:span638
+(32-32)\times\frac59 = 0
+
+doc/build/equation-hunt-all.md:span639
+(212-32)\times\frac59 = 100
+
+doc/build/equation-hunt-all.md:span640
+1(0-24) - 2(0-20) + 3(0-5) = -24+40-15 = 1
+
+doc/build/equation-hunt-all.md:span641
+\det A = 1
+
+doc/build/equation-hunt-all.md:span642
+A A^{-1} = I
+
+doc/build/equation-hunt-all.md:span644
+A^{-1}
+
+doc/build/equation-hunt-all.md:span645
+-24+40-15 = 1
+
+doc/build/equation-hunt-all.md:span646
+2(2)+3-(-1) = 8
+
+doc/build/equation-hunt-all.md:span647
+-3(2)-3+2(-1) = -11
+
+doc/build/equation-hunt-all.md:span648
+-2(2)+3+2(-1) = -3
+
+doc/build/equation-hunt-all.md:span649
+\det = -1 \neq 0
+
+doc/build/equation-hunt-all.md:span650
+Kx=b
+
+doc/build/equation-hunt-all.md:span651
+2(2)-3 = 1
+
+doc/build/equation-hunt-all.md:span652
+-2+2(3)-3 = 1
+
+doc/build/equation-hunt-all.md:span653
+-3+2(3)-2 = 1
+
+doc/build/equation-hunt-all.md:span654
+-3+2(2) = 1
+
+doc/build/equation-hunt-all.md:span655
+x_1 = x_4
+
+doc/build/equation-hunt-all.md:span656
+x_2 = x_3
+
+doc/build/equation-hunt-all.md:span657
+\theta = \pi/2
+
+doc/build/equation-hunt-all.md:span658
+R(\theta) = e^{G\theta} = I\cos\theta + G\sin\theta
+
+doc/build/equation-hunt-all.md:span659
+G = \bigl(\begin{smallmatrix}0&-1\\1&0\end{smallmatrix}\bigr)
+
+doc/build/equation-hunt-all.md:span661
+\alpha
+
+doc/build/equation-hunt-all.md:span662
+B_n = (\alpha + 2\pi n)\bigl(\begin{smallmatrix}0&-1\\1&0\end{smallmatrix}\bigr)
+
+doc/build/equation-hunt-all.md:span663
+n = 0
+
+doc/build/equation-hunt-all.md:span664
+\alpha = \pi/2
+
+doc/build/equation-hunt-all.md:span665
+\exp(\log A) = A
+
+doc/build/equation-hunt-all.md:span666
+\log(2(I + N/2)) = (\ln 2)I + N/2
+
+doc/build/equation-hunt-all.md:span667
+N = \bigl(\begin{smallmatrix}0&1\\0&0\end{smallmatrix}\bigr)
+
+doc/build/equation-hunt-all.md:span668
+N^2 = 0
+
+doc/build/equation-hunt-all.md:span669
+\exp
+
+doc/build/equation-hunt-all.md:span670
+\bigl(\begin{smallmatrix}2&1\\0&2\end{smallmatrix}\bigr)
+
+doc/build/equation-hunt-all.md:span671
+n = 3
+
+doc/build/equation-hunt-all.md:span672
+F_4 = 3
+
+doc/build/equation-hunt-all.md:span673
+F_3 = 2
+
+doc/build/equation-hunt-all.md:span674
+F_2 = 1
+
+doc/build/equation-hunt-all.md:span675
+\bigl(\begin{smallmatrix}3&2\\2&1\end{smallmatrix}\bigr)
+
+doc/build/equation-hunt-all.md:span676
+A = QTQ^T
+
+doc/build/equation-hunt-all.md:span677
+Q
+
+doc/build/equation-hunt-all.md:span678
+T
+
+doc/build/equation-hunt-all.md:span679
+Q^T Q = I
+
+doc/build/equation-hunt-all.md:span680
+Q^T A Q = T
+
+doc/build/equation-hunt-all.md:span681
+(1,1)
+
+doc/build/equation-hunt-all.md:span682
+\tfrac{1}{2}(3+3) = 3
+
+doc/build/equation-hunt-all.md:span683
+(1,2)
+
+doc/build/equation-hunt-all.md:span684
+\tfrac{1}{2}(1-1) = 0
+
+doc/build/equation-hunt-all.md:span687
+x = \cos(x)
+
+doc/build/equation-hunt-all.md:span688
+x - \cos(x)
+
+doc/build/equation-hunt-all.md:span689
+[0.7, 0.8]
+
+doc/build/equation-hunt-all.md:span690
+(0.7, 0.8)
+
+doc/build/equation-hunt-all.md:span691
+(x-1)(x-2) > 0
+
+doc/build/equation-hunt-all.md:span692
+f(x) = x^3 + 2x
+
+doc/build/equation-hunt-all.md:span693
+g(x) = \sin(x^2)
+
+doc/build/equation-hunt-all.md:span694
+g'(\sqrt{\pi/2}) = 2\sqrt{\pi/2}\cos(\pi/2) = 0
+
+doc/build/equation-hunt-all.md:span695
+x^2 + y^2 = 25
+
+doc/build/equation-hunt-all.md:span696
+(3, 4)
+
+doc/build/equation-hunt-all.md:span698
+t=4
+
+doc/build/equation-hunt-all.md:span699
+f(n) = \binom{4n+1}{n}
+
+doc/build/equation-hunt-all.md:span700
+n=0,1,2
+
+doc/build/equation-hunt-all.md:span702
+(1-q^4)(1-q^3)/((1-q^2)(1-q)) = (1+q^2)(1+q+q^2)
+
+doc/build/equation-hunt-all.md:span704
+\begin{bmatrix}4\\2\end{bmatrix}_2 = 1+2+8+8+16 = 35
+
+doc/build/equation-hunt-all.md:span705
+(-1+1+1)^n = 1
+
+doc/build/equation-hunt-all.md:span706
+n = 0, \dots, 5
+
+doc/build/equation-hunt-all.md:span707
+(1+1+1)^n
+
+doc/build/equation-hunt-all.md:span709
+R_1, R_2, R_3
+
+doc/build/equation-hunt-all.md:span710
+\dfrac{1}{z(z-1)}
+
+doc/build/equation-hunt-all.md:span712
+0 < |z| < 1
+
+doc/build/equation-hunt-all.md:span713
+-1/z
+
+doc/build/equation-hunt-all.md:span714
+z=0
+
+doc/build/equation-hunt-all.md:span716
+\frac{1}{z(z-1)} = \frac{1}{z-1} - \frac{1}{z}
+
+doc/build/equation-hunt-all.md:span717
+\operatorname{Res}_{z=0}\frac{1}{z(z-1)} = -1
+
+doc/build/equation-hunt-all.md:span718
+\operatorname{Res}_{z=1}\frac{1}{z(z-1)} = 1
+
+doc/build/equation-hunt-all.md:span719
+x^3 - 2x - 5 = 0
+
+doc/build/equation-hunt-all.md:span720
+2.0945514815^3 - 2(2.0945514815) - 5 \approx 0
+
+doc/build/equation-hunt-all.md:span721
+e-1
+
+doc/build/equation-hunt-all.md:span722
+\int_0^1\!\!\int_0^1 x\,dx\,dy = \tfrac12
+
+doc/build/equation-hunt-all.md:span723
+y
+
+doc/build/equation-hunt-all.md:span724
+\left(\tfrac12\right)^3
+
+doc/build/equation-hunt-all.md:span725
+(0,1)
+
+doc/build/equation-hunt-all.md:span726
+(1,3)
+
+doc/build/equation-hunt-all.md:span727
+(2,7)
+
+doc/build/equation-hunt-all.md:span728
+p(0)=1
+
+doc/build/equation-hunt-all.md:span729
+p(1)=3
+
+doc/build/equation-hunt-all.md:span730
+p(2)=7
+
+doc/build/equation-hunt-all.md:span731
+p(3)=13
+
+doc/build/equation-hunt-all.md:span732
+p(-1)=1
+
+doc/build/equation-hunt-all.md:span733
+\sin x + x\cos x
+
+doc/build/equation-hunt-all.md:span734
+C_4 = \dfrac{1}{5}\binom{8}{4} = 14
+
+doc/build/equation-hunt-all.md:span735
+B_4 = 15
+
+doc/build/equation-hunt-all.md:span736
+p(5) = 7
+
+doc/build/equation-hunt-all.md:span737
+97
+
+doc/build/equation-hunt-all.md:span738
+1001
+
+doc/build/equation-hunt-all.md:span739
+2^4 = 16 \equiv 3 \pmod{13}
+
+doc/build/equation-hunt-all.md:span740
+2^9 = 512 = 39\cdot 13 + 5
+
+doc/build/equation-hunt-all.md:span741
+x \in [0,12]
+
+doc/build/equation-hunt-all.md:span742
+2G
+
+doc/build/equation-hunt-all.md:span743
+s = 3x^2/(2y)
+
+doc/build/equation-hunt-all.md:span744
+x' = s^2-2x
+
+doc/build/equation-hunt-all.md:span745
+y' = s(x-x')-y
+
+doc/build/equation-hunt-all.md:span746
+p =
+
+doc/build/equation-hunt-all.md:span747
+G+G
+
+doc/build/equation-hunt-all.md:span748
+y^2 \equiv x^3+7 \pmod p
+
+doc/build/equation-hunt-all.md:span751
+U(2,5)
+
+doc/build/equation-hunt-all.md:span752
+\beta
+
+doc/build/equation-hunt-all.md:span753
+\alpha/\beta = 2/3
+
+doc/build/equation-hunt-all.md:span754
+\mathrm{Beta}(2,5)
+
+doc/build/equation-hunt-all.md:span755
+\chi^2(4)
+
+doc/build/equation-hunt-all.md:span756
+F(4,10)
+
+doc/build/equation-hunt-all.md:span757
+Z = 3x + 2y
+
+doc/build/equation-hunt-all.md:span758
+x + 2y \le 10
+
+doc/build/equation-hunt-all.md:span759
+3x + y \le 15
+
+doc/build/equation-hunt-all.md:span760
+x, y \ge 0
+
+doc/build/equation-hunt-all.md:span761
+Z_{\max} = 18
+
+doc/build/equation-hunt-all.md:span762
+(x, y) = (4, 3)
+
+doc/build/equation-hunt-all.md:span763
+(0,0) \to 0
+
+doc/build/equation-hunt-all.md:span764
+(5,0) \to 15
+
+doc/build/equation-hunt-all.md:span765
+(4,3) \to 18
+
+doc/build/equation-hunt-all.md:span766
+(0,5) \to 10
+
+doc/build/equation-hunt-all.md:span768
+x + 2y \le 4
+
+doc/build/equation-hunt-all.md:span769
+3x + y \le 6
+
+doc/build/equation-hunt-all.md:span771
+Z_{\max} = 36/5
+
+doc/build/equation-hunt-all.md:span772
+(x, y) = (8/5, 6/5)
+
+doc/build/equation-hunt-all.md:span773
+x = 4 - 2y
+
+doc/build/equation-hunt-all.md:span774
+3(4-2y) + y = 6 \Rightarrow y = 6/5
+
+doc/build/equation-hunt-all.md:span775
+x = 8/5
+
+doc/build/equation-hunt-all.md:span777
+(2,0) \to 6
+
+doc/build/equation-hunt-all.md:span778
+(0,2) \to 4
+
+doc/build/equation-hunt-all.md:span779
+(8/5,6/5) \to 36/5
+
+doc/build/equation-hunt-all.md:span780
+f(x,y) = x^2 + y^2
+
+doc/build/equation-hunt-all.md:span781
+x + y = 1
+
+doc/build/equation-hunt-all.md:span782
+(x, y) = (1/2, 1/2)
+
+doc/build/equation-hunt-all.md:span783
+f = 1/2
+
+doc/build/equation-hunt-all.md:span784
+L = x^2 + y^2 - \lambda(x + y - 1)
+
+doc/build/equation-hunt-all.md:span785
+2x - \lambda = 0
+
+doc/build/equation-hunt-all.md:span786
+2y - \lambda = 0 \Rightarrow x = y
+
+doc/build/equation-hunt-all.md:span787
+x = y = 1/2
+
+doc/build/equation-hunt-all.md:span788
+f(x,y) = x^2 + 2y^2
+
+doc/build/equation-hunt-all.md:span789
+x + y = 3
+
+doc/build/equation-hunt-all.md:span790
+(x, y) = (2, 1)
+
+doc/build/equation-hunt-all.md:span791
+f = 6
+
+doc/build/equation-hunt-all.md:span793
+4y - \lambda = 0 \Rightarrow x = 2y
+
+doc/build/equation-hunt-all.md:span794
+y = 1
+
+doc/build/equation-hunt-all.md:span795
+x = 2
+
+doc/build/equation-hunt-all.md:span796
+f = 4 + 2 = 6
+
+doc/build/equation-hunt-all.md:span797
+B_2(s) = s^2 + \sqrt{2}\,s + 1
+
+doc/build/equation-hunt-all.md:span798
+s = e^{\pm 3\pi i/4} = -\frac{1}{\sqrt{2}} \pm \frac{i}{\sqrt{2}}
+
+doc/build/equation-hunt-all.md:span799
+s = \frac{-\sqrt{2} \pm \sqrt{2 - 4}}{2} = \frac{-\sqrt{2} \pm i\sqrt{2}}{2}
+
+doc/build/equation-hunt-all.md:span800
+B_2(s) = (s^2 + 1.4142s + 1)
+
+doc/build/equation-hunt-all.md:span801
+B_3(s) = (s+1)(s^2 + s + 1)
+
+doc/build/equation-hunt-all.md:span802
+s = -1
+
+doc/build/equation-hunt-all.md:span803
+s = e^{\pm 2\pi i/3} = -\frac{1}{2} \pm \frac{i\sqrt{3}}{2}
+
+doc/build/equation-hunt-all.md:span804
+\omega_p = 1
+
+doc/build/equation-hunt-all.md:span805
+s_1 = -0.2471 + 0.9660i
+
+doc/build/equation-hunt-all.md:span806
+s_2 = -0.4942
+
+doc/build/equation-hunt-all.md:span807
+s_3 = -0.2471 - 0.9660i
+
+doc/build/equation-hunt-all.md:span808
+s^3 + 0.9883s^2 + 1.2384s + 0.4913
+
+doc/build/equation-hunt-all.md:span810
+[1, 0, -1, 0]
+
+doc/build/equation-hunt-all.md:span811
+[0, 2, 0, 2]
+
+doc/build/equation-hunt-all.md:span812
+X[k] = \sum_{n=0}^{3} x[n] e^{-2\pi i k n/4}
+
+doc/build/equation-hunt-all.md:span813
+X[0] = 0
+
+doc/build/equation-hunt-all.md:span814
+X[1] = 1 - e^{-i\pi} = 2
+
+doc/build/equation-hunt-all.md:span815
+X[2] = 1 - e^{-2i\pi} = 0
+
+doc/build/equation-hunt-all.md:span816
+X[3] = 1 - e^{-3i\pi} = 2
+
+doc/build/equation-hunt-all.md:span817
+[1, 1, 1, 1]
+
+doc/build/equation-hunt-all.md:span818
+[4, 0, 0, 0]
+
+doc/build/equation-hunt-all.md:span819
+X[0] = 4
+
+doc/build/equation-hunt-all.md:span820
+X[1] = 1 - i - 1 + i = 0
+
+doc/build/equation-hunt-all.md:span821
+X[2] = 1 - 1 + 1 - 1 = 0
+
+doc/build/equation-hunt-all.md:span822
+X[3] = 1 + i - 1 - i = 0
+
+doc/build/equation-hunt-all.md:span823
+[1, 2, 3, 4]
+
+doc/build/equation-hunt-all.md:span824
+[10,\ -2 + 2i,\ -2,\ -2 - 2i]
+
+doc/build/equation-hunt-all.md:span825
+X[0] = 10
+
+doc/build/equation-hunt-all.md:span826
+X[1] = 1 + 2e^{-i\pi/2} + 3e^{-i\pi} + 4e^{-3i\pi/2} = 1 - 2i - 3 + 4i = -2 + 2i
+
+doc/build/equation-hunt-all.md:span827
+X[2] = 1 - 2 + 3 - 4 = -2
+
+doc/build/equation-hunt-all.md:span828
+X[3] = \overline{X[1]} = -2 - 2i
+
+doc/build/equation-hunt-all.md:span829
+\dot{x} = Ax + Bu
+
+doc/build/equation-hunt-all.md:span830
+A = \begin{pmatrix} 0 & 1 \\ -2 & -3 \end{pmatrix}
+
+doc/build/equation-hunt-all.md:span831
+B = \begin{pmatrix} 0 \\ 1 \end{pmatrix}
+
+doc/build/equation-hunt-all.md:span832
+\mathcal{C} = [B\ AB] = \begin{pmatrix} 0 & 1 \\ 1 & -3 \end{pmatrix}
+
+doc/build/equation-hunt-all.md:span833
+\det \mathcal{C} = -1 \ne 0
+
+doc/build/equation-hunt-all.md:span834
+AB = \begin{pmatrix} 0 & 1 \\ -2 & -3 \end{pmatrix}\begin{pmatrix} 0 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 \\ -3 \end{pmatrix}
+
+doc/build/equation-hunt-all.md:span836
+C = \begin{pmatrix} 1 & 0 \end{pmatrix}
+
+doc/build/equation-hunt-all.md:span837
+\mathcal{O} = \begin{pmatrix} C \\ CA \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}
+
+doc/build/equation-hunt-all.md:span838
+CA = \begin{pmatrix} 1 & 0 \end{pmatrix}\begin{pmatrix} 0 & 1 \\ -2 & -3 \end{pmatrix} = \begin{pmatrix} 0 & 1 \end{pmatrix}
+
+doc/build/equation-hunt-all.md:span839
+A^T P + PA = -Q
+
+doc/build/equation-hunt-all.md:span841
+-1, -2
+
+doc/build/equation-hunt-all.md:span842
+Q = I
+
+doc/build/equation-hunt-all.md:span843
+P = \begin{pmatrix} 5/4 & 1/4 \\ 1/4 & 1/4 \end{pmatrix}
+
+doc/build/equation-hunt-all.md:span844
+P = \begin{pmatrix} a & b \\ b & c \end{pmatrix}
+
+doc/build/equation-hunt-all.md:span845
+A^T P + PA = \begin{pmatrix} -4b & a - 3b - 2c \\ a - 3b - 2c & 2b - 6c \end{pmatrix} = \begin{pmatrix} -1 & 0 \\ 0 & -1 \end{pmatrix}
+
+doc/build/equation-hunt-all.md:span846
+b = 1/4
+
+doc/build/equation-hunt-all.md:span847
+c = 1/4
+
+doc/build/equation-hunt-all.md:span848
+a = 5/4
+
+doc/build/equation-hunt-all.md:span849
+5/4 > 0
+
+doc/build/equation-hunt-all.md:span850
+\det = 5/16 - 1/16 = 1/4 > 0
+
+doc/build/equation-hunt-all.md:span852
+A = [0, 1; -6, -5]
+
+doc/build/equation-hunt-all.md:span853
+P
+
+doc/build/equation-hunt-all.md:span854
+A^T P + PA = -I
+
+doc/build/equation-hunt-all.md:span855
+A = \begin{pmatrix} -1 & 0 \\ 0 & -2 \end{pmatrix}
+
+doc/build/equation-hunt-all.md:span856
+P = \begin{pmatrix} 1/2 & 0 \\ 0 & 1/4 \end{pmatrix}
+
+doc/build/equation-hunt-all.md:span857
+-2a = -1 \Rightarrow a = 1/2
+
+doc/build/equation-hunt-all.md:span858
+-4c = -1 \Rightarrow c = 1/4
+
+doc/build/equation-hunt-all.md:span859
+-3b = 0 \Rightarrow b = 0
+
+doc/build/equation-hunt-all.md:span860
+2ax = -q \Rightarrow x = -q/2a
+
+doc/build/equation-hunt-all.md:span861
+dX_t = \lambda X_t\,dt + \mu X_t\,dW_t
+
+doc/build/equation-hunt-all.md:span862
+Y_{n+1} = (1 + \lambda\,\Delta t + \mu\,\Delta W_n)\,Y_n
+
+doc/build/equation-hunt-all.md:span863
+\lambda = 2
+
+doc/build/equation-hunt-all.md:span864
+\mu = 1
+
+doc/build/equation-hunt-all.md:span865
+X_0 = 1
+
+doc/build/equation-hunt-all.md:span866
+\Delta t = 2^{-8}
+
+doc/build/equation-hunt-all.md:span867
+\Delta W_0 = 0
+
+doc/build/equation-hunt-all.md:span868
+\lambda=2
+
+doc/build/equation-hunt-all.md:span869
+\mu=1
+
+doc/build/equation-hunt-all.md:span870
+X_0=1
+
+doc/build/equation-hunt-all.md:span871
+\Delta t=2^{-8}
+
+doc/build/equation-hunt-all.md:span872
+\mathbb{E}[X_t] = X_0\,e^{\lambda t}
+
+doc/build/equation-hunt-all.md:span873
+X_0 = 100
+
+doc/build/equation-hunt-all.md:span874
+\lambda = 0.1
+
+doc/build/equation-hunt-all.md:span875
+t = 1
+
+doc/build/equation-hunt-all.md:span876
+\mathbb{E}[X_1] = 100\,e^{0.1} \approx 110.52
+
+doc/build/equation-hunt-all.md:span877
+\mathbb{E}[X_t] = X_0 e^{\lambda t}
+
+doc/build/equation-hunt-all.md:span878
+-\tfrac{1}{2}\mu^2
+
+doc/build/equation-hunt-all.md:span879
++\tfrac{1}{2}\mu^2
+
+doc/build/equation-hunt-all.md:span880
+\tfrac{1}{2}\mu^2((\Delta W_n)^2 - \Delta t)
+
+doc/build/equation-hunt-all.md:span881
+y'(t) = -y(t-1)
+
+doc/build/equation-hunt-all.md:span882
+y(t) = 1
+
+doc/build/equation-hunt-all.md:span883
+t \in [-1, 0]
+
+doc/build/equation-hunt-all.md:span885
+y(t-1) = 1
+
+doc/build/equation-hunt-all.md:span886
+y(t) = 1 - t
+
+doc/build/equation-hunt-all.md:span887
+f = ax(t-\tau)
+
+doc/build/equation-hunt-all.md:span888
+\phi = 1
+
+doc/build/equation-hunt-all.md:span889
+x(t) = at + 1
+
+doc/build/equation-hunt-all.md:span890
+a = -1
+
+doc/build/equation-hunt-all.md:span891
+\tau = 1
+
+doc/build/equation-hunt-all.md:span892
+x(t) = 1 - t
+
+doc/build/equation-hunt-all.md:span894
+[1,2]
+
+doc/build/equation-hunt-all.md:span895
+y(1) = 0
+
+doc/build/equation-hunt-all.md:span896
+y(t-1) = 1-(t-1) = 2-t
+
+doc/build/equation-hunt-all.md:span897
+H = p^2/(2m) + m\omega^2 x^2/2
+
+doc/build/equation-hunt-all.md:span898
+\dot x = \partial H/\partial p
+
+doc/build/equation-hunt-all.md:span899
+\dot p = -\partial H/\partial x
+
+doc/build/equation-hunt-all.md:span900
+dH/dt = 0
+
+doc/build/equation-hunt-all.md:span901
+V = V(r)
+
+doc/build/equation-hunt-all.md:span902
+\phi
+
+doc/build/equation-hunt-all.md:span903
+p_\phi = \partial L/\partial\dot\phi = mr^2\dot\phi
+
+doc/build/equation-hunt-all.md:span904
+L = (y'')^2
+
+doc/build/equation-hunt-all.md:span905
+F(x, y, y', y'')
+
+doc/build/equation-hunt-all.md:span906
+F = (y'')^2
+
+doc/build/equation-hunt-all.md:span907
+\partial F/\partial y'' = 2y''
+
+doc/build/equation-hunt-all.md:span908
+d^2/dx^2(\partial F/\partial y'')
+
+doc/build/equation-hunt-all.md:span909
+y'''' = 0
+
+doc/build/equation-hunt-all.md:span910
+y = ax^3 + bx^2 + cx + d
+
+doc/build/equation-hunt-all.md:span911
+v_0 = 20\ \mathrm{m/s}
+
+doc/build/equation-hunt-all.md:span912
+\theta = 45°
+
+doc/build/equation-hunt-all.md:span913
+g = 9.81\ \mathrm{m/s^2}
+
+doc/build/equation-hunt-all.md:span914
+y(x) = x - 0.02453\,x^2
+
+doc/build/equation-hunt-all.md:span915
+R = v_0^2 \sin(2\theta)/g
+
+doc/build/equation-hunt-all.md:span916
+R = 400/9.81 \approx 40.77\ \mathrm{m}
+
+doc/build/equation-hunt-all.md:span917
+2\mathrm{H_2} + \mathrm{O_2} \rightarrow 2\mathrm{H_2O}
+
+doc/build/equation-hunt-all.md:span918
+4.0\ \mathrm{g}
+
+doc/build/equation-hunt-all.md:span919
+\mathrm{H_2}
+
+doc/build/equation-hunt-all.md:span920
+32.0\ \mathrm{g}
+
+doc/build/equation-hunt-all.md:span921
+\mathrm{O_2}
+
+doc/build/equation-hunt-all.md:span922
+36.0\ \mathrm{g}
+
+doc/build/equation-hunt-all.md:span923
+\mathrm{H_2O}
+
+doc/build/equation-hunt-all.md:span924
+\mathrm{H_2} = 2.016
+
+doc/build/equation-hunt-all.md:span925
+\mathrm{O_2} = 32.00
+
+doc/build/equation-hunt-all.md:span926
+\Delta H_f^\circ
+
+doc/build/equation-hunt-all.md:span927
+\mathrm{H_2}(g) = 0
+
+doc/build/equation-hunt-all.md:span928
+\mathrm{O_2}(g) = 0
+
+doc/build/equation-hunt-all.md:span929
+\mathrm{H_2O}(l) = -285.8\ \mathrm{kJ/mol}
+
+doc/build/equation-hunt-all.md:span930
+2\mathrm{H_2}(g) + \mathrm{O_2}(g) \rightarrow 2\mathrm{H_2O}(l)
+
+doc/build/equation-hunt-all.md:span931
+|0\rangle
+
+doc/build/equation-hunt-all.md:span932
+\mathrm{CNOT}|10\rangle = |11\rangle
+
+doc/build/equation-hunt-all.md:span933
+\mathrm{CNOT}|00\rangle = |00\rangle
+
+doc/build/equation-hunt-all.md:span935
+\rho = r/a_0
+
+doc/build/equation-hunt-all.md:span936
+r = 2a_0
+
+doc/build/equation-hunt-all.md:span937
+R_{20} = 0
+
+doc/build/equation-hunt-all.md:span938
+n - l - 1 = 1
+
+doc/build/equation-hunt-all.md:span939
+r = 2a
+
+doc/build/equation-hunt-all.md:span940
+K = 1000
+
+doc/build/equation-hunt-all.md:span941
+r = 0.5
+
+doc/build/equation-hunt-all.md:span942
+P_0 = 100
+
+doc/build/equation-hunt-all.md:span943
+A = 9
+
+doc/build/equation-hunt-all.md:span944
+P(10) = 1000/(1 + 9e^{-5}) \approx 942.8
+
+doc/build/equation-hunt-all.md:span945
+\dot x = x(\alpha - \beta y)
+
+doc/build/equation-hunt-all.md:span946
+\dot y = -y(\gamma - \delta x)
+
+doc/build/equation-hunt-all.md:span947
+y'' - xy = 0
+
+doc/build/equation-hunt-all.md:span948
+\mathrm{Ai}(x)
+
+doc/build/equation-hunt-all.md:span949
+\mathrm{Bi}(x)
+
+doc/build/equation-hunt-all.md:span950
+\mathrm{Ai}(0) = \dfrac{1}{3^{2/3}\,\Gamma(2/3)} \approx 0.3550280539
+
+doc/build/equation-hunt-all.md:span951
+\mathrm{Bi}(0) = \dfrac{1}{3^{1/6}\,\Gamma(2/3)} \approx 0.6149266274
+
+doc/build/equation-hunt-all.md:span952
+A(t) = tN
+
+doc/build/equation-hunt-all.md:span953
+N
+
+doc/build/equation-hunt-all.md:span954
+[A(t_1),A(t_2)] = 0
+
+doc/build/equation-hunt-all.md:span955
+t_1,t_2
+
+doc/build/equation-hunt-all.md:span956
+\Phi(t) = \exp\!\left(\int_0^t A(s)\,ds\right)
+
+doc/build/equation-hunt-all.md:span958
+\int_0^t A(s)\,ds = \frac{t^2}{2}N
+
+doc/build/equation-hunt-all.md:span959
+N^2=0
+
+doc/build/equation-hunt-all.md:span960
+\Phi'(t) = tN = A(t) = A(t)\Phi(t)
+
+doc/build/equation-hunt-all.md:span961
+A(t)\Phi(t) = tN(I+\tfrac{t^2}{2}N) = tN
+
+doc/build/equation-hunt-all.md:span962
+4\times4
+
+doc/build/equation-hunt-all.md:span969
+q=1
+
+doc/build/equation-hunt-all.md:span970
+a_0(1) \approx -0.4543
+
+doc/build/equation-hunt-all.md:span971
+y'' + \lambda y = 0
+
+doc/build/equation-hunt-all.md:span973
+y(0) = 0
+
+doc/build/equation-hunt-all.md:span974
+y'(1) + y(1) = 0
+
+doc/build/equation-hunt-all.md:span975
+y(0)=0
+
+doc/build/equation-hunt-all.md:span976
+y = A\sin(\sqrt{\lambda}\,x)
+
+doc/build/equation-hunt-all.md:span977
+A\sqrt{\lambda}\cos\sqrt{\lambda} + A\sin\sqrt{\lambda} = 0
+
+doc/build/equation-hunt-all.md:span978
+\sqrt{\lambda_1} \approx 2.0287578
+
+doc/build/equation-hunt-all.md:span979
+\lambda_1 \approx 4.11586
+
+doc/build/equation-hunt-all.md:span980
+u_t = u_{xx} + u_{yy}
+
+doc/build/equation-hunt-all.md:span981
+u = 0
+
+doc/build/equation-hunt-all.md:span982
+h = 1/3
+
+doc/build/equation-hunt-all.md:span983
+(x_1,y_1),(x_2,y_1),(x_1,y_2),(x_2,y_2)
+
+doc/build/equation-hunt-all.md:span984
+x_i = y_i = i/3
+
+doc/build/equation-hunt-all.md:span987
+Y_1^0(\theta,\phi) = \sqrt{\dfrac{3}{4\pi}}\cos\theta
+
+doc/build/equation-hunt-all.md:span988
+Y_1^1(\theta,\phi) = -\sqrt{\dfrac{3}{8\pi}}\sin\theta\,e^{i\phi}
+
+doc/build/equation-hunt-all.md:span989
+m > 0
+
+doc/build/equation-hunt-all.md:span990
+(m,n) = (1,1)
+
+doc/build/equation-hunt-all.md:span993
+\alpha_{11}
+
+doc/build/equation-hunt-all.md:span996
+\alpha_{11} = 3.8317059702
+
+doc/build/equation-hunt-all.md:span997
+J_0(i) = I_0(1) \approx 1.2660658778
+
+doc/build/equation-hunt-all.md:span998
+J_\nu(iz) = i^\nu I_\nu(z)
+
+doc/build/equation-hunt-all.md:span999
+\operatorname{erf}(i) = i\,\operatorname{erfi}(1)
+
+doc/build/equation-hunt-all.md:span1000
+\operatorname{erfi}(1) \approx 1.6504257588
+
+doc/build/equation-hunt-all.md:span1001
+\operatorname{erf}(i) \approx 1.6504257588\,i
+
+doc/build/equation-hunt-all.md:span1002
+\operatorname{erfi} z = -i\,\operatorname{erf}(iz)
+
+doc/build/equation-hunt-all.md:span1003
+|\Gamma(i)| = \sqrt{\dfrac{\pi}{\sinh\pi}} \approx 0.5215640469
+
+doc/build/equation-hunt-all.md:span1004
+|\Gamma(iy)|^2 = \pi/(y\sinh(\pi y))
+
+doc/build/equation-hunt-all.md:span1006
+F(n,k) = \dfrac{(-1)^k \binom{n}{k}\binom{2k}{k}4^{\,n-k}}{\binom{2n}{n}}
+
+doc/build/equation-hunt-all.md:span1007
+G(n,k) = R(n,k)\,F(n,k-1)
+
+doc/build/equation-hunt-all.md:span1008
+F(n+1,k) - F(n,k) = G(n,k+1) - G(n,k)
+
+doc/build/equation-hunt-all.md:span1009
+\mathfrak{sl}(2)
+
+doc/build/equation-hunt-all.md:span1010
+\{h, e, f\}
+
+doc/build/equation-hunt-all.md:span1016
+\alpha_1 = e_1-e_2
+
+doc/build/equation-hunt-all.md:span1017
+\alpha_2 = e_2-e_3
+
+doc/build/equation-hunt-all.md:span1018
+\alpha_1+\alpha_2 = e_1-e_3
+
+doc/build/equation-hunt-all.md:span1019
+A_n
+
+doc/build/equation-hunt-all.md:span1020
+\lambda=(1,0)
+
+doc/build/equation-hunt-all.md:span1021
+\lambda+\rho=(2,1)
+
+doc/build/equation-hunt-all.md:span1022
+\dim = \dfrac{2\cdot 1\cdot 3}{1\cdot 1\cdot 2} = 3.
+
+doc/build/equation-hunt-all.md:span1023
+\lambda=(1,1)
+
+doc/build/equation-hunt-all.md:span1024
+\lambda+\rho=(2,2)
+
+doc/build/equation-hunt-all.md:span1025
+\dim = \dfrac{2\cdot 2\cdot 4}{1\cdot 1\cdot 2} = 8.
+
+doc/build/equation-hunt-all.md:span1026
+\mathbb{Z}\langle x,y\rangle
+
+doc/build/equation-hunt-all.md:span1027
+F = \{2x,\ 3y\}
+
+doc/build/equation-hunt-all.md:span1028
+F=\{2x,3y\}
+
+doc/build/equation-hunt-all.md:span1029
+\{2x,3y,yx,xy\}
+
+doc/build/equation-hunt-all.md:span1030
+\mathbb{Z}
+
+doc/build/equation-hunt-all.md:span1031
+\{yx, xy\}
+
+doc/build/equation-hunt-all.md:span1032
+k[x,y]
+
+doc/build/equation-hunt-all.md:span1034
+\supseteq
+
+doc/build/equation-hunt-all.md:span1035
+x^2, xy \in \langle x\rangle
+
+doc/build/equation-hunt-all.md:span1036
+x^2 \in \langle x^2,y\rangle
+
+doc/build/equation-hunt-all.md:span1037
+xy = y\cdot x \in \langle x^2,y\rangle
+
+doc/build/equation-hunt-all.md:span1038
+\subseteq
+
+doc/build/equation-hunt-all.md:span1039
+f = xg \in \langle x^2,y\rangle
+
+doc/build/equation-hunt-all.md:span1040
+xg = x^2p + yq
+
+doc/build/equation-hunt-all.md:span1041
+x \mid yq
+
+doc/build/equation-hunt-all.md:span1043
+x\nmid y
+
+doc/build/equation-hunt-all.md:span1044
+x\mid q
+
+doc/build/equation-hunt-all.md:span1045
+q = xq'
+
+doc/build/equation-hunt-all.md:span1046
+f = x^2p + xyq' \in \langle x^2,xy\rangle
+
+doc/build/equation-hunt-all.md:span1047
+\langle x\rangle
+
+doc/build/equation-hunt-all.md:span1048
+\langle x^2,y\rangle
+
+doc/build/equation-hunt-all.md:span1049
+\langle x,y\rangle
+
+doc/build/equation-hunt-all.md:span1050
+\sqrt{\langle x^2,y\rangle} = \langle x,y\rangle
+
+doc/build/equation-hunt-all.md:span1051
+\langle x^2,xy\rangle
+
+doc/build/equation-hunt-all.md:span1052
+k_1 = 1/k
+
+doc/build/equation-hunt-all.md:span1053
+\sin\beta = k_1\sin\phi
+
+doc/build/equation-hunt-all.md:span1054
+k = 2
+
+doc/build/equation-hunt-all.md:span1055
+\phi = \pi/6
+
+doc/build/equation-hunt-all.md:span1056
+k_1 = 1/2
+
+doc/build/equation-hunt-all.md:span1057
+\sin\beta = \tfrac12\sin(\pi/6) = \tfrac14
+
+doc/build/equation-hunt-all.md:span1058
+\beta = \arcsin(1/4)
+
+doc/build/equation-hunt-all.md:span1059
+k = 2 > 1
+
+doc/build/unified_build_order.md:span0
+\operatorname{arcsn}(x|m)=F(x|m)
+
+doc/build/unified_build_order.md:span1
+\nabla
+
+doc/build/unified_build_order.md:span5
+\mathrm{Cl}_2'= -\ln|2\sin(\theta/2)|
+
+doc/build/unified_build_order.md:span6
+\mathrm{Cl}_3'=-\mathrm{Cl}_2
+
+doc/build/unified_build_order.md:span12
+|m|<1
+
+doc/build/unified_build_order.md:span13
+\pi/(2\sqrt{1-n})
+
+doc/build/unified_build_order.md:span20
+m^{-1/2}(K(1/m)-i K(1-1/m))
+
+doc/build/unified_build_order.md:span21
+F(x|0)
+
+doc/build/unified_build_order.md:span27
+{}_2F_1(1,1;2;z)
+
+doc/build/unified_build_order.md:span33
+\mathrm{Li}_2
+
+doc/build/unified_build_order.md:span46
+z=g(x,y)
+
+doc/build/unified_build_order.md:span50
+*dt=-dx
+
+doc/build/unified_build_order.md:span61
+y^2-x^2-x^3
+
+doc/build/unified_build_order.md:span76
+J
+
+doc/build/unified_build_order.md:span84
+1\mp u_1/\zeta
+
+doc/build/unified_build_order.md:span87
+|x|
+
+doc/build/unified_build_order.md:span88
+[0,L]
+
+doc/build/unified_build_order.md:span89
+[-L,L]
+
+doc/build/unified_build_order.md:span91
+A(n)
+
+doc/build/unified_build_order.md:span92
+B(n)
+
+doc/build/unified_build_order.md:span93
+\lambda(n)
+
+doc/build/unified_build_order.md:span95
+v
+
+doc/build/unified_build_order.md:span97
+f=u+iv
+
+doc/build/unified_build_order.md:span98
+y''+py'+qy=g
+
+doc/build/unified_build_order.md:span99
+y''''=0
+
+doc/build/unified_build_order.md:span101
+y''''+5y''+4y=0
+
+doc/build/unified_build_order.md:span102
+y'''-y=e^x
+
+doc/build/unified_build_order.md:span103
+D_\nu
+
+doc/build/unified_build_order.md:span104
+. Volume density, component \(\nabla\), Weyl, Kretschmann, Cotton, Bach, tetrads, Petrov type on an aligned frame, the Einstein equation with \(\Lambda\), a perfect fluid, and Maxwell, Killing residuals, geodesic deviation, and the catalog through Kerr, Reissner–Nordström, de Sitter, and FLRW have passing 
+
+doc/build/unified_build_order.md:span105
+. The exponent is the Floquet value in \([0,1]\). Even \(\mathrm{se}_n\) for \(q\neq 0\) stays 
+
+doc/build/unified_build_order.md:span106
+ reads a finite trigonometric polynomial and rebuilds it. An infinite series of unspecified coefficients stays unsupported. A coefficient integral closes only for a concrete sine-cosine product on \([0,\pi]\). It does not compute the series of \(x\), \(|x|\), or a square wave. The finite 
+
+doc/build/unified_build_order.md:span107
+ (already a notebook op; it returns a general series with symbolic \(A(n)\), \(B(n)\), and \(\lambda(n)\) and takes no initial or boundary data), and on 
+
+doc/tutorials/ENGINEERING.md:span0
+1000\times1000
+
+doc/tutorials/ENGINEERING.md:span1
+2I
+
+doc/tutorials/ODE.md:span0
+y'=ky
+
+doc/tutorials/QUANTUM.md:span0
+\{\sigma_x,\sigma_x\}=2I
+
+doc/tutorials/QUANTUM.md:span1
+(|0⟩+|1⟩)/\sqrt{2}
+
+golds/README.md:span1
+F(\mathrm{sn})=u
+
+golds/README.md:span2
+\nu
+
+golds/README.md:span3
+J_{1/2}
+
+golds/README.md:span4
+K_{1/2}
+
+golds/README.md:span5
+K(1/2)=\Gamma(1/4)^2/(4\sqrt{\pi})
+
+golds/README.md:span6
+\int_0^1\int_0^1 e^{-x^2-y^2}=\frac{\pi}{4}\mathrm{erf}(1)^2
+
+golds/README.md:span7
+\mathbb{R}^n
+
+golds/README.md:span8
+QR=A
+
+golds/README.md:span9
+A=2I
+
+golds/README.md:span10
+\mathrm{diag}(1..n)
+
+golds/README.md:span11
+A=(i)
+
+golds/README.md:span12
+\le 2^{-\texttt{SOFT\_PREC}/2}
+
+golds/README.md:span14
+\Phi
+
+golds/README.md:span15
+dy/dx=-F_x/F_y
+
+golds/README.md:span16
+F_y\equiv 0
+
+golds/README.md:span17
+x(t)
+
+golds/README.md:span19
+M
+
+golds/README.md:span23
+\mu(x)
+
+golds/README.md:span24
+\mu(y)
+
+golds/README.md:span26
+\mu M\,dx+\mu N\,dy
+
+golds/README.md:span27
+y'-f=0
+
+golds/README.md:span30
+C_2=0
+
+golds/README.md:span31
+H_3
+
+golds/README.md:span32
+L_2
+
+golds/README.md:span33
+T_2
+
+golds/README.md:span34
+a_n(q)
+
+golds/README.md:span35
+a_0(0)=0
+
+golds/README.md:span36
+ce_n
+
+golds/README.md:span37
+p,q,w
+
+golds/README.md:span38
+1,0,1
+
+golds/README.md:span40
+\lambda_n=n^2
+
+golds/README.md:span42
+y''=f
+
+golds/README.md:span43
+y''=0
+
+golds/README.md:span46
+F_x=M
+
+golds/README.md:span47
+F_y=N
+
+golds/README.md:span50
+F_x N-F_y M=0
+
+golds/README.md:span51
+f(t)
+
+golds/README.md:span52
+\mathcal{L}^{-1}(\mathcal{L}\{f\})=f
+
+golds/README.md:span53
+F(s)
+
+golds/README.md:span54
+\mathcal{L}(\mathcal{L}^{-1}\{F\})=F
+
+golds/README.md:span56
+\mathcal{F}^{-1}(\mathcal{F}\{f\})=f
+
+golds/README.md:span57
+F(\omega)
+
+golds/README.md:span58
+\mathcal{F}(\mathcal{F}^{-1}\{F\})=F
+
+golds/README.md:span60
+E_t
+
+golds/README.md:span61
+E_\omega
+
+golds/README.md:span62
+2^{-\texttt{PARSEVAL\_TOL\_BITS}}
+
+golds/README.md:span64
+\dot y=Ay+g
+
+golds/README.md:span66
+y''+a y'+b y=g
+
+golds/README.md:span68
+y'(0)
+
+golds/README.md:span70
+y(0)=1
+
+golds/README.md:span71
+y'(0)=0\to\cos t
+
+golds/README.md:span72
+\Phi'=A\Phi
+
+golds/README.md:span73
+[0,2\pi]
+
+golds/README.md:span76
+y^{(n)}=\mathrm{rhs}
+
+golds/README.md:span77
+y''=-y\to[y_2,-y_1]
+
+golds/README.md:span80
+a I_x+b I_y=0
+
+golds/README.md:span81
+a I_x+b I_y+c I_u=0\`. Gold \(u u_x+u_y=0\to f(x-uy)
+
+golds/README.md:span84
+J_n,Y_n
+
+golds/README.md:span89
+\lvert J_0(\alpha_n)\rvert\le 2^{-\mathrm{bits}}
+
+golds/README.md:span92
+\alpha_{0n}
+
+golds/README.md:span95
+8/(\alpha^3 J_1)
+
+golds/README.md:span96
+J'_m=0
+
+golds/README.md:span97
+2^{-\texttt{bits}}
+
+golds/README.md:span98
+u=\int Gf
+
+golds/README.md:span101
+n^3
+
+golds/README.md:span104
+\Gamma^\theta_{r\theta}=1/r
+
+golds/README.md:span105
+n^2
+
+golds/README.md:span111
+\dot q
+
+golds/README.md:span112
+\partial a/\partial q
+
+golds/README.md:span113
+\partial L/\partial q-d/dt(\partial L/\partial\dot q)
+
+golds/README.md:span116
+f
+
+golds/README.md:span119
+p
+
+golds/README.md:span120
+H=p\dot q-L
+
+golds/README.md:span121
+(\dot q,\dot p)
+
+golds/README.md:span122
+\{f,g\}
+
+golds/README.md:span126
+V(r)
+
+golds/README.md:span128
+z
+
+golds/README.md:span129
+\delta[n]
+
+golds/README.md:span130
+a^n u[n]
+
+golds/README.md:span131
+n u[n]
+
+golds/README.md:span133
+\cos(\omega n)u[n]
+
+golds/README.md:span135
+\partial_s M=M\{\ln x\,f\}
+
+golds/README.md:span136
+e^{-x}\to\Gamma(s)
+
+golds/README.md:span137
+e^{-x^2}
+
+golds/README.md:span138
+(1+x)^{-a}
+
+golds/README.md:span140
+e^{-ax}\star e^{-bx}=2K_0(2\sqrt{abx})
+
+golds/README.md:span142
+\rho
+
+golds/README.md:span144
+H(H(f))=f
+
+golds/README.md:span145
+H_0\{e^{-ar^2}\}
+
+golds/README.md:span146
+e^{-ar}
+
+golds/README.md:span147
+H_1\{r e^{-ar}\}
+
+golds/README.md:span148
+H_1\{r e^{-ar^2}\}
+
+golds/README.md:span149
+d x^i
+
+golds/README.md:span150
+S^2=(\theta,\varphi)
+
+golds/README.md:span151
+(u,v)
+
+golds/README.md:span152
+d\theta=(1,0)
+
+golds/README.md:span153
+d^2=0
+
+golds/README.md:span154
+d(xy)
+
+golds/README.md:span155
+*dx=dy
+
+golds/README.md:span156
+\delta(x\,dx)=-1
+
+golds/README.md:span158
+\tau
+
+golds/README.md:span165
+b
+
+golds/README.md:span166
+2^{10}\equiv 24\pmod{1000}
+
+golds/README.md:span167
+2x\equiv 4\pmod 6
+
+golds/README.md:span168
+8\pmod{15}
+
+golds/README.md:span169
+23\pmod{105}
+
+golds/README.md:span170
+dW_t^2=dt
+
+golds/README.md:span171
+dt^2=0
+
+golds/README.md:span172
+dt\,dW_t=0
+
+golds/README.md:span173
+dW^3=0
+
+golds/README.md:span176
+\sigma_k
+
+golds/README.md:span177
+2^{31}-1
+
+golds/README.md:span178
+360=2^3 3^2 5
+
+golds/README.md:span179
+\varphi(12)=4
+
+golds/README.md:span180
+\mu
+
+golds/README.md:span181
+\sigma_0(6)=4
+
+golds/README.md:span182
+s
+
+golds/README.md:span184
+L(1,\chi_{-4})=\pi/4
+
+golds/README.md:span185
+L(2,\chi_0)=\pi^2/6
+
+golds/README.md:span186
+\Lambda(1/2)=\varepsilon\Lambda(1/2)
+
+golds/README.md:span187
+s=1/2+i
+
+golds/README.md:span188
+\chi_{-4}
+
+golds/README.md:span189
+t
+
+golds/README.md:span190
+N(\mu,\sigma^2)
+
+golds/README.md:span191
+\mathbb{E}=\mu
+
+golds/README.md:span192
+\mathrm{Var}=\sigma^2
+
+golds/README.md:span193
+\mathrm{Exp}
+
+golds/README.md:span194
+\mathbb{E}=1/\lambda
+
+golds/README.md:span195
+\mathbb{E}[X^2]=2/\lambda^2
+
+golds/README.md:span196
+N(0,1)
+
+golds/README.md:span198
+\varphi_N=\exp(i\mu t-\sigma^2 t^2/2)
+
+golds/README.md:span199
+\varphi(0)=1
+
+golds/README.md:span200
+\sqrt{x^2}=x
+
+golds/README.md:span201
+\mathbb{Q}[q]
+
+golds/README.md:span202
+q=1-2^{-80}
+
+golds/README.md:span203
+h=0
+
+golds/README.md:span206
+n=5
+
+golds/README.md:span210
+K=[6,5]
+
+golds/README.md:span211
+-1..-4
+
+golds/README.md:span214
+\cos
+
+golds/README.md:span215
+\implies
+
+golds/README.md:span216
+x^2\ge 0
+
+golds/README.md:span217
+\exists\sqrt{2}
+
+golds/README.md:span218
+\exists y.\,x^2+y^2=1
+
+golds/README.md:span219
+\exists z.\,x^2+y^2+z^2=1
+
+golds/README.md:span220
+(2/7)=1
+
+golds/README.md:span221
+3^x\equiv 2\pmod7
+
+golds/README.md:span222
+m^e \bmod n
+
+golds/README.md:span226
+w^\top\Sigma w
+
+golds/README.md:span227
+z_{95}
+
+golds/README.md:span230
+0.4
+
+golds/README.md:span231
+[2,16,2,2,8,5]
+
+golds/README.md:span232
+M(\mathrm{Fe_2(SO_4)_3})
+
+golds/README.md:span233
+C(0)
+
+golds/README.md:span234
+H\lvert0\rangle
+
+golds/README.md:span235
+X
+
+golds/README.md:span236
+H^2=I
+
+golds/README.md:span239
+1/e
+
+golds/README.md:span240
+e^{-i}
+
+golds/README.md:span241
+2+2
+
+golds/README.md:span242
+\sin x
+
+golds/README.md:span243
+\pi,2\pi
+
+golds/README.md:span244
+\sqrt{x}
+
+golds/README.md:span245
+z=\sin x\cos y
+
+golds/README.md:span246
+x^2+y^2=1
+
+golds/README.md:span248
+(y,-x)
+
+golds/README.md:span249
++x
+
+golds/README.md:span250
+\nabla(x^2+y^2)
+
+golds/README.md:span251
+r^2
+
+golds/README.md:span252
+\operatorname{wind}(z^2)=2
+
+golds/README.md:span253
+1/z
+
+golds/README.md:span254
+\lvert z\rvert
+
+golds/README.md:span255
+1/(s+1)
+
+golds/README.md:span256
+\sin(x+t)
+
+golds/README.md:span258
+\mathbb{Q}(\alpha)
+
+golds/README.md:span259
+\alpha=
+
+golds/README.md:span260
+L+1
+
+golds/README.md:span261
+n=0,1
+
+golds/README.md:span262
+p_0,\ldots,p_d
+
+golds/README.md:span263
+n=0..5
+
+golds/README.md:span265
+\sigma-1=R(k+1)\rho-R
+
+golds/README.md:span266
+G=RF
+
+golds/README.md:span267
+3^n
+
+golds/README.md:span268
+4^n
+
+golds/README.md:span269
+\binom{2n}{n}^2
+
+golds/README.md:span270
+\binom{k+j}{n}
+
+golds/README.md:span271
+\prod\exp(f)=\exp(\sum f)
+
+golds/README.md:span273
+0\ldots\mathrm{order}
+
+golds/README.md:span274
+ (comma list, empty = \(\mathbb{Q}\)), 
+
+golds/README.md:span275
+ (\(\nu\)) / 
+
+golds/README.md:span276
+ over cap | 2D SoftFloat cubature. Gold \(\int_0^1\int_0^1 e^{-x^2-y^2}=\frac{\pi}{4}\mathrm{erf}(1)^2\) at 128 bits (
+
+golds/README.md:span277
+ | SoftFloat Newton on \(\mathbb{R}^n\); two runs identical limb dumps; singular Jacobian is 
+
+golds/README.md:span278
+ for the 1000-row systems | SoftFloat CG/GMRES on \(A=2I\); exact rational \(\mathrm{diag}(1..n)\); 2×2 nonsymmetric GMRES; complex \(A=(i)\). Residual \(\le 2^{-\texttt{SOFT\_PREC}/2}\). Runner 
+
+golds/README.md:span279
+) | stats (mean/var, \(\Gamma\), erf, \(\Phi\), OLS, Welch, ANOVA), PID, unconstrained QP, RK4, MPC, finance BS/parity/IV, units | 
+
+golds/README.md:span280
+M; N; \mu
+
+golds/README.md:span281
+. Helmholtz on \([0,\pi]\) is \(\lambda_n=n^2\). Cap 
+
+golds/README.md:span282
+ checks \(F_x=M\), \(F_y=N\); after \(\mu(x)\) / \(\mu(y)\), 
+
+golds/README.md:span283
+ (\(F(\omega)\)), 
+
+golds/README.md:span284
+ | SoftFloat Magnus residual \(\Phi'=A\Phi\) (Bernoulli 
+
+golds/README.md:span285
+ (\(y^{(n)}=\mathrm{rhs}\)); 
+
+golds/README.md:span286
+ (\(\kappa\) or \(c\)), 
+
+golds/README.md:span287
+ (\(\kappa\)), 
+
+golds/README.md:span288
+ on \(J_0\); residual \(\lvert J_0(\alpha_n)\rvert\le 2^{-\mathrm{bits}}\). Cap 
+
+golds/README.md:span289
+ \(\alpha_{0n}\); TE: 
+
+golds/README.md:span290
+ over cap | Fitted Fourier–Bessel. Drumhead \(A_n\) vs \(8/(\alpha^3 J_1)\) and orthogonality. TE \(J'_m=0\) residual \(2^{-\texttt{bits}}\). Caps 
+
+golds/README.md:span291
+ for \(u=\int Gf\); 
+
+golds/README.md:span292
+ semicolon list of \(n^3\) \(\Gamma^\lambda_{\mu\nu}\) (
+
+golds/README.md:span293
+ (\(\dot q\)), 
+
+golds/README.md:span294
+ added as \(\partial a/\partial q\); 
+
+golds/README.md:span295
+ | \(\partial L/\partial q-d/dt(\partial L/\partial\dot q)\). Accel name 
+
+golds/README.md:span296
+ \(\dot q\) or \(p\); 
+
+golds/README.md:span297
+ | \(H=p\dot q-L\); \((\dot q,\dot p)\); \(\{f,g\}\). Momentum symbol 
+
+golds/README.md:span298
+ | Table: \(\delta[n]\), \(a^n u[n]\), \(n u[n]\), \(n a^n u[n]\), shift, \(\cos(\omega n)u[n]\). Cap 
+
+golds/README.md:span299
+ for \(\partial_s M=M\{\ln x\,f\}\); 
+
+golds/README.md:span300
+ (\(\rho\)); 
+
+golds/README.md:span301
+ (\(\nu\), default 0); 
+
+golds/README.md:span302
+ for \(g_{\mu\nu}\dot x^\mu\dot x^\nu\); 
+
+golds/README.md:span303
+ \(\tau\), 
+
+golds/README.md:span304
+ \(\kappa\); 
+
+golds/README.md:span305
+ is \(k\) for \(\sigma_k\); 
+
+golds/README.md:span309
+; assume \(\sqrt{x^2}=x\). Runner 
+
+golds/README.md:span310
+) | Exact integers / OGF / EGF / q-analogues in \(\mathbb{Q}[q]\); 
+
+golds/README.md:span311
+) | Simplex over \(\mathbb{Q}\). Runner 
+
+golds/README.md:span312
+) | Exact LS over \(\mathbb{Q}\). Runner 
+
+golds/README.md:span313
+) | Lagrange \(x^2\); spline knots; Chebyshev \(\cos\). Runner 
+
+golds/README.md:span314
+) | Complement; absorption; CNF of \(\implies\). Runner 
+
+golds/README.md:span315
+) | \(x^2\ge 0\); \(\exists\sqrt{2}\); Skolem 
+
+golds/README.md:span316
+; CAD QE of closed sentences, \(\exists y.\,x^2+y^2=1\), and two-free-var \(\exists z.\,x^2+y^2+z^2=1\). Runner 
+
+golds/README.md:span317
+) | RSA 5; DH agree; \((2/7)=1\); \(3^x\equiv 2\pmod7\). Optional 
+
+golds/README.md:span318
+ pin \(m^e \bmod n\) and the least \(d\) modulo \(\lambda(n)\). Runner 
+
+golds/README.md:span319
+) | \(w^\top\Sigma w\); Sharpe 0; \(z_{95}\). Runner 
+
+golds/README.md:span320
+/…) | CODATA \(c\); \([x,p]=i\hbar\); Carnot \(0.4\). Runner 
+
+golds/README.md:span321
+ for mw | KMnO₄+HCl \([2,16,2,2,8,5]\); sucrose; \(M(\mathrm{Fe_2(SO_4)_3})\) at 128 bits; methane Hess. Runner 
+
+golds/README.md:span322
+) | \(H\lvert0\rangle\); \(X\); CNOT; \(H^2=I\). Runner 
+
+golds/README.md:span323
+ \(\sqrt{2}\), 
+
+golds/README.md:span324
+) | \(\sin x\) crossings at \(\pi,2\pi\); parametric/polar/implicit unit circle; distinct multi colors; \(\sqrt{x}\) domain gap. Runner 
+
+golds/README.md:span325
+) | \(z=\sin x\cos y\) mesh residual; \(x^2+y^2=1\) contours; helix; \(\sqrt{x}\) gaps; density rects. Runner 
+
+golds/README.md:span326
+) | \((y,-x)\) down on \(+x\); \(\nabla(x^2+y^2)\) outward; RK4 \(r^2\); planar 3D rotation. Runner 
+
+golds/README.md:span327
+) | Identity hues; \(\operatorname{wind}(z^2)=2\); \(1/z\) pole; \(\lvert z\rvert\) mesh; \(1/(s+1)\) circle. Runner 
+
+golds/README.md:span328
+ frames | \(\sin(x+t)\) has exactly 
+
+golds/README.md:span330
+\sum
+
+golds/README.md:span331
+ coefficients \(p_0,\ldots,p_d\); 
+
+golds/README.md:span332
+; identity \(\sigma-1=R(k+1)\rho-R\) holds before 
+
+golds/README.md:span333
+; \(3^n\), \(4^n\), \(\binom{2n}{n}^2\); signed \(\binom{k+j}{n}\) and three indices 
+
+golds/README.md:span334
+ polynomial; remainder derivatives \(0\ldots\mathrm{order}\) vanish at 
+
