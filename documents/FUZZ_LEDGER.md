@@ -178,3 +178,40 @@ Notes:
 | other | 2 | 12 |
 
 The printer rows not covered (G1, G4) are text-run escapes and the styled-text wrap: content rules, not grouping.
+
+## Wide-range findings
+
+Found by `tests/wide_range` (grammar generator, mutations, exhaustive
+enumeration, corpus, semantic oracles) on 06a6030 (3.0.1). Nothing here is a
+panic: no input panicked, and every printed form of an accepted input that was
+not one of the rows below reparsed to the same tree and printed the same.
+"Red test" is an `#[ignore]`d test in `tests/wide_range_findings.rs` that
+fails today; "minimal input" is the shortest input the minimizer found. These
+rows are reports, not fixes: the library is unchanged. Rows marked (by design)
+are counted by the wide-range layer but are consequences of a documented
+printer rule, not bugs.
+
+| id | class | minimal input | what is wrong | red test |
+|---|---|---|---|---|
+| W-BINOM-1 | wrong answer (render) | `\binom{n}{k}`, `{n\choose k}` | A rule is drawn between the rows (`<rect height=0.816pt>`); TeX draws none. The AST is `(delim ( (frac ..)))` and layout draws every `frac` bar. | `binomials_have_no_rule` |
+| W-RULE-1 | wrong answer (silent) | `\rule{1em}{1em}` | The width argument is read and dropped (`MathNode::Strut(h, 0)`); the box is invisible with width 0. TeX draws a 1em by 1em black box. A typed `Unsupported` for a nonzero width would also be an honest answer. | `rule_keeps_its_width` |
+| W-GENFRAC-1 | wrong answer (silent) | `\genfrac{}{}{0pt}{}{a}{b}` | Thickness and style arguments are read and dropped, so `0pt` still draws a bar and style `0`..`3` is ignored. | `genfrac_zero_thickness_has_no_rule` |
+| W-GENFRAC-2 | wrong rejection (typed) | `\genfrac{[}{]}{}{}{a}{b}` | The `{[}` / `{]}` preprocessor shorthand unbraces the delimiter, so the standard amsmath form fails with `expected '{'`. `{(}{)}` and `{\{}{\}}` work. | `genfrac_accepts_square_bracket_delimiters` |
+| W-RT-1 | non-round-trip | `\genfrac{(}{)}{}{}{}{}` | Empty numerator and denominator are accepted (`\frac{}{}` and `\binom{}{}` are rejected as empty); the print is `\binom {}{}`, which the parser rejects. | `genfrac_with_empty_arguments_round_trips` |
+| W-SVG-1 | invalid output | `\hspace{-1em}` | `width="-12.0pt" viewBox="0 0 -12.0 0.0"`: a negative size is invalid SVG (any box whose net width is negative). | `svg_width_is_never_negative` |
+| W-DEPTH-1 | round-trip at the depth limit | `\left(\right)`, `\begin{matrix}&\end{matrix}`, `\tag{}`, `%` | An empty row, cell or body prints as `{}`, one nesting level deeper than the source. `x^{`x30, then the input, then `}`x30 is accepted (depth 32), its print needs 33 and is rejected. | `depth_boundary_empty_nodes` |
+| W-DEPTH-2 | same | `\not\alpha` | prints `\not {\alpha }` (+1 level). | `depth_boundary_not` |
+| W-DEPTH-3 | same | `x²` (with `unicode_symbols`) | the flat shorthand prints `x^2` (+1 level). | `depth_boundary_unicode_script` |
+| W-DEPTH-4 | same | `x'` (with `prime_symbol`) | prints `x^\prime` (+1 level). Default options print `x'`. | `depth_boundary_prime_symbol` |
+| W-DEPTH-5 | same, and worse | `\color{red}` x16, then `x` | Colour switches are flat in the source and print nested, one `{\color..}` per switch: 16 of them already print deeper than 32, so a 16-switch input does not reparse. | `color_run_round_trips` |
+| W-DEPTH-6 | same | `=\mathrm{-e}`, `\mathrm{a)})`, `\texttt{O_EC}2` | A font body of several nodes prints inside an extra group (+1 level). | `depth_boundary_font_body` |
+| W-DEPTH-7 (by design) | depth +1 | `\(\)`, `$\(x$` | the print is grouped `{\(..}` so a leading `\(` is not read as a math fence (spec section 5). | none |
+| W-DEPTH-8 (by design) | depth +1 | a non-ASCII space at an edge | grouped so the trim cannot remove the space atom (`canon-edge-space`). | none |
+| W-DEPTH-9 (by design) | depth +1 | `(^))^)` | grouped by the paren-lookahead rule (`canon-primed-close`, `canon-primed-open`). | none |
+| W-DEPTH-10 | depth +1, no break | `\genfrac{(}{)}{}{}{a}{b}` | prints `\left(\frac{a}{b}\right)`, one level deeper than the source. | none |
+
+Notes that are not findings (documented in `TEXT_MODE_SPEC.md` section 4.1):
+`\textbf{if $x>0$ then}` is rejected (typed `unexpected math shift`) and
+`\textbf{a b}` drops the space, because `\textrm`..`\texttt` stay math fonts
+in math. Non-ASCII edge whitespace is trimmed without a trailing comment and
+kept with one (`x\u{2007}` against `x\u{2007}%c`).
