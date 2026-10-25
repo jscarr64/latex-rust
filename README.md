@@ -1,5 +1,7 @@
 # LaTeX-Rust
 
+Part of the Accumath project family — developed for Accumath, the pure-Rust, correct-by-construction math engine. This crate is open source; Accumath itself is a separate product.
+
 > **3.0.0 is a breaking release.** MSRV is Rust 1.99, `ttf-parser` is gone
 > (RUSTSEC-2026-0192), `MathNode` and `ParseError` are `non_exhaustive`,
 > `Fraction` carries a `FracStyle`, prime runs are flat, and optional `egui`
