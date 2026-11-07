@@ -1,6 +1,6 @@
 # LaTeX-Rust
 
-Part of the Accumath project family — developed for Accumath, the pure-Rust, correct-by-construction math engine. This crate is open source; Accumath itself is a separate product.
+Part of the Accumath project family — developed in conjunction with [Accumath](https://www.accumath.net), the pure-Rust, correct-by-construction math engine. This crate is open source; Accumath itself is a separate product. Learn more at [www.accumath.net](https://www.accumath.net).
 
 > **3.0.0 is a breaking release.** MSRV is Rust 1.99, `ttf-parser` is gone
 > (RUSTSEC-2026-0192), `MathNode` and `ParseError` are `non_exhaustive`,
@@ -9,7 +9,7 @@ Part of the Accumath project family — developed for Accumath, the pure-Rust, c
 > `TextRun`; see [documents/TEXT_MODE_SPEC.md](documents/TEXT_MODE_SPEC.md)):
 > `\text{\{\ )}` and `\text{$x$}` round-trip, and `\\` or unknown commands
 > in text are typed errors. See [CHANGELOG.md](CHANGELOG.md) for each change and its
-> migration. 3.0.0 was published to crates.io on 2026-10-15; the current release is 3.0.1.
+> migration. 3.0.0 was published to crates.io on 2026-10-15; the current release is 3.0.2.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE-MIT)
 [![License: Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE-APACHE)
@@ -172,7 +172,7 @@ elements (and PNG/egui meshes when those features are on). The optional
 
 ## Notes
 
-3.0.1 is the current version (3.0.0 was published 2026-10-15; 3.0.1 changes metadata only). Layout rules are the 2.1.x rules;
+3.0.2 is the current version (3.0.0 was published 2026-10-15; 3.0.1 changed metadata only; 3.0.2 lets spacing commands such as `\,` and `\quad` count as content, so `\underline{\quad}` and spaced matrix cells render). Layout rules are the 2.1.x rules;
 some parse trees change (see CHANGELOG.md). Since 2.1.1, `TealBlue` uses the upstream dvipsnames CMYK value, and `data/dvipsnames.tsv` carries its LPPL
 notice. baselogic contributed the TeX and OpenType MATH layout work in pull
 request 13. His commits are in the history under his name. They cover delimiter
