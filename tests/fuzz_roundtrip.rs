@@ -94,15 +94,17 @@ fn styled_text_keeps_its_body() {
 /// `\frac{}{}` and `{\over}`. One empty side still parses and round-trips.
 #[test]
 fn empty_binomials_are_rejected() {
-    for input in [
-        "{\\choose}",
-        "-{\\choose }",
-        "\\binom{}{}",
-        "\0\0l-osem{\\it\tse\tlAh\\{\0l-o`n\\ U\u{1}e}{\\it\t\\choose \\ }",
-    ] {
+    for input in ["{\\choose}", "-{\\choose }", "\\binom{}{}"] {
         assert!(parse(input).is_err(), "{input:?} should be rejected");
     }
-    for input in ["{a\\choose}", "{\\choose b}", "\\binom{a}{}"] {
+    // Explicit control space is content, not an empty side.
+    for input in [
+        "{a\\choose}",
+        "{\\choose b}",
+        "\\binom{a}{}",
+        "{\\choose \\ }",
+        "\0\0l-osem{\\it\tse\tlAh\\{\0l-o`n\\ U\u{1}e}{\\it\t\\choose \\ }",
+    ] {
         round_trip(input);
     }
 }

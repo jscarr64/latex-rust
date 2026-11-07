@@ -1,5 +1,20 @@
 # Changelog
 
+## [3.0.2] — 2026-11-07
+
+### Fixed
+
+- Treat explicit spacing as content rather than an empty node. Preserve `\,`
+  and `\quad` in align, matrix, and cases cells, and allow spacing-only
+  content such as `\underline{\quad}`. Empty `\hat{}` remains an error.
+- Add nine regression tests covering cell spacing, underline spacing,
+  `\frac{\,}{2}`, and the empty-accent guard.
+- Keep the existing control-space binomial fuzz seed as a successful
+  round-trip: explicit spacing is content; truly empty binomials still error.
+- Credit: [acquitelol](https://github.com/acquitelol) (Rosie), whose
+  [baac54ba fix](https://github.com/acquitelol/latex-rust/commit/baac54bab18d4305c927d15eb62d8d35e80bc900)
+  removes spacing from the empty-node classification.
+
 ## [3.0.1] — 2026-10-15
 
 metadata: repository and homepage URLs use lowercase latex-rust; no code changes.
