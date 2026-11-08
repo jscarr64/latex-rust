@@ -1942,6 +1942,7 @@ impl Engine<'_> {
             MatrixStyle::Aligned => self.amsmath_aligned(rows, body_style),
             MatrixStyle::Split => self.align_env(rows, body_style, false),
             MatrixStyle::Gather => self.gather_env(rows, body_style),
+            MatrixStyle::Gathered => self.gathered_env(rows, body_style),
             MatrixStyle::Multline => self.multline_env(rows, body_style),
             MatrixStyle::Equation => self.equation_env(rows, body_style),
             MatrixStyle::Array => self.array_env(spec, rows, body_style),
@@ -2336,6 +2337,35 @@ impl Engine<'_> {
         Ok(Item {
             class: Some(AtomKind::Inner),
             bx: MathBox::vpack(packed),
+        })
+    }
+
+    fn gathered_env(&self, rows: &[EnvRow], style: MathStyle) -> Result<Item, Error> {
+        let mut cells = Vec::with_capacity(rows.len());
+        for row in rows {
+            let EnvRow::Cells { cells: source, .. } = row else {
+                return Err(Error::Unsupported {
+                    what: "non-math row in gathered".into(),
+                });
+            };
+            if source.len() != 1 {
+                return Err(Error::Unsupported {
+                    what: "alignment tabs in gathered".into(),
+                });
+            }
+            cells.push(vec![self.take_box()?]);
+        }
+        let rows = self.build_amsmath_rows(
+            cells,
+            &Dim::zero(),
+            &self.tex_points_in_root_em(TEX_BASELINE_SKIP_PT),
+            |_| ColSpec::Center,
+            |_| false,
+        );
+        let gaps = self.aligned_interrow_gaps(&rows);
+        Ok(Item {
+            class: Some(AtomKind::Inner),
+            bx: self.center_amsmath_stack(rows, &gaps, style),
         })
     }
 
