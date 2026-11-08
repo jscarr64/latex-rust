@@ -175,7 +175,7 @@ name = "array-hline-dims"
 kind = "dims"
 style = "display"
 input = "\\begin{array}{c} a \\\\ \\hline b \\end{array}"
-expect = "w=0.555 h=0.479 d=0.797"
+expect = "w=0.555 h=0.479 d=1.197"
 
 [[gold]]
 name = "array-vrule-ast"
@@ -188,7 +188,7 @@ name = "array-vrule-dims"
 kind = "dims"
 style = "display"
 input = "\\begin{array}{|c|c|} a & b \\\\ c & d \\end{array}"
-expect = "w=1.315 h=0.705 d=0.929"
+expect = "w=2.426111111111111111111111 h=0.705 d=0.929"
 
 [[gold]]
 name = "split-in-equation-ast"

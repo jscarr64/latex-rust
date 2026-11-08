@@ -2537,10 +2537,21 @@ impl Engine<'_> {
                 dj += 1;
             }
         }
+        // A rule occupies its own track. Split the normal intercolumn gap
+        // around it, rather than removing the gap on both sides. Repeated
+        // rules need a visible double-rule separation too.
+        let gaps: Vec<Dim> = spec
+            .windows(2)
+            .map(|pair| match (pair[0].is_rule(), pair[1].is_rule()) {
+                (false, false) => col_sep.clone(),
+                (true, true) => row_sep.clone(),
+                _ => &col_sep / &Dim::from_i64(2),
+            })
+            .collect();
         let mut table_w = Dim::zero();
         for (j, _) in spec.iter().enumerate() {
-            if j > 0 && !spec[j].is_rule() && !spec[j - 1].is_rule() {
-                table_w = &table_w + &col_sep;
+            if j > 0 {
+                table_w = &table_w + &gaps[j - 1];
             }
             table_w = &table_w + &col_w[j];
         }
@@ -2549,6 +2560,9 @@ impl Engine<'_> {
         for kind in kinds {
             match kind {
                 RowKind::Hline => {
+                    if !packed.is_empty() {
+                        packed.push(sep_row(row_sep.clone()));
+                    }
                     packed.push(MathBox::rule(table_w.clone(), thick.clone(), Dim::zero()));
                 }
                 RowKind::Intertext(t) => {
@@ -2558,33 +2572,18 @@ impl Engine<'_> {
                     packed.push(*t);
                 }
                 RowKind::Cells => {
-                    if !packed.is_empty()
-                        && !matches!(packed.last().map(|b| &b.content), Some(BoxContent::Rule))
-                    {
+                    if !packed.is_empty() {
                         packed.push(sep_row(row_sep.clone()));
                     }
                     let row = &data[di];
-                    let mut rh = Dim::zero();
-                    let mut rd = Dim::zero();
-                    for c in row {
-                        rh = rh.max(&c.height);
-                        rd = rd.max(&c.depth);
-                    }
                     let mut parts = Vec::new();
                     let mut dj = 0;
                     for (j, sp) in spec.iter().enumerate() {
-                        if j > 0 && !sp.is_rule() && !spec[j - 1].is_rule() {
-                            parts.push(MathBox::kern(col_sep.clone()));
+                        if j > 0 {
+                            parts.push(MathBox::kern(gaps[j - 1].clone()));
                         }
                         if sp.is_rule() {
-                            parts.push(MathBox {
-                                width: thick.clone(),
-                                height: rh.clone(),
-                                depth: rd.clone(),
-                                italic: Dim::zero(),
-                                shift: Dim::zero(),
-                                content: BoxContent::Rule,
-                            });
+                            parts.push(MathBox::kern(thick.clone()));
                         } else {
                             let cell = row.get(dj).cloned().unwrap_or_else(MathBox::empty);
                             parts.push(align_in(cell, &col_w[j], *sp));
@@ -2596,9 +2595,31 @@ impl Engine<'_> {
                 }
             }
         }
+        let mut table = MathBox::vpack(packed);
+        // Draw each vertical rule once across the complete table, including
+        // row glue and horizontal rules. Per-cell rules leave broken borders.
+        let mut overlays = Vec::new();
+        let mut x = Dim::zero();
+        for (j, sp) in spec.iter().enumerate() {
+            if j > 0 {
+                x = &x + &gaps[j - 1];
+            }
+            if sp.is_rule() {
+                overlays.push(MathBox::hpack(vec![
+                    MathBox::kern(x.clone()),
+                    MathBox::rule(thick.clone(), table.height.clone(), table.depth.clone()),
+                ]));
+            }
+            x = &x + &col_w[j];
+        }
+        if !overlays.is_empty() {
+            let mut children = vec![table.clone()];
+            children.extend(overlays);
+            table.content = BoxContent::Overlap(children);
+        }
         Ok(Item {
             class: Some(AtomKind::Inner),
-            bx: MathBox::vpack(packed),
+            bx: table,
         })
     }
 }
