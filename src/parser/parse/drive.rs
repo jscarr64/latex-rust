@@ -1644,6 +1644,7 @@ fn start_begin(parser: &mut super::Parser) -> Result<Classified, ParseError> {
         "aligned" => MatrixStyle::Aligned,
         "align" => MatrixStyle::Align,
         "gather" => MatrixStyle::Gather,
+        "gathered" => MatrixStyle::Gathered,
         "multline" => MatrixStyle::Multline,
         "equation" => MatrixStyle::Equation,
         "split" => MatrixStyle::Split,

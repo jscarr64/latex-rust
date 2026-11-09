@@ -1,5 +1,33 @@
 # Changelog
 
+## [3.0.3] — 2026-11-09
+
+### Added
+
+- `gathered` environment (unnumbered centred display rows), array rule
+  spacing that preserves the intercolumn gap around vertical rules, and
+  ink-safe SVG metrics (viewport contains the ink, real baseline reported).
+  Credit: [Titiloye Paul (Ohanronnie)](https://github.com/Ohanronnie),
+  whose commits are in the history under his name.
+
+### Fixed
+
+- Array rule dimensions, checked against real TeX (Tectonic + STIX Two Math):
+  vertical rules add zero width (TeX draws a rule centred in the gap, so
+  ruled − plain is exactly 0); a `||` group adds exactly
+  `\doublerulesep` (0.2 em) and a single `|` adds nothing, at the edges as
+  well as between columns.
+- Horizontal rules add only their own thickness: array rules use TeX's
+  `\arrayrulewidth` (0.4 pt = 0.04 em) instead of the font's fraction rule
+  thickness (0.068 em), each rule's thickness is split evenly between height
+  and depth, adjacent rules are separated by `\doublerulesep` minus one rule
+  thickness (0.16 em), and no other padding surrounds a rule. Isolated
+  `\hline` now grows an array by exactly 0.04 em and `\hline\hline` by
+  exactly 0.24 em, matching TeX.
+- `gathered` accepts `\hline`, as TeX does: the box grows by exactly the
+  rule thickness (0.04 em), half in height and half in depth. Alignment tabs
+  in `gathered` still error, as TeX errors on them.
+
 ## [3.0.2] — 2026-11-07
 
 ### Fixed
