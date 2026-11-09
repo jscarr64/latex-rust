@@ -1,4 +1,4 @@
-use latex_rust::{layout, parse, BoxContent, Dim, MathFont, MathParams, MathStyle};
+use latex_rust::{layout, parse, BoxContent, Dim, MathBox, MathFont, MathParams, MathStyle};
 
 #[test]
 fn gathered_is_unnumbered_displaystyle_centered_on_the_math_axis() {
@@ -29,12 +29,47 @@ fn gathered_is_unnumbered_displaystyle_centered_on_the_math_axis() {
 }
 
 #[test]
-fn gathered_rejects_alignment_tabs_and_rules() {
+fn gathered_still_rejects_alignment_tabs() {
     let font = MathFont::stix_two_math().unwrap();
-    for source in [
-        r"\begin{gathered}x&y\end{gathered}",
-        r"\begin{gathered}\hline x\end{gathered}",
-    ] {
-        assert!(layout(&parse(source).unwrap(), &font, MathStyle::Display).is_err());
-    }
+    assert!(layout(
+        &parse(r"\begin{gathered}x&y\end{gathered}").unwrap(),
+        &font,
+        MathStyle::Display
+    )
+    .is_err());
+}
+
+#[test]
+fn gathered_accepts_hline_and_grows_by_exactly_the_rule_thickness() {
+    let font = MathFont::stix_two_math().unwrap();
+    let plain = layout(
+        &parse(r"\begin{gathered}x\end{gathered}").unwrap(),
+        &font,
+        MathStyle::Display,
+    )
+    .unwrap();
+    let ruled = layout(
+        &parse(r"\begin{gathered}\hline x\end{gathered}").unwrap(),
+        &font,
+        MathStyle::Display,
+    )
+    .unwrap();
+    // TeX accepts `\hline` in gathered and draws the rule: the box grows
+    // by exactly the rule thickness (0.4 pt = 0.04 em), half in height and
+    // half in depth, and the width does not change.
+    assert_eq!(ruled.width, plain.width);
+    assert_eq!(
+        &ruled.height + &ruled.depth,
+        &(&plain.height + &plain.depth) + &Dim::ratio(1, 25)
+    );
+    let eff_height = |b: &MathBox| &b.height + &b.shift;
+    let eff_depth = |b: &MathBox| &b.depth - &b.shift;
+    assert_eq!(eff_height(&ruled), &eff_height(&plain) + &Dim::ratio(1, 50));
+    assert_eq!(eff_depth(&ruled), &eff_depth(&plain) + &Dim::ratio(1, 50));
+    // Still centred on the math axis.
+    let axis = MathParams::from_font(&font).unwrap().axis_height;
+    assert_eq!(
+        (&ruled.height - &ruled.depth) / Dim::from_i64(2) + &ruled.shift,
+        axis
+    );
 }
