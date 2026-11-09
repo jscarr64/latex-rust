@@ -8,7 +8,6 @@ license = "MIT OR Apache-2.0"
 description = "Pure-Rust LaTeX math renderer. Parse to AST, TeX-faithful layout on exact rationals, emit SVG, PNG, or egui shapes. No JavaScript, no webview, no runtime."
 readme = "README.md"
 repository = "https://github.com/jscarr64/latex-rust"
-homepage = "https://github.com/jscarr64/latex-rust"
 documentation = "https://docs.rs/latex-rust"
 keywords = ["latex", "math", "rendering", "svg", "rust"]
 categories = ["rendering", "science", "mathematics"]
