@@ -9,7 +9,7 @@ jobs:
   nightly:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: dtolnay/rust-toolchain@1.99.0
       - name: release tests
         run: cargo test --release
@@ -22,7 +22,7 @@ jobs:
         run: cargo +nightly fuzz run preprocess -- -max_total_time=120
       - name: upload fuzz corpus and artifacts
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: fuzz-nightly-${{ github.run_id }}-${{ github.run_attempt }}
           path: |
